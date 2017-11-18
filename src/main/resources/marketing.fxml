@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Marketing.MarketingController">
+   <children>
+      <TabPane prefHeight="300.0" prefWidth="400.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="สั่งผลิต">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="28.0" layoutY="37.0" text="เมล็ดพันธุ์ :">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <ComboBox layoutX="113.0" layoutY="35.0" prefHeight="31.0" prefWidth="269.0" />
+                        <Label layoutX="28.0" layoutY="102.0" text="จำนวน :">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField layoutX="113.0" layoutY="100.0" prefHeight="31.0" prefWidth="126.0" />
+                        <ComboBox layoutX="257.0" layoutY="100.0" prefHeight="31.0" prefWidth="94.0" promptText="หน่วย" />
+                        <Button layoutX="164.0" layoutY="168.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="72.0" text="สั่งผลิต" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
