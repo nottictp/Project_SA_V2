@@ -12,12 +12,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="582.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Manufactory.ManufactController">
+<AnchorPane prefHeight="582.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Manufactory.ManufactController">
    <children>
       <TabPane layoutY="-1.0" prefHeight="582.0" prefWidth="774.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="100.0">
         <tabs>
-          <Tab text="กระจายการผลิต">
+          <Tab fx:id="distributionTab" text="กระจายการผลิต">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -26,28 +25,28 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <DatePicker layoutX="119.0" layoutY="32.0" prefHeight="31.0" prefWidth="169.0" />
+                        <DatePicker fx:id="datePicker" layoutX="119.0" layoutY="32.0" prefHeight="31.0" prefWidth="169.0" />
                         <Label layoutX="359.0" layoutY="35.0" text="ผู้บันทึก">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <ComboBox layoutX="440.0" layoutY="33.0" prefHeight="31.0" prefWidth="279.0" />
+                        <ComboBox fx:id="tab1searchCombo" layoutX="440.0" layoutY="33.0" prefHeight="31.0" prefWidth="279.0" />
                         <Label layoutX="68.0" layoutY="88.0" text="ผลิต">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <ComboBox layoutX="119.0" layoutY="86.0" prefHeight="31.0" prefWidth="220.0" />
+                        <ComboBox fx:id="typeCombo" layoutX="119.0" layoutY="86.0" prefHeight="31.0" prefWidth="220.0" />
                         <Label layoutX="384.0" layoutY="88.0" text="จำนวน">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="465.0" layoutY="86.0" prefHeight="31.0" prefWidth="142.0" />
-                        <ComboBox layoutX="624.0" layoutY="86.0" prefHeight="31.0" prefWidth="103.0" promptText="หน่วย" />
-                        <Button layoutX="335.0" layoutY="154.0" mnemonicParsing="false" text="ค้นหาเกษตรกร" />
-                        <TableView layoutX="68.0" layoutY="212.0" prefHeight="261.0" prefWidth="656.0">
+                        <TextField fx:id="amountField" layoutX="465.0" layoutY="86.0" prefHeight="31.0" prefWidth="142.0" />
+                        <ComboBox fx:id="unitCombo" layoutX="624.0" layoutY="86.0" prefHeight="31.0" prefWidth="103.0" promptText="หน่วย" />
+                        <Button fx:id="farmerSearchCombo" layoutX="335.0" layoutY="154.0" mnemonicParsing="false" text="ค้นหาเกษตรกร" />
+                        <TableView fx:id="tab1DataTable" layoutX="68.0" layoutY="212.0" prefHeight="261.0" prefWidth="656.0">
                           <columns>
                             <TableColumn prefWidth="110.0" text="กลุ่ม" />
                             <TableColumn prefWidth="111.0" text="ID" />
@@ -55,12 +54,12 @@
                               <TableColumn prefWidth="116.0" text="กำลังผลิต" />
                           </columns>
                         </TableView>
-                        <Button layoutX="361.0" layoutY="489.0" mnemonicParsing="false" text="ยืนยัน" />
+                        <Button fx:id="submitBtn" layoutX="361.0" layoutY="489.0" mnemonicParsing="false" text="ยืนยัน" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="บันทึกผลการผลิต">
+          <Tab fx:id="resultTab" text="บันทึกผลการผลิต">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -69,14 +68,14 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <ComboBox layoutX="150.0" layoutY="34.0" prefHeight="31.0" prefWidth="115.0" />
+                        <ComboBox fx:id="lotNoCombo" layoutX="150.0" layoutY="34.0" prefHeight="31.0" prefWidth="115.0" />
                         <Label layoutX="75.0" layoutY="94.0" text="ผู้บันทึก">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <ComboBox layoutX="150.0" layoutY="92.0" prefHeight="31.0" prefWidth="389.0" />
-                        <TableView layoutX="75.0" layoutY="158.0" prefHeight="320.0" prefWidth="622.0">
+                        <ComboBox fx:id="severCombo" layoutX="150.0" layoutY="92.0" prefHeight="31.0" prefWidth="389.0" />
+                        <TableView fx:id="tab2DataTable" layoutX="75.0" layoutY="158.0" prefHeight="320.0" prefWidth="622.0">
                           <columns>
                             <TableColumn prefWidth="87.0" text="ลำดับ" />
                             <TableColumn prefWidth="84.0" text="ID" />
@@ -85,8 +84,8 @@
                               <TableColumn prefWidth="94.0" text="หน่วย" />
                           </columns>
                         </TableView>
-                        <Button layoutX="75.0" layoutY="491.0" mnemonicParsing="false" text="บันทึก" />
-                        <Button layoutX="150.0" layoutY="491.0" mnemonicParsing="false" text="ยกเลิก" />
+                        <Button fx:id="tab2SaveBtn" layoutX="75.0" layoutY="491.0" mnemonicParsing="false" text="บันทึก" />
+                        <Button fx:id="tab2CancelBtn" layoutX="150.0" layoutY="491.0" mnemonicParsing="false" text="ยกเลิก" />
                      </children>
                   </AnchorPane>
             </content>

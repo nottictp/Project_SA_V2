@@ -9,12 +9,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Marketing.MarketingController">
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Marketing.MarketingController">
    <children>
       <TabPane prefHeight="300.0" prefWidth="400.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="สั่งผลิต">
+          <Tab fx:id="orderTab" text="สั่งผลิต">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -23,15 +22,15 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <ComboBox layoutX="113.0" layoutY="35.0" prefHeight="31.0" prefWidth="269.0" />
+                        <ComboBox fx:id="typeCombo" layoutX="113.0" layoutY="35.0" prefHeight="31.0" prefWidth="269.0" />
                         <Label layoutX="28.0" layoutY="102.0" text="จำนวน :">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="113.0" layoutY="100.0" prefHeight="31.0" prefWidth="126.0" />
-                        <ComboBox layoutX="257.0" layoutY="100.0" prefHeight="31.0" prefWidth="94.0" promptText="หน่วย" />
-                        <Button layoutX="164.0" layoutY="168.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="72.0" text="สั่งผลิต" />
+                        <TextField fx:id="amountField" layoutX="113.0" layoutY="100.0" prefHeight="31.0" prefWidth="126.0" />
+                        <ComboBox fx:id="unitCombo" layoutX="257.0" layoutY="100.0" prefHeight="31.0" prefWidth="94.0" promptText="หน่วย" />
+                        <Button fx:id="submitOrderBtn" layoutX="164.0" layoutY="168.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="72.0" text="สั่งผลิต" />
                      </children>
                   </AnchorPane>
             </content>

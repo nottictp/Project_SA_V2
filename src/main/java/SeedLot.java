@@ -1,11 +1,12 @@
 public class SeedLot {
-    private int lotId, seedId;
+    private int lotId;
+    private Seed seed;
     private String produceDate, expire,testDate,plateDate,havestDate;
     private double quality;
 
-    public SeedLot(int lotId, int seedId, String produceDate, String expire, String testDate, String plateDate, String havestDate, double quality) {
+    public SeedLot(int lotId, Seed seed, String produceDate, String expire, String testDate, String plateDate, String havestDate, double quality) {
         this.lotId = lotId;
-        this.seedId = seedId;
+        this.seed = seed;
         this.produceDate = produceDate;
         this.expire = expire;
         this.testDate = testDate;
@@ -22,12 +23,8 @@ public class SeedLot {
         this.lotId = lotId;
     }
 
-    public int getSeedId() {
-        return seedId;
-    }
-
-    public void setSeedId(int seedId) {
-        this.seedId = seedId;
+    public Seed getSeed() {
+        return seed;
     }
 
     public String getProduceDate() {
