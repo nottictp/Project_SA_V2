@@ -17,9 +17,9 @@ import java.util.ResourceBundle;
 
 public class WarehouseController implements Initializable{
 
-    public TextField textFieldSearch;
+    public TextField tab1SearchField;
     public TextField tab2DocNo;
-    public TextField tab2From;
+    public TextField tab2Form;
     public TextField tab3DocNo;
     public TextField tab3Note;
 
@@ -28,10 +28,14 @@ public class WarehouseController implements Initializable{
 
     public Button buttonSearch;
     public Button btnPrint;
-    public Button tab2BtnAdd;
-    public Button tab2BtnDelete;
-    public Button tab2BtnSubmit;
-    public Button tab2BtnClear;
+    public Button tab2AddBtn;
+    public Button tab2RemoveBtn;
+    public Button tab2SubmitBtn;
+    public Button tab2CancelBtn;
+    public Button tab3AddBtn;
+    public Button tab3RemoveBtn;
+    public Button tab3SubmitBtn;
+    public Button tab3CancelBtn;
 
 
     @FXML

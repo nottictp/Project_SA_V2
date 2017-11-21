@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Warehouse.WarehouseController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Warehouse.WarehouseController">
    <children>
       <TabPane prefHeight="588.0" prefWidth="774.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="100.0">
         <tabs>
-          <Tab text="ค้นหา">
+          <Tab fx:id="searchTab" text="ค้นหา">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="491.0">
                      <children>
@@ -27,22 +27,22 @@
                         </Label>
                         <ComboBox fx:id="comboTypeSearch" layoutX="102.0" layoutY="24.0" prefWidth="150.0" promptText="เมล็ดพันธุ์" />
                         <ComboBox fx:id="comboType" layoutX="271.0" layoutY="24.0" prefHeight="31.0" prefWidth="85.0" promptText="ชื่อ" />
-                        <TextField fx:id="textFieldSearch" layoutX="379.0" layoutY="24.0" prefHeight="31.0" prefWidth="255.0" />
+                        <TextField fx:id="tab1SearchField" layoutX="379.0" layoutY="24.0" prefHeight="31.0" prefWidth="255.0" />
                         <Button fx:id="buttonSearch" layoutX="651.0" layoutY="24.0" mnemonicParsing="false" onAction="#handlerBtnSearch" text="ค้นหา" />
-                        <TableView layoutX="32.0" layoutY="75.0" prefHeight="393.0" prefWidth="710.0">
+                        <TableView fx:id="tab1DataTable" layoutX="32.0" layoutY="75.0" prefHeight="393.0" prefWidth="710.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="ลำดับ" />
-                            <TableColumn prefWidth="75.0" text="วันที่รับ" />
-                              <TableColumn prefWidth="91.0" text="เลขที่เอกสาร" />
-                              <TableColumn prefWidth="59.0" text="รหัส" />
-                              <TableColumn prefWidth="75.0" text="ที่เก็บ" />
-                              <TableColumn prefWidth="205.0" text="ชื่อ" />
-                              <TableColumn prefWidth="93.0" text="ขนาดบรรจุ" />
-                              <TableColumn prefWidth="75.0" text="หน่วย" />
-                              <TableColumn prefWidth="75.0" text="จำนวน" />
-                              <TableColumn prefWidth="205.0" text="ผู้บักทึก" />
-                              <TableColumn prefWidth="205.0" text="ผู้รับ" />
-                              <TableColumn prefWidth="205.0" text="รับจาก" />
+                            <TableColumn fx:id="tab1OrderColumn" prefWidth="75.0" text="ลำดับ" />
+                            <TableColumn fx:id="deliveryDateColumn" prefWidth="75.0" text="วันที่รับ" />
+                              <TableColumn fx:id="docNoColumn" prefWidth="91.0" text="เลขที่เอกสาร" />
+                              <TableColumn fx:id="tab1IDColumn" prefWidth="59.0" text="รหัส" />
+                              <TableColumn fx:id="tab1ShelfColumn" prefWidth="75.0" text="ที่เก็บ" />
+                              <TableColumn fx:id="nameColumn" prefWidth="205.0" text="ชื่อ" />
+                              <TableColumn fx:id="capacityColumn" prefWidth="93.0" text="ขนาดบรรจุ" />
+                              <TableColumn fx:id="tab1UnitColumn" prefWidth="75.0" text="หน่วย" />
+                              <TableColumn fx:id="tab1AmountColumn" prefWidth="75.0" text="จำนวน" />
+                              <TableColumn fx:id="tab1RecorderColumn" prefWidth="205.0" text="ผู้บักทึก" />
+                              <TableColumn fx:id="recipientColumn" prefWidth="205.0" text="ผู้รับ" />
+                              <TableColumn fx:id="senderColumn" prefWidth="205.0" text="รับจาก" />
                           </columns>
                         </TableView>
                         <Label layoutX="25.0" layoutY="492.0" text="เอกสาร">
@@ -56,7 +56,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="รับเข้า">
+          <Tab fx:id="importTab" text="รับเข้า">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="717.0">
                      <children>
@@ -71,7 +71,7 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <ComboBox layoutX="521.0" layoutY="23.0" prefWidth="150.0" />
+                        <ComboBox fx:id="tab2DepartmentCombo" layoutX="521.0" layoutY="23.0" prefWidth="150.0" />
                         <Label layoutX="44.0" layoutY="64.0" text="วันที่เอกสาร">
                            <font>
                               <Font size="17.0" />
@@ -93,29 +93,29 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="tab2Recorder" layoutX="162.0" layoutY="100.0" prefHeight="31.0" prefWidth="188.0" />
-                        <ComboBox fx:id="tab2Recipient" layoutX="162.0" layoutY="139.0" prefHeight="31.0" prefWidth="188.0" />
-                        <TextField fx:id="tab2From" layoutX="162.0" layoutY="181.0" prefHeight="31.0" prefWidth="324.0" />
-                        <TableView layoutX="28.0" layoutY="225.0" prefHeight="254.0" prefWidth="719.0">
+                        <ComboBox fx:id="tab2RecorderCombo" layoutX="162.0" layoutY="100.0" prefHeight="31.0" prefWidth="188.0" />
+                        <ComboBox fx:id="tab2RecipientCombo" layoutX="162.0" layoutY="139.0" prefHeight="31.0" prefWidth="188.0" />
+                        <TextField fx:id="tab2Form" layoutX="162.0" layoutY="181.0" prefHeight="31.0" prefWidth="324.0" />
+                        <TableView fx:id="tab2DataTable" layoutX="28.0" layoutY="225.0" prefHeight="254.0" prefWidth="719.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="ลำดับ" />
-                            <TableColumn prefWidth="75.0" text="รหัส" />
-                              <TableColumn prefWidth="223.0" text="รายชื่อสินค้า" />
-                              <TableColumn prefWidth="87.0" text="หน่วย" />
-                              <TableColumn minWidth="0.0" prefWidth="72.0" text="จำนวน" />
-                              <TableColumn prefWidth="78.0" text="เลขที่คลัง" />
-                              <TableColumn prefWidth="108.0" text="ที่เก็บ" />
+                            <TableColumn fx:id="tab2OrderColumn" prefWidth="75.0" text="ลำดับ" />
+                            <TableColumn fx:id="tab2IDColumn" prefWidth="75.0" text="รหัส" />
+                              <TableColumn fx:id="tab2NameProductColumn" prefWidth="223.0" text="รายชื่อสินค้า" />
+                              <TableColumn fx:id="tab2UnitColumn" prefWidth="87.0" text="หน่วย" />
+                              <TableColumn fx:id="tab2AmountColumn" minWidth="0.0" prefWidth="72.0" text="จำนวน" />
+                              <TableColumn fx:id="tab2StockColumn" prefWidth="78.0" text="เลขที่คลัง" />
+                              <TableColumn fx:id="tab2ShelfColumn" prefWidth="108.0" text="ที่เก็บ" />
                           </columns>
                         </TableView>
-                        <Button fx:id="tab2BtnAdd" layoutX="31.0" layoutY="495.0" mnemonicParsing="false" onAction="#handlerBtnAdd" text="เพิ่ม" />
-                        <Button fx:id="tab2BtnDelete" layoutX="89.0" layoutY="495.0" mnemonicParsing="false" text="ลบ" />
-                        <Button fx:id="tab2BtnSubmit" layoutX="142.0" layoutY="495.0" mnemonicParsing="false" text="บันทึก" />
-                        <Button fx:id="tab2BtnClear" layoutX="216.0" layoutY="495.0" mnemonicParsing="false" text="ยกเลิก" />
+                        <Button fx:id="tab2AddBtn" layoutX="31.0" layoutY="495.0" mnemonicParsing="false" onAction="#handlerBtnAdd" text="เพิ่ม" />
+                        <Button fx:id="tab2RemoveBtn" layoutX="89.0" layoutY="495.0" mnemonicParsing="false" text="ลบ" />
+                        <Button fx:id="tab2SubmitBtn" layoutX="142.0" layoutY="495.0" mnemonicParsing="false" text="บันทึก" />
+                        <Button fx:id="tab2CancelBtn" layoutX="216.0" layoutY="495.0" mnemonicParsing="false" text="ยกเลิก" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="เบิกออก">
+            <Tab fx:id="exposeTab" text="เบิกออก">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -136,7 +136,7 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <ComboBox layoutX="521.0" layoutY="23.0" prefWidth="150.0" />
+                        <ComboBox fx:id="tab3DepartmentCombo" layoutX="521.0" layoutY="23.0" prefWidth="150.0" />
                         <Label layoutX="65.0" layoutY="102.0" text="ผู้เบิก">
                            <font>
                               <Font size="17.0" />
@@ -152,24 +152,24 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <ComboBox layoutX="162.0" layoutY="100.0" prefHeight="31.0" prefWidth="189.0" />
-                        <ComboBox layoutX="161.0" layoutY="137.0" prefHeight="31.0" prefWidth="189.0" />
+                        <ComboBox fx:id="tab3RecorderCombo" layoutX="162.0" layoutY="100.0" prefHeight="31.0" prefWidth="189.0" />
+                        <ComboBox fx:id="tab3RecipientCombo" layoutX="161.0" layoutY="137.0" prefHeight="31.0" prefWidth="189.0" />
                         <TextField fx:id="tab3Note" layoutX="162.0" layoutY="175.0" prefHeight="31.0" prefWidth="328.0" />
-                        <TableView layoutX="28.0" layoutY="225.0" prefHeight="254.0" prefWidth="719.0">
+                        <TableView fx:id="tab3DataTable" layoutX="28.0" layoutY="225.0" prefHeight="254.0" prefWidth="719.0">
                            <columns>
-                              <TableColumn prefWidth="75.0" text="ลำดับ" />
-                              <TableColumn prefWidth="75.0" text="รหัส" />
-                              <TableColumn prefWidth="223.0" text="รายชื่อสินค้า" />
-                              <TableColumn prefWidth="87.0" text="หน่วย" />
-                              <TableColumn minWidth="0.0" prefWidth="72.0" text="จำนวน" />
-                              <TableColumn prefWidth="78.0" text="เลขที่คลัง" />
-                              <TableColumn prefWidth="116.0" text="ที่เก็บ" />
+                              <TableColumn fx:id="tab3OrderColumn" prefWidth="75.0" text="ลำดับ" />
+                              <TableColumn fx:id="tab3IDColumn" prefWidth="75.0" text="รหัส" />
+                              <TableColumn fx:id="tab3NameProductColumn" prefWidth="223.0" text="รายชื่อสินค้า" />
+                              <TableColumn fx:id="tab3UnitColumn" prefWidth="87.0" text="หน่วย" />
+                              <TableColumn fx:id="tab3AmountColumn" minWidth="0.0" prefWidth="72.0" text="จำนวน" />
+                              <TableColumn fx:id="tab3StockColumn" prefWidth="78.0" text="เลขที่คลัง" />
+                              <TableColumn fx:id="tab3ShelfColumn" prefWidth="116.0" text="ที่เก็บ" />
                            </columns>
                         </TableView>
-                        <Button layoutX="31.0" layoutY="495.0" mnemonicParsing="false" text="เพิ่ม" />
-                        <Button layoutX="89.0" layoutY="495.0" mnemonicParsing="false" text="ลบ" />
-                        <Button layoutX="142.0" layoutY="495.0" mnemonicParsing="false" text="บันทึก" />
-                        <Button layoutX="216.0" layoutY="495.0" mnemonicParsing="false" text="ยกเลิก" />
+                        <Button fx:id="tab3AddBtn" layoutX="31.0" layoutY="495.0" mnemonicParsing="false" text="เพิ่ม" />
+                        <Button fx:id="tab3RemoveBtn" layoutX="89.0" layoutY="495.0" mnemonicParsing="false" text="ลบ" />
+                        <Button fx:id="tab3SubmitBtn" layoutX="142.0" layoutY="495.0" mnemonicParsing="false" text="บันทึก" />
+                        <Button fx:id="tab3CancelBtn" layoutX="216.0" layoutY="495.0" mnemonicParsing="false" text="ยกเลิก" />
                      </children>
                   </AnchorPane>
               </content>

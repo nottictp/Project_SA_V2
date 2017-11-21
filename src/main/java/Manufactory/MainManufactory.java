@@ -10,7 +10,7 @@ public class MainManufactory extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/manufact.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("manufact.fxml"));
         primaryStage.setTitle("Manufactory");
         primaryStage.setScene(new Scene(root, 774, 582));
         primaryStage.show();
