@@ -42,7 +42,7 @@ public class WarehouseController implements Initializable{
     private ComboBox comboType, comboTypeSearch, comboDoc;
     @FXML
     private ComboBox tab2RecorderCombo, tab2RecipientCombo;
-    private ObservableList<String> typeList = FXCollections.observableArrayList("ชื่อ", "รหัส");
+    private ObservableList<String> typeList = FXCollections.observableArrayList("ชื่อ", "รหัส", "LotID");
     private ObservableList<String> typeSearchList = FXCollections.observableArrayList("เมล็ดพันธุ์", "ผลิตภัณฑ์");
     private ObservableList<String> DocList = FXCollections.observableArrayList();
     private ObservableList<String> RecorderList = FXCollections.observableArrayList();
