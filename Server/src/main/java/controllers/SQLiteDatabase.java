@@ -1,10 +1,14 @@
 package controllers;
 
+import managers.ManufactorManagerDB;
+import managers.MarketingManagerDB;
+import managers.WarehouseManagerDB;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SQLiteDatabase implements WarehouseManagerDB{
+public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, MarketingManagerDB {
     public String url = "SeedProduct.db";
 
     private Connection prepareConnection(){
@@ -48,6 +52,10 @@ public class SQLiteDatabase implements WarehouseManagerDB{
                 }
             }
         }return seed_ids;
+    }
+
+    public void a() {
+
     }
 
 //    public void addSeed(){

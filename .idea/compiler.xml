@@ -14,12 +14,12 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
-      <module name="API" target="1.5" />
-      <module name="Manufactory" target="1.5" />
-      <module name="Marketing" target="1.5" />
-      <module name="Project_SA" target="1.5" />
-      <module name="Server" target="1.5" />
-      <module name="Warehouse" target="1.5" />
+      <module name="API" target="1.8" />
+      <module name="Manufactory" target="1.8" />
+      <module name="Marketing" target="1.8" />
+      <module name="Project_SA" target="1.8" />
+      <module name="Server" target="1.8" />
+      <module name="Warehouse" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
