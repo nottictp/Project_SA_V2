@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/API/API.iml" filepath="$PROJECT_DIR$/API/API.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Manufactory/Manufactory.iml" filepath="$PROJECT_DIR$/Manufactory/Manufactory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Marketing/Marketing.iml" filepath="$PROJECT_DIR$/Marketing/Marketing.iml" />
       <module fileurl="file://$PROJECT_DIR$/Project_SA.iml" filepath="$PROJECT_DIR$/Project_SA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Server/Server.iml" filepath="$PROJECT_DIR$/Server/Server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Warehouse/Warehouse.iml" filepath="$PROJECT_DIR$/Warehouse/Warehouse.iml" />
     </modules>
   </component>
 </project>
