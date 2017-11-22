@@ -1,23 +1,25 @@
 import controllers.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import views.WarehouseController;
+import views.MarketingController;
 
 public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
         MainController controller = new MainController();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/warehouse.fxml"));
-        AnchorPane mainLayout = loader.load();
-        WarehouseController marketingController = loader.getController();
+        loader.setLocation(getClass().getResource("/marketing.fxml"));
+        Pane mainLayout = loader.load();
+        MarketingController marketingController = loader.getController();
         marketingController.setController(controller);
 
-        primaryStage.setTitle("Warehouse");
-        primaryStage.setScene(new Scene(mainLayout, 774, 582));
+
+        primaryStage.setTitle("Marketing");
+        primaryStage.setScene(new Scene(mainLayout, 400, 300));
         primaryStage.show();
     }
 
@@ -25,4 +27,6 @@ public class Main extends Application{
     public static void main(String[] args) {
         launch(args);
     }
+
+
 }
