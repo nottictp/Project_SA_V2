@@ -13,8 +13,8 @@ public class Main extends Application{
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/warehouse.fxml"));
         AnchorPane mainLayout = loader.load();
-        WarehouseController marketingController = loader.getController();
-        marketingController.setController(controller);
+        WarehouseController warehouseController = loader.getController();
+        warehouseController.setController(controller);
 
         primaryStage.setTitle("Warehouse");
         primaryStage.setScene(new Scene(mainLayout, 774, 582));

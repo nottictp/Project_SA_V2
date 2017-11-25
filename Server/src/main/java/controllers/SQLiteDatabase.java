@@ -54,9 +54,6 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         }return seed_ids;
     }
 
-    public void a() {
-
-    }
 
 //    public void addSeed(){
 //        List<Seed> seeds = new ArrayList<Seed>();
