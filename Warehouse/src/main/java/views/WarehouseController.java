@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import models.WarehouseProduct;
 
 import java.io.IOException;
 import java.net.URL;
@@ -73,9 +74,12 @@ public class WarehouseController implements Initializable{
     @FXML private DatePicker tab2DocDate;
     @FXML private DatePicker tab3DocDate;
 
+    WarehouseProduct warehouseProduct;
+
     ObservableList<String> comBoBox1 = FXCollections.observableArrayList("เมล็ดพันธุ์","สินค้า");
     ObservableList<String> comBoBox2 = FXCollections.observableArrayList("ชื่อ","รหัส");
     ObservableList<String> comBoBox3 = FXCollections.observableArrayList("Lot ID");
+    ObservableList<String> warehouseProducts = FXCollections.observableArrayList();
 
     MainController controller;
 

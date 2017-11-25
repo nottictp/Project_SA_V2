@@ -1,3 +1,5 @@
+package models;
+
 public class Producer {
     private int lot_id, farmer_id;
     private float qualtity;

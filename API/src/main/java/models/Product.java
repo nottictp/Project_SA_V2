@@ -1,3 +1,5 @@
+package models;
+
 public class Product {
 
     private String product_ID, product_name, unit, packaging;

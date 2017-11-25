@@ -7,19 +7,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.PopUpAddController">
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.PopUpAddController">
    <children>
-      <Label layoutX="58.0" layoutY="68.0" text="รหัส">
+      <Label layoutX="58.0" layoutY="118.0" text="รหัส">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="52.0" layoutY="117.0" text="จำนวน">
+      <Label layoutX="53.0" layoutY="165.0" text="จำนวน">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="41.0" layoutY="161.0" text="เลขที่คลัง">
+      <Label layoutX="46.0" layoutY="69.0" text="เลขที่คลัง">
          <font>
             <Font size="17.0" />
          </font>
@@ -30,15 +30,15 @@
          </font>
       </Label>
       <TextField fx:id="shelfField" layoutX="155.0" layoutY="206.0" />
-      <ComboBox fx:id="unitCombo" layoutX="281.0" layoutY="115.0" prefHeight="31.0" prefWidth="98.0" promptText="Unit" />
-      <Button fx:id="addBtn" layoutX="112.0" layoutY="255.0" mnemonicParsing="false" text="เพิ่ม" />
-      <Button fx:id="cancelBtn" layoutX="216.0" layoutY="255.0" mnemonicParsing="false" text="ยกเลิก" />
+      <ComboBox fx:id="unitCombo" layoutX="281.0" layoutY="163.0" prefHeight="31.0" prefWidth="98.0" promptText="Unit" />
+      <Button fx:id="addBtn" layoutX="112.0" layoutY="255.0" mnemonicParsing="false" onAction="#handlerBtnAdd" text="เพิ่ม" />
+      <Button fx:id="cancelBtn" layoutX="216.0" layoutY="255.0" mnemonicParsing="false" onAction="#handlerBtnCancel" text="ยกเลิก" />
       <Label alignment="CENTER" layoutY="7.0" prefHeight="31.0" prefWidth="400.0" text="เพื่มสินค้าเข้าคลัง">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <TextField fx:id="amountField" layoutX="155.0" layoutY="115.0" prefHeight="31.0" prefWidth="116.0" />
-      <ComboBox fx:id="idProductCombo" layoutX="155.0" layoutY="66.0" prefWidth="150.0" />
-      <ComboBox fx:id="stockCombo" layoutX="155.0" layoutY="162.0" prefWidth="150.0" />
+      <TextField fx:id="amountField" layoutX="158.0" layoutY="163.0" prefHeight="31.0" prefWidth="116.0" />
+      <ComboBox fx:id="idProductCombo" layoutX="155.0" layoutY="116.0" prefWidth="150.0" />
+      <ComboBox fx:id="stockCombo" layoutX="155.0" layoutY="67.0" onAction="#onClickStockNo" prefWidth="150.0" />
    </children>
 </AnchorPane>

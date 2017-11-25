@@ -1,3 +1,5 @@
+package models;
+
 public class Farmer {
 
     private int farmer_id, identity_id;

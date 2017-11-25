@@ -1,9 +1,14 @@
-public class WarehouseSeed {
+package models;
+
+import java.io.Serializable;
+
+public class WarehouseSeed implements Serializable{
     private int order,seedId,quantity,shelf,docNo;
     private String name,unit,docDate,recorder,recipient,
     form;
 
-    public WarehouseSeed(int order, int seedId, int quantity, int shelf, int docNo, String name, String unit, String docDate, String recorder, String recipient, String form) {
+    public WarehouseSeed(int docNo, String docDate, int seedId, String name, String unit, int quantity
+            , int shelf, String recorder, String recipient, String form) {
         this.order = order;
         this.seedId = seedId;
         this.quantity = quantity;

@@ -1,3 +1,5 @@
+package models;
+
 public class SeedRatio {
     private int seedId,fatherId,motherId;
     private String ratio;

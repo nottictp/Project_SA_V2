@@ -1,3 +1,5 @@
+package models;
+
 public class SeedLot {
     private int lotId;
     private Seed seed;

@@ -6,7 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import views.WarehouseController;
 
-public class Main extends Application{
+public class MainWarehouse extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
         MainController controller = new MainController();

@@ -1,9 +1,12 @@
+package models;
+
 public class WarehouseProduct {
     private int order,productId,quantity,shelf,docNo;
     private String name,docDate,recorder,recipient,form;
-    private double unit;
+    private String unit;
 
-    public WarehouseProduct(int order, int productId, int quantity, int shelf, int docNo, String name, String docDate, String recorder, String recipient, String form, double unit) {
+    public WarehouseProduct(int docNo, String docDate, int productId, String name
+            , String unit, int quantity, int shelf, String recorder, String recipient, String form) {
         this.order = order;
         this.productId = productId;
         this.quantity = quantity;
@@ -97,11 +100,11 @@ public class WarehouseProduct {
         this.form = form;
     }
 
-    public double getUnit() {
+    public String getUnit() {
         return unit;
     }
 
-    public void setUnit(double unit) {
+    public void setUnit(String unit) {
         this.unit = unit;
     }
 }
