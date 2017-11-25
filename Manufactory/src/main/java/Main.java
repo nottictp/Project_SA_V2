@@ -11,7 +11,7 @@ public class Main extends Application{
     public void start(Stage primaryStage) throws Exception{
         MainController controller = new MainController();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/manufactory.fxml"));
+        loader.setLocation(getClass().getResource("/manufact.fxml"));
         Pane mainLayout = loader.load();
         ManufactoryController marketingController = loader.getController();
         marketingController.setController(controller);
