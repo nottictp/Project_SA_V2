@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class WarehouseController implements Initializable{
@@ -90,16 +89,16 @@ public class WarehouseController implements Initializable{
     }
 
     @FXML
-    public void handlerBtnAdd(ActionEvent event) throws IOException {
+    public void handlerBtnAddTab2(ActionEvent event) throws IOException {
         Stage secondaryStage = new Stage();
         controller = new MainController();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/popup.fxml"));
+        loader.setLocation(getClass().getResource("/popupAdd.fxml"));
         AnchorPane mainLayout = loader.load();
-        PopUpController popUpController = loader.getController();
-        popUpController.setController(controller);
+        PopUpAddController popUpAddController = loader.getController();
+        popUpAddController.setController(controller);
 
-        secondaryStage.setTitle("Add");
+        secondaryStage.setTitle("รับสินค้าเข้า");
         secondaryStage.setScene(new Scene(mainLayout, 400, 300));
         secondaryStage.show();
     }
@@ -115,6 +114,21 @@ public class WarehouseController implements Initializable{
         checkType();
         String search = tab1SearchField.getText();
         System.out.println(search);
+    }
+
+    @FXML
+    public void handlerBtnAddTab3(ActionEvent event) throws IOException {
+        Stage secondaryStage = new Stage();
+        controller = new MainController();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/popupPick.fxml"));
+        AnchorPane mainLayout = loader.load();
+        PopUpPickController popUpPickController = loader.getController();
+        popUpPickController.setController(controller);
+
+        secondaryStage.setTitle("เบิกสินค้าออก");
+        secondaryStage.setScene(new Scene(mainLayout, 400, 300));
+        secondaryStage.show();
     }
 
     public void checkTypeSearch(){
