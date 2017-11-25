@@ -1,6 +1,8 @@
 package views;
 
 import controllers.MainController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,12 +14,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class WarehouseController implements Initializable{
 
-    @FXML private ComboBox comboTypeSearch;
-    @FXML private ComboBox comboType;
+    @FXML private ComboBox<String> comboTypeSearch;
+    @FXML private ComboBox<String> comboType;
     @FXML private ComboBox comboDoc;
     @FXML private ComboBox tab2RecorderCombo;
     @FXML private ComboBox tab2RecipientCombo;
@@ -71,11 +74,15 @@ public class WarehouseController implements Initializable{
     @FXML private DatePicker tab2DocDate;
     @FXML private DatePicker tab3DocDate;
 
+    ObservableList<String> comBoBox1 = FXCollections.observableArrayList("เมล็ดพันธุ์","สินค้า");
+    ObservableList<String> comBoBox2 = FXCollections.observableArrayList("ชื่อ","รหัส");
+    ObservableList<String> comBoBox3 = FXCollections.observableArrayList("Lot ID");
 
     MainController controller;
 
     public void initialize(URL location, ResourceBundle resources) {
-
+        comboTypeSearch.setItems(comBoBox1);
+        comboType.setItems(comBoBox2);
     }
 
     public void setController(MainController controller) {
@@ -104,8 +111,23 @@ public class WarehouseController implements Initializable{
 
     @FXML
     public void handlerBtnSearch(ActionEvent event){
+        checkTypeSearch();
+        checkType();
+        String search = tab1SearchField.getText();
+        System.out.println(search);
+    }
+
+    public void checkTypeSearch(){
+        if(comboTypeSearch.getItems().equals("เมล็ด")){
+
+        }else if (comboTypeSearch.getItems().equals("สินค้า")){
+
+        }
 
     }
 
+    public void checkType(){
+
+    }
 
 }
