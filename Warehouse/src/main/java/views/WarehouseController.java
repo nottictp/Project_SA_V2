@@ -9,10 +9,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import models.WarehouseProduct;
 
+import javax.security.auth.callback.Callback;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -115,7 +117,6 @@ public class WarehouseController implements Initializable{
     @FXML
     public void handlerBtnSearch(ActionEvent event){
         checkTypeSearch();
-        checkType();
         String search = tab1SearchField.getText();
         System.out.println(search);
     }
@@ -136,16 +137,40 @@ public class WarehouseController implements Initializable{
     }
 
     public void checkTypeSearch(){
-        if(comboTypeSearch.getItems().equals("เมล็ด")){
-
-        }else if (comboTypeSearch.getItems().equals("สินค้า")){
-
+        if(comboTypeSearch.getValue().equals("เมล็ด")){
+            comboType.setItems(comBoBox2);
+        }else {
+            comboType.setItems(comBoBox3);
         }
 
     }
 
-    public void checkType(){
-
+    public void setTab2OrderColumn(int order) {
+//        this.tab2OrderColumn = ;
+//        tab2OrderColumn.setCellValueFactory();
     }
 
+    public void setTab2IDColumn(TableColumn tab2IDColumn) {
+        this.tab2IDColumn = tab2IDColumn;
+    }
+
+    public void setTab2NameProductColumn(TableColumn tab2NameProductColumn) {
+        this.tab2NameProductColumn = tab2NameProductColumn;
+    }
+
+    public void setTab2UnitColumn(TableColumn tab2UnitColumn) {
+        this.tab2UnitColumn = tab2UnitColumn;
+    }
+
+    public void setTab2AmountColumn(TableColumn tab2AmountColumn) {
+        this.tab2AmountColumn = tab2AmountColumn;
+    }
+
+    public void setTab2StockColumn(TableColumn tab2StockColumn) {
+        this.tab2StockColumn = tab2StockColumn;
+    }
+
+    public void setTab2ShelfColumn(TableColumn tab2ShelfColumn) {
+        this.tab2ShelfColumn = tab2ShelfColumn;
+    }
 }

@@ -64,7 +64,6 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         try {
         connection = prepareConnection();
         if(connection != null){
-
                 String sql = "select * from warehouse_seed";
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(sql);
@@ -101,9 +100,9 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         }return warehouseSeeds;
     }
 
-    public WarehouseProduct getWarehouseProduct() {
+    public List<WarehouseProduct> getWarehouseProduct() {
         System.out.println("request warehouse product");
-
+        List<WarehouseProduct> warehouseProducts = new ArrayList<WarehouseProduct>();
         Connection connection = null;
         try {
             connection = prepareConnection();
@@ -129,7 +128,6 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
                             , quantity, shelf, recorder, recipient, form);
                     System.out.println("response");
                     System.out.println("warehouseProduct = " + warehouseProduct);
-                    return warehouseProduct;
                 }
             }
         } catch (SQLException e) {
@@ -143,7 +141,7 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
                 }
             }
         }
-        return null;
+        return warehouseProducts;
     }
 
 

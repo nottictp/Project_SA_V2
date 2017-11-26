@@ -3,11 +3,13 @@ package managers;
 import models.WarehouseProduct;
 import models.WarehouseSeed;
 
+import java.util.List;
+
 public interface WarehouseManagerDB {
 
-    WarehouseSeed getWarehouseSeed();
+    List<WarehouseSeed> getWarehouseSeed();
 
-    WarehouseProduct getWarehouseProduct();
+    List<WarehouseProduct> getWarehouseProduct();
 
 
 }

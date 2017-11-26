@@ -1,9 +1,12 @@
 package controllers;
 
 import managers.WarehouseManagerDB;
+import models.WarehouseProduct;
 import models.WarehouseSeed;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.List;
 
 public class MainController {
     private WarehouseManagerDB executor;
@@ -14,7 +17,11 @@ public class MainController {
         System.out.println("E nott");
     }
 
-    public WarehouseSeed getWarehouseSeed(){
+    public List<WarehouseSeed> getWarehouseSeed(){
         return executor.getWarehouseSeed();
+    }
+
+    public List<WarehouseProduct> getWarehouseProduct(){
+        return executor.getWarehouseProduct();
     }
 }
