@@ -115,7 +115,7 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
                 while (resultSet.next()){
                     int docNo = resultSet.getInt("doc_no");
                     String docDate = resultSet.getString("doc_date");
-                    int productId = resultSet.getInt("product_id_id");
+                    String productId = resultSet.getString("product_id");
                     String name = resultSet.getString("name");
                     String unit = resultSet.getString("unit");
                     int quantity = resultSet.getInt("quantity");
@@ -126,6 +126,7 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
 
                     WarehouseProduct warehouseProduct = new WarehouseProduct(docNo, docDate, productId, name, unit
                             , quantity, shelf, recorder, recipient, form);
+                    warehouseProducts.add(warehouseProduct);
                     System.out.println("response");
                     System.out.println("warehouseProduct = " + warehouseProduct);
                 }

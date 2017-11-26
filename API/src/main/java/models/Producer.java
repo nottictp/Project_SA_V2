@@ -1,6 +1,8 @@
 package models;
 
-public class Producer {
+import java.io.Serializable;
+
+public class Producer implements Serializable {
     private int lot_id, farmer_id;
     private float qualtity;
 

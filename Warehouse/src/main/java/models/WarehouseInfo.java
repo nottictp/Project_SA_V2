@@ -7,9 +7,6 @@ public class WarehouseInfo {
     private static WarehouseInfo warehouseInfo;
     private WarehouseProduct warehouseProduct;
     private WarehouseSeed warehouseSeed;
-    private SimpleStringProperty order;
-    private SimpleStringProperty id;
-
 
     public WarehouseInfo() {
     }

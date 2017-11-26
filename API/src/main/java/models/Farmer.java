@@ -1,6 +1,8 @@
 package models;
 
-public class Farmer {
+import java.io.Serializable;
+
+public class Farmer implements Serializable{
 
     private int farmer_id, identity_id;
     private String name, surname, address, phoneNum,production_status,group;

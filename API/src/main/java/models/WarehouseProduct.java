@@ -1,11 +1,13 @@
 package models;
 
-public class WarehouseProduct {
-    private int order,productId,quantity,shelf,docNo;
-    private String name,docDate,recorder,recipient,form;
+import java.io.Serializable;
+
+public class WarehouseProduct implements Serializable{
+    private int order,quantity,shelf,docNo;
+    private String name,docDate,recorder,recipient,form, productId;
     private String unit;
 
-    public WarehouseProduct(int docNo, String docDate, int productId, String name
+    public WarehouseProduct(int docNo, String docDate, String productId, String name
             , String unit, int quantity, int shelf, String recorder, String recipient, String form) {
         this.order = order;
         this.productId = productId;
@@ -28,11 +30,11 @@ public class WarehouseProduct {
         this.order = order;
     }
 
-    public int getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 

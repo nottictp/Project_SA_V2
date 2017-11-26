@@ -1,6 +1,8 @@
 package models;
 
-public class SeedLot {
+import java.io.Serializable;
+
+public class SeedLot implements Serializable {
     private int lotId;
     private Seed seed;
     private String produceDate, expire,testDate,plateDate,havestDate;

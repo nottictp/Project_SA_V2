@@ -43,7 +43,7 @@ public class PopUpAddController implements Initializable {
     Set setA = new HashSet();
     Set setB = new HashSet();
 
-    String stockNo, id, unit, shelf;
+    String stockNo, id, unit, shelf, name;
     int quantity;
     int order=1;
 
@@ -65,10 +65,11 @@ public class PopUpAddController implements Initializable {
     public void handlerBtnAdd(ActionEvent event){
         stockNo = String.valueOf(stockCombo.getValue()).substring(0,1);
         quantity = Integer.parseInt(amountField.getText());
-        id = String.valueOf(idProductCombo.getValue());
+        id = String.valueOf(idProductCombo.getValue()).substring(0,1);
+        name = String.valueOf(idProductCombo.getValue()).substring(3);
         unit = String.valueOf(unitCombo.getValue());
         shelf = shelfField.getText();
-
+        order++;
     }
 
     @FXML

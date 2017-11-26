@@ -1,6 +1,8 @@
 package models;
 
-public class SeedRatio {
+import java.io.Serializable;
+
+public class SeedRatio implements Serializable {
     private int seedId,fatherId,motherId;
     private String ratio;
 
