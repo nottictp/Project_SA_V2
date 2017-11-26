@@ -3,10 +3,18 @@ package models;
 import java.io.Serializable;
 
 public class Warehouse implements Serializable{
-    private int order,quantity,shelf,docNo;
-    private String name,unit,docDate,recorder,recipient,form;
+    private int order,quantity,docNo,type;
+    private String name,unit,docDate,recorder,recipient,form,shelf;
 
-    public Warehouse(int quantity, int shelf, int docNo, String name, String unit, String docDate, String recorder, String recipient, String form) {
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public Warehouse(int quantity, String shelf, int docNo, String name, String unit, String docDate, String recorder, String recipient, String form, int type) {
         this.quantity = quantity;
         this.shelf = shelf;
         this.docNo = docNo;
@@ -16,6 +24,8 @@ public class Warehouse implements Serializable{
         this.recorder = recorder;
         this.recipient = recipient;
         this.form = form;
+        this.type = type;
+
     }
 
     public int getOrder() {
@@ -34,11 +44,11 @@ public class Warehouse implements Serializable{
         this.quantity = quantity;
     }
 
-    public int getShelf() {
+    public String getShelf() {
         return shelf;
     }
 
-    public void setShelf(int shelf) {
+    public void setShelf(String shelf) {
         this.shelf = shelf;
     }
 

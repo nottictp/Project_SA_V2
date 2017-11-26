@@ -45,6 +45,7 @@ public class TabImportView extends AnchorPane implements Initializable {
     @FXML private DatePicker docDate;
 
     private MainController controller;
+    private int orderNo = -1;
 
 
     @Override
@@ -68,8 +69,15 @@ public class TabImportView extends AnchorPane implements Initializable {
     }
 
     public void initColumn(){
-        orderColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("order"));
+//        orderColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("order"));
+        orderColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Integer,String>, ObservableValue<String>>() {
 
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Integer, String> param) {
+                orderNo+=1;
+                return new SimpleStringProperty(orderNo+"");
+            }
+        });
         idColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Warehouse,String>, ObservableValue<String>>() {
             @Override
             public ObservableValue call(TableColumn.CellDataFeatures<Warehouse,String> param) {
@@ -80,6 +88,11 @@ public class TabImportView extends AnchorPane implements Initializable {
                 }
             }
         });
+        nameProductColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("name"));
+        amountColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("quantity"));
+        unitColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("unit"));
+        stockColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("type"));
+        shelfColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("shelf"));
     }
 
     public void initData(){
@@ -92,7 +105,6 @@ public class TabImportView extends AnchorPane implements Initializable {
 
     public void setController(MainController controller) {
         this.controller = controller;
-        System.out.println("setController " + this.controller);
         initData();
 
     }

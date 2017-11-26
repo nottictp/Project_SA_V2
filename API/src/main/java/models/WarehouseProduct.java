@@ -5,8 +5,8 @@ import java.io.Serializable;
 public class WarehouseProduct extends Warehouse implements Serializable{
     private String productId;
 
-    public WarehouseProduct(int quantity, int shelf, int docNo, String name, String unit, String docDate, String recorder, String recipient, String form, String productId) {
-        super(quantity,shelf,  docNo,  name,  unit, docDate, recorder, recipient, form);
+    public WarehouseProduct(int quantity, String shelf, int docNo, String name, String unit, String docDate, String recorder, String recipient, String form,int type, String productId) {
+        super(quantity,shelf,  docNo,  name,  unit, docDate, recorder, recipient, form,type);
         this.productId = productId;
     }
 

@@ -49,12 +49,12 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
                     String name = resultSet.getString("name");
                     String unit = resultSet.getString("unit");
                     int quantity = resultSet.getInt("quantity");
-                    int shelf = resultSet.getInt("shelf");
+                    String shelf = resultSet.getString("shelf");
                     String recorder = resultSet.getString("recorder");
                     String recipient = resultSet.getString("recipient");
                     String form = resultSet.getString("form");
 
-                    WarehouseSeed warehouseSeed = new WarehouseSeed(quantity,shelf,  docNo,  name,  unit, docDate, recorder, recipient, form,seedId);
+                    WarehouseSeed warehouseSeed = new WarehouseSeed(quantity,shelf,  docNo,  name,  unit, docDate, recorder, recipient, form,1,seedId);
                     warehouseSeeds.add(warehouseSeed);
                     System.out.println("response");
                     System.out.println("warehouseSeed = " + warehouseSeed);
@@ -92,12 +92,12 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
                     String name = resultSet.getString("name");
                     String unit = resultSet.getString("unit");
                     int quantity = resultSet.getInt("quantity");
-                    int shelf = resultSet.getInt("shelf");
+                    String shelf = resultSet.getString("shelf");
                     String recorder = resultSet.getString("recorder");
                     String recipient = resultSet.getString("recipient");
                     String form = resultSet.getString("form");
 
-                    WarehouseProduct warehouseProduct = new WarehouseProduct(quantity,shelf,  docNo,  name,  unit, docDate, recorder, recipient, form,productId);
+                    WarehouseProduct warehouseProduct = new WarehouseProduct(quantity,shelf,  docNo,  name,  unit, docDate, recorder, recipient, form,2,productId);
                     warehouseProducts.add(warehouseProduct);
                     System.out.println("response");
                     System.out.println("warehouseProduct = " + warehouseProduct);
