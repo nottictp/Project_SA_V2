@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import models.MarketingInfo;
+import models.Warehouse;
 import models.WarehouseProduct;
 
 import java.net.URL;
@@ -49,12 +50,23 @@ public class MarketingController implements Initializable {
 
     public ObservableList<String> comboBoxData(){
         System.out.println("into");
-        for (WarehouseProduct warehouseProduct: controller.getWarehouseProduct()) {
-            String id = warehouseProduct.getProductId() + " : "+ warehouseProduct.getName();
+        for (Warehouse warehouseProduct: controller.getWarehouseProduct()) {
+            String id = ((WarehouseProduct) warehouseProduct).getProductId()
+                    + " : "+ ((WarehouseProduct) warehouseProduct).getName();
             System.out.println("id+name = " + id);
             set.add(id);
 
             productID = FXCollections.observableArrayList(set);
         }return productID;
+    }
+
+    @FXML
+    public void handlerBtnManufacture(){
+        int quantity = Integer.parseInt(amountField.getText());
+        String unit = String.valueOf(unitCombo.getValue());
+        String[] idName = String.valueOf(typeCombo.getValue()).split(" : ");
+        String id = idName[0];
+        String name = idName[1];
+
     }
 }
