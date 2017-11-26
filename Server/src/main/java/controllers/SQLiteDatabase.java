@@ -4,6 +4,7 @@ import javafx.scene.control.DatePicker;
 import managers.ManufactorManagerDB;
 import managers.MarketingManagerDB;
 import managers.WarehouseManagerDB;
+import models.Warehouse;
 import models.WarehouseProduct;
 import models.WarehouseSeed;
 
@@ -30,9 +31,9 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
     }
 
 
-    public List<WarehouseSeed> getWarehouseSeed() {
+    public List<Warehouse> getWarehouseSeed() {
         System.out.println("request warehouse seed");
-        List<WarehouseSeed> warehouseSeeds = new ArrayList<WarehouseSeed>();
+        List<Warehouse> warehouseSeeds = new ArrayList<Warehouse>();
         Connection connection = null;
         try {
         connection = prepareConnection();
@@ -48,13 +49,12 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
                     String name = resultSet.getString("name");
                     String unit = resultSet.getString("unit");
                     int quantity = resultSet.getInt("quantity");
-                    int shelf = resultSet.getInt("shelf");
+                    String shelf = resultSet.getString("shelf");
                     String recorder = resultSet.getString("recorder");
                     String recipient = resultSet.getString("recipient");
                     String form = resultSet.getString("form");
 
-                    WarehouseSeed warehouseSeed = new WarehouseSeed(docNo, docDate, seedId, name, unit
-                            , quantity, shelf, recorder, recipient, form);
+                    WarehouseSeed warehouseSeed = new WarehouseSeed(quantity,shelf,  docNo,  name,  unit, docDate, recorder, recipient, form,1,seedId);
                     warehouseSeeds.add(warehouseSeed);
                     System.out.println("response");
                     System.out.println("warehouseSeed = " + warehouseSeed);
@@ -73,9 +73,9 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         }return warehouseSeeds;
     }
 
-    public List<WarehouseProduct> getWarehouseProduct() {
+    public List<Warehouse> getWarehouseProduct() {
         System.out.println("request warehouse product");
-        List<WarehouseProduct> warehouseProducts = new ArrayList<WarehouseProduct>();
+        List<Warehouse> warehouseProducts = new ArrayList<Warehouse>();
         Connection connection = null;
         try {
             connection = prepareConnection();
@@ -92,13 +92,12 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
                     String name = resultSet.getString("name");
                     String unit = resultSet.getString("unit");
                     int quantity = resultSet.getInt("quantity");
-                    int shelf = resultSet.getInt("shelf");
+                    String shelf = resultSet.getString("shelf");
                     String recorder = resultSet.getString("recorder");
                     String recipient = resultSet.getString("recipient");
                     String form = resultSet.getString("form");
 
-                    WarehouseProduct warehouseProduct = new WarehouseProduct(docNo, docDate, productId, name, unit
-                            , quantity, shelf, recorder, recipient, form);
+                    WarehouseProduct warehouseProduct = new WarehouseProduct(quantity,shelf,  docNo,  name,  unit, docDate, recorder, recipient, form,2,productId);
                     warehouseProducts.add(warehouseProduct);
                     System.out.println("response");
                     System.out.println("warehouseProduct = " + warehouseProduct);
@@ -117,6 +116,7 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         }
         return warehouseProducts;
     }
+
 
 
 //    public void addSeed(){

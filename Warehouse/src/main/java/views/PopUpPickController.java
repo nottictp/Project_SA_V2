@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import models.Warehouse;
 import models.WarehouseProduct;
 import models.WarehouseSeed;
 
@@ -53,8 +54,8 @@ public class PopUpPickController implements Initializable{
         if(String.valueOf(stockCombo.getValue()).startsWith("1")){
             unitCombo.setItems(unitSeed);
             //System.out.println(controller.getWarehouseSeed().get());
-            for (WarehouseSeed warehouseSeed: controller.getWarehouseSeed()) {
-                String id = warehouseSeed.getSeedId()+": "+warehouseSeed.getName();
+            for (Warehouse warehouseSeed: controller.getWarehouseSeed()) {
+                String id = ((WarehouseSeed)warehouseSeed).getSeedId()+": "+warehouseSeed.getName();
                 setA.add(id);
             }
             seedId = FXCollections.observableArrayList(setA);
@@ -62,8 +63,8 @@ public class PopUpPickController implements Initializable{
 
         }else{
             unitCombo.setItems(unitProduct);
-            for (WarehouseProduct warehouseProduct: controller.getWarehouseProduct()) {
-                String id = warehouseProduct.getProductId()+": "+warehouseProduct.getName();
+            for (Warehouse warehouseProduct: controller.getWarehouseProduct()) {
+                String id = ((WarehouseProduct)warehouseProduct).getProductId()+": "+warehouseProduct.getName();
                 setB.add(id);
             }
             productId = FXCollections.observableArrayList(setB);

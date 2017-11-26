@@ -19,7 +19,7 @@
       <module name="Marketing" target="1.5" />
       <module name="Project_SA" target="1.5" />
       <module name="Server" target="1.5" />
-      <module name="Warehouse" target="1.5" />
+      <module name="Warehouse" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>
