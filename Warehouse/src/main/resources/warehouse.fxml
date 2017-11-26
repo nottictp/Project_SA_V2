@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.WarehouseController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.WarehouseController">
    <children>
       <TabPane prefHeight="588.0" prefWidth="774.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="100.0">
         <tabs>
@@ -25,8 +25,8 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="comboTypeSearch" layoutX="102.0" layoutY="24.0" prefWidth="150.0" promptText="เมล็ดพันธุ์" />
-                        <ComboBox fx:id="comboType" layoutX="271.0" layoutY="24.0" prefHeight="31.0" prefWidth="85.0" promptText="ชื่อ" />
+                        <ComboBox fx:id="comboTypeSearch" layoutX="102.0" layoutY="24.0" onAction="#checkTypeSearch" prefWidth="150.0" promptText="เมล็ดพันธุ์" />
+                        <ComboBox fx:id="comboType" layoutX="271.0" layoutY="24.0" prefHeight="31.0" prefWidth="99.0" />
                         <TextField fx:id="tab1SearchField" layoutX="379.0" layoutY="24.0" prefHeight="31.0" prefWidth="255.0" />
                         <Button fx:id="buttonSearch" layoutX="651.0" layoutY="24.0" mnemonicParsing="false" onAction="#handlerBtnSearch" text="ค้นหา" />
                         <TableView fx:id="tab1DataTable" layoutX="32.0" layoutY="75.0" prefHeight="393.0" prefWidth="710.0">

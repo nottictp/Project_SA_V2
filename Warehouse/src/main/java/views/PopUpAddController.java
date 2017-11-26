@@ -65,7 +65,7 @@ public class PopUpAddController implements Initializable {
     public void handlerBtnAdd(ActionEvent event){
         stockNo = String.valueOf(stockCombo.getValue()).substring(0,1);
         quantity = Integer.parseInt(amountField.getText());
-        id = String.valueOf(idProductCombo.getValue()).substring(0,1);
+        id = String.valueOf(idProductCombo.getValue());
         name = String.valueOf(idProductCombo.getValue()).substring(3);
         unit = String.valueOf(unitCombo.getValue());
         shelf = shelfField.getText();

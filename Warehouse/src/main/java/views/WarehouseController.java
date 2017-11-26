@@ -77,15 +77,13 @@ public class WarehouseController implements Initializable{
     WarehouseProduct warehouseProduct;
 
     ObservableList<String> comBoBox1 = FXCollections.observableArrayList("เมล็ดพันธุ์","สินค้า");
-    ObservableList<String> comBoBox2 = FXCollections.observableArrayList("ชื่อ","รหัส");
-    ObservableList<String> comBoBox3 = FXCollections.observableArrayList("Lot ID");
-    ObservableList<WarehouseAdd> warehouseProducts = FXCollections.observableArrayList();
+    ObservableList<String> comBoBox2 = FXCollections.observableArrayList("ชื่อ","รหัส","Lot ID");
+    ObservableList<String> comBoBox3 = FXCollections.observableArrayList("ชื่อ","รหัส");
 
     MainController controller;
 
     public void initialize(URL location, ResourceBundle resources) {
         comboTypeSearch.setItems(comBoBox1);
-        comboType.setItems(comBoBox2);
     }
 
     public void setController(MainController controller) {
@@ -135,10 +133,11 @@ public class WarehouseController implements Initializable{
     }
 
     public void checkTypeSearch(){
-        if(comboTypeSearch.getValue().equals("เมล็ด")){
+        if(String.valueOf(comboTypeSearch.getValue()).equals("เมล็ดพันธุ์")){
             comboType.setItems(comBoBox2);
         }else {
             comboType.setItems(comBoBox3);
+
         }
 
     }
