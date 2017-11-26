@@ -1,5 +1,6 @@
 package managers;
 
+import models.Warehouse;
 import models.WarehouseProduct;
 import models.WarehouseSeed;
 
@@ -7,9 +8,9 @@ import java.util.List;
 
 public interface WarehouseManagerDB {
 
-    List<WarehouseSeed> getWarehouseSeed();
+    List<Warehouse> getWarehouseSeed();
 
-    List<WarehouseProduct> getWarehouseProduct();
+    List<Warehouse> getWarehouseProduct();
 
 
 }
