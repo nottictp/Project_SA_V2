@@ -29,33 +29,6 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         return null;
     }
 
-    public List<Integer> getSeedId(){
-        List<Integer> seed_ids = new ArrayList<Integer>();
-        Connection connection = null;
-        connection = prepareConnection();
-        try {
-            if(connection != null){
-                String sql = "select seed_id from warehouse_seed";
-                Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery(sql);
-                while (resultSet.next()){
-                    int seed_id = resultSet.getInt("seed_id");
-                    seed_ids.add(seed_id);
-                    System.out.println("seed_id = " + seed_id);
-                }
-            }
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            if(connection != null){
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }return seed_ids;
-    }
 
     public List<WarehouseSeed> getWarehouseSeed() {
         System.out.println("request warehouse seed");
