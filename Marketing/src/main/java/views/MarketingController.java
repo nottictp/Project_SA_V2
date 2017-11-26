@@ -33,12 +33,18 @@ public class MarketingController implements Initializable {
     private WarehouseProduct warehouseProduct = MarketingInfo.getInstance().getWarehouseProduct();
 
     public void initialize(URL location, ResourceBundle resources) {
-        typeCombo.setItems(comboBoxData());
-        unitCombo.setItems(units);
+        if (controller != null){
+            typeCombo.setItems(comboBoxData());
+            unitCombo.setItems(units);
+        }
     }
 
     public void setController(MainController controller) {
         this.controller = controller;
+        if (typeCombo != null){
+            typeCombo.setItems(comboBoxData());
+            unitCombo.setItems(units);
+        }
     }
 
     public ObservableList<String> comboBoxData(){
