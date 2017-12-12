@@ -69,4 +69,6 @@ public class MarketingController implements Initializable {
         String name = idName[1];
 
     }
+
+
 }
