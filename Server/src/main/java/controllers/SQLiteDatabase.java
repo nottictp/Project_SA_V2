@@ -125,16 +125,16 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         try {
             connection = prepareConnection();
             if(connection != null) {
-                String sql = "select product_id, ratio, fquantity, mquantity\n" +
+                String sql = "select product_id, ratio, fname, fquantity, mname, mquantity\n" +
                         "from product\n" +
                         "join seed_ratio\n" +
                         "on product.seed_id=seed_ratio.seed_id\n" +
-                        "join (select seed.seed_id as fid, quantity as fquantity\n" +
+                        "join (select seed.seed_id as fid, quantity as fquantity, seed.name as fname\n" +
                         "\t\tfrom Seed_ratio\n" +
                         "\t\tjoin seed\n" +
                         "\t\ton seed_ratio.father_id=seed.seed_id) as fqq\n" +
                         "on Seed_ratio.father_id=fqq.fid\n" +
-                        "join (select seed.seed_id as mid, quantity as mquantity\n" +
+                        "join (select seed.seed_id as mid, quantity as mquantity, seed.name as mname\n" +
                         "\t\tfrom Seed_ratio\n" +
                         "\t\tjoin seed\n" +
                         "\t\ton seed_ratio.mother_id=seed.seed_id) as mqq\n" +
@@ -148,8 +148,9 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
                     String ratio = resultSet.getString("ratio");
                     int fatherQuantity = resultSet.getInt("fquantity");
                     int motherQuantity = resultSet.getInt("mquantity");
-
-                    DataToMarketing dataToMarketing = new DataToMarketing(ratio,fatherQuantity,motherQuantity);
+                    String fatherName = resultSet.getString("fname");
+                    String motherName = resultSet.getString("mname");
+                    DataToMarketing dataToMarketing = new DataToMarketing(ratio,fatherQuantity,motherQuantity,fatherName,motherName);
 
                     return dataToMarketing;
                     }
