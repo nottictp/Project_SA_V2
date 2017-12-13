@@ -35,6 +35,8 @@ public class PopUpAddController implements Initializable {
     private Button addBtn;
     @FXML
     private Button cancelBtn;
+    private TabImportView tabImportView;
+
 
     ObservableList<String> shelfs = FXCollections.observableArrayList("1: เมล็ดพันธุ์","2: สินค้า");
     ObservableList<String> unitProduct = FXCollections.observableArrayList("ซอง", "กระป๋อง");
@@ -65,16 +67,23 @@ public class PopUpAddController implements Initializable {
 
     @FXML
     public void handlerBtnAdd(ActionEvent event){
-        stockNo = String.valueOf(stockCombo.getValue()).substring(0,1);
+//        stockNo = String.valueOf(stockCombo.getValue()).substring(0,1);
+        stockNo = stockCombo.getValue().toString().substring(0,1);
         quantity = Integer.parseInt(amountField.getText());
         idName = String.valueOf(idProductCombo.getValue()).split(" : ");
         id = idName[0];
         name = idName[1];
         unit = String.valueOf(unitCombo.getValue());
         shelf = shelfField.getText();
-        order++;
 
-
+        if (stockNo.equals("1")){
+            WarehouseSeed item = new WarehouseSeed(quantity,shelf,0,name,unit,"","","","",1,id);
+            addTableView(item);
+        }
+        if (stockNo.equals("2")){
+            WarehouseProduct item = new WarehouseProduct(quantity,shelf,0,name,unit,"","","","",1,id);
+            addTableView(item);
+        }
 
     }
 
@@ -110,6 +119,13 @@ public class PopUpAddController implements Initializable {
 
 
     }
+    public void addTableView(Warehouse warehouse){
+        this.tabImportView.addTableView(warehouse);
+
+    }
+    public void setTabImportView(TabImportView tabImportView){
+        this.tabImportView = tabImportView;
+    }
 
     public String getStockNo() {
         return stockNo;
@@ -130,4 +146,5 @@ public class PopUpAddController implements Initializable {
     public int getQuantity() {
         return quantity;
     }
+
 }

@@ -45,7 +45,7 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
                 while (resultSet.next()){
                     int docNo = resultSet.getInt("doc_no");
                     String docDate = resultSet.getString("doc_date");
-                    int seedId = resultSet.getInt("seed_id");
+                    String seedId = resultSet.getString("seed_id");
                     String name = resultSet.getString("name");
                     String unit = resultSet.getString("unit");
                     int quantity = resultSet.getInt("quantity");

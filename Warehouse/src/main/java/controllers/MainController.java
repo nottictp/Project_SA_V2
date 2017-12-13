@@ -16,7 +16,6 @@ public class MainController {
     public MainController() {
         ApplicationContext bf = new ClassPathXmlApplicationContext("warehouse_config.xml");
         executor = (WarehouseManagerDB) bf.getBean("WarehouseDbManager");
-        System.out.println("E nott");
     }
 
     public List<Warehouse> getWarehouseSeed(){
@@ -32,10 +31,8 @@ public class MainController {
         System.out.println("++");
         List<Warehouse> wh1 = getWarehouseSeed();
         List<Warehouse> wh2 = getWarehouseProduct();
-        System.out.println("test");
         warehouseList.addAll(getWarehouseSeed());
         warehouseList.addAll(getWarehouseProduct());
-        System.out.println("get");
         return warehouseList;
     }
 
