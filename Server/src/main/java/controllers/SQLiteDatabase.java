@@ -4,13 +4,14 @@ import javafx.scene.control.DatePicker;
 import managers.ManufactorManagerDB;
 import managers.MarketingManagerDB;
 import managers.WarehouseManagerDB;
-import models.Warehouse;
-import models.WarehouseProduct;
-import models.WarehouseSeed;
+import models.*;
+import views.MarketingController;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, MarketingManagerDB {
     public String url = "SeedProduct.db";
@@ -117,7 +118,46 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         return warehouseProducts;
     }
 
+    public DataToMarketing getSeedRatio(String productId){
+        System.out.println("Request for seed ratio");
 
+        Connection connection = null;
+        try {
+            connection = prepareConnection();
+            if(connection != null) {
+                String sql = "select product_id, ratio, fquantity, mquantity\n" +
+                        "from product\n" +
+                        "join seed_ratio\n" +
+                        "on product.seed_id=seed_ratio.seed_id\n" +
+                        "join (select seed.seed_id as fid, quantity as fquantity\n" +
+                        "\t\tfrom Seed_ratio\n" +
+                        "\t\tjoin seed\n" +
+                        "\t\ton seed_ratio.father_id=seed.seed_id) as fqq\n" +
+                        "on Seed_ratio.father_id=fqq.fid\n" +
+                        "join (select seed.seed_id as mid, quantity as mquantity\n" +
+                        "\t\tfrom Seed_ratio\n" +
+                        "\t\tjoin seed\n" +
+                        "\t\ton seed_ratio.mother_id=seed.seed_id) as mqq\n" +
+                        "on Seed_ratio.mother_id=mqq.mid\n" +
+                        "where product_id=\"" + productId + "\"";
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);
+                System.out.println(sql);
+                if(resultSet.next()){
+                    System.out.println("เข้า if มั้ย");
+                    String ratio = resultSet.getString("ratio");
+                    int fatherQuantity = resultSet.getInt("fquantity");
+                    int motherQuantity = resultSet.getInt("mquantity");
+
+                    DataToMarketing dataToMarketing = new DataToMarketing(ratio,fatherQuantity,motherQuantity);
+
+                    return dataToMarketing;
+                    }
+             }
+        }catch (SQLException e) {
+                e.printStackTrace();
+        }return null;
+    }
 
 //    public void addSeed(){
 //        List<Seed> seeds = new ArrayList<Seed>();
