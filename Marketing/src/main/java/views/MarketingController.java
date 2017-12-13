@@ -103,29 +103,29 @@ public class MarketingController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("แสดงผล");
             alert.setHeaderText(null);
-            alert.setContentText(nameFather+" ไม่พอ ขาด: "+(totalFather-checkFather));
+            alert.setContentText(nameFather+" ไม่พอ ขาด: "+(totalFather-checkFather)*(-1));
             alert.showAndWait();
             System.out.println("Father not enough.");
-            System.out.println("It need "+(totalFather-checkFather));
+            System.out.println("It need "+(totalFather-checkFather)*(-1));
         }else if(totalFather >= checkFather && totalMother < checkMother){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("แสดงผล");
             alert.setHeaderText(null);
-            alert.setContentText(nameMother+" ไม่พอ ขาด: "+(totalMother-checkMother));
+            alert.setContentText(nameMother+" ไม่พอ ขาด: "+(totalMother-checkMother)*(-1));
             alert.showAndWait();
             System.out.println("Mother not enough.");
-            System.out.println("It need "+(totalMother-checkMother));
+            System.out.println("It need "+(totalMother-checkMother)*(-1));
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("แสดงผล");
             alert.setHeaderText(null);
             alert.setContentText(
-                    nameFather+" ไม่พอ ขาด: "+(totalFather-checkFather)+"\n"+
-                    nameMother+" ไม่พอ ขาด: "+(totalMother-checkMother));
+                    nameFather+" ไม่พอ ขาด: "+(totalFather-checkFather)*(-1)+"\n"+
+                    nameMother+" ไม่พอ ขาด: "+(totalMother-checkMother)*(-1));
             alert.showAndWait();
             System.out.println("Father and Mother not enough");
-            System.out.println("Father need "+(totalFather-checkFather));
-            System.out.println("It need "+(totalMother-checkMother));
+            System.out.println("Father need "+(totalFather-checkFather)*(-1));
+            System.out.println("It need "+(totalMother-checkMother)*(-1));
         }
     }
 
