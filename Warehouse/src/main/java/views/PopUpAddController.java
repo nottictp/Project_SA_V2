@@ -67,7 +67,6 @@ public class PopUpAddController implements Initializable {
 
     @FXML
     public void handlerBtnAdd(ActionEvent event){
-//        stockNo = String.valueOf(stockCombo.getValue()).substring(0,1);
         stockNo = stockCombo.getValue().toString().substring(0,1);
         quantity = Integer.parseInt(amountField.getText());
         idName = String.valueOf(idProductCombo.getValue()).split(" : ");
@@ -84,7 +83,6 @@ public class PopUpAddController implements Initializable {
             WarehouseProduct item = new WarehouseProduct(quantity,shelf,0,name,unit,"","","","",1,id);
             addTableView(item);
         }
-
     }
 
     @FXML
@@ -117,13 +115,12 @@ public class PopUpAddController implements Initializable {
     }
 
     public void showTable(){
-
-
     }
+
     public void addTableView(Warehouse warehouse){
         this.tabImportView.addTableView(warehouse);
-
     }
+
     public void setTabImportView(TabImportView tabImportView){
         this.tabImportView = tabImportView;
     }
