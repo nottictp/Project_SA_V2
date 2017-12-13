@@ -1,8 +1,7 @@
 package controllers;
 
 import managers.MarketingManagerDB;
-import managers.WarehouseManagerDB;
-import models.WarehouseProduct;
+import models.Warehouse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -16,7 +15,7 @@ public class MainController {
         executor = (MarketingManagerDB) bf.getBean("MarketingDbManager");
     }
 
-    public List<WarehouseProduct> getWarehouseProduct(){
+    public List<Warehouse> getWarehouseProduct(){
         return executor.getWarehouseProduct();
     }
 }

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MarketingController">
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MarketingController">
    <children>
       <TabPane prefHeight="300.0" prefWidth="400.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -30,7 +30,7 @@
                         </Label>
                         <TextField fx:id="amountField" layoutX="113.0" layoutY="100.0" prefHeight="31.0" prefWidth="126.0" />
                         <ComboBox fx:id="unitCombo" layoutX="257.0" layoutY="100.0" prefHeight="31.0" prefWidth="94.0" promptText="หน่วย" />
-                        <Button fx:id="submitOrderBtn" layoutX="164.0" layoutY="168.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="72.0" text="สั่งผลิต" />
+                        <Button fx:id="submitOrderBtn" layoutX="164.0" layoutY="168.0" mnemonicParsing="false" onAction="#handlerBtnManufacture" prefHeight="44.0" prefWidth="72.0" text="สั่งผลิต" />
                      </children>
                   </AnchorPane>
             </content>
