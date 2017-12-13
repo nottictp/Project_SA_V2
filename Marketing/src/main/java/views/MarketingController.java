@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -89,9 +90,12 @@ public class MarketingController implements Initializable {
         int checkFather = fatherAmount * count;
         int checkMother = motherAmount * count;
 
-
-
         if(totalFather >= checkFather && totalMother >= checkMother){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("แสดงผล");
+            alert.setHeaderText(null);
+            alert.setContentText("วัตถุดิบเพียงพอในการผลิต");
+            alert.showAndWait();
             System.out.println("OK!!");
         }if(totalFather < checkFather && totalMother >= checkMother){
             System.out.println("Father not enough.");
