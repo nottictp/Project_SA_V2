@@ -1,11 +1,14 @@
 package controllers;
 
 import managers.MarketingManagerDB;
+import models.DataToMarketing;
+import models.Seed;
 import models.Warehouse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
+import java.util.Map;
 
 public class MainController {
 
@@ -17,5 +20,9 @@ public class MainController {
 
     public List<Warehouse> getWarehouseProduct(){
         return executor.getWarehouseProduct();
+    }
+
+    public DataToMarketing getSeedRatio(String productId){
+        return executor.getSeedRatio(productId);
     }
 }

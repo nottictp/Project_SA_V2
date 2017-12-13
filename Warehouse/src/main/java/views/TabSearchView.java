@@ -55,18 +55,14 @@ public class TabSearchView extends AnchorPane implements Initializable {
 
     @FXML
     public void handlerBtnSearch(ActionEvent event){
-        checkTypeSearch();
+        String typeSearh = typeSearchCombo.getValue().toString();
+        if(typeSearh.equals("เมล็ดพันธุ์")){
+
+        }
         String search = searchField.getText();
         System.out.println(search);
     }
 
-    public void checkTypeSearch(){
-        if(typeSearchCombo.getValue().equals("เมล็ด")){
-            typeCombo.setItems(comBoBox2);
-        }else {
-            typeCombo.setItems(comBoBox3);
-        }
-    }
 
     public void initColumn(){
 
