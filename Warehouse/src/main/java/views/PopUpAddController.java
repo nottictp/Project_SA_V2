@@ -36,6 +36,8 @@ public class PopUpAddController implements Initializable {
     private Button addBtn;
     @FXML
     private Button cancelBtn;
+    @FXML
+    private Label errorMsg;
     private TabImportView tabImportView;
 
 
@@ -47,9 +49,9 @@ public class PopUpAddController implements Initializable {
     Set setA = new HashSet();
     Set setB = new HashSet();
 
-    String stockNo, id, name, unit, shelf;
+    String stockNo="", id="", name="", unit="", shelf="";
     String[] idName;
-    int quantity;
+    int quantity=0;
     int order=1;
 
 
@@ -82,8 +84,12 @@ public class PopUpAddController implements Initializable {
                     "","",
                     "","",
                     1,id);
-            addTableView(item);
-            System.out.println("Add new item");
+            if (stockNo.equals("") && quantity == 0 && name.equals("") && shelf.equals("") && id.equals("")){
+                errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
+            }else {
+                addTableView(item);
+            }
+            System.out.println("Add item");
         }
         if (stockNo.equals("2")){
             WarehouseProduct item = new WarehouseProduct(quantity,shelf,
@@ -91,8 +97,12 @@ public class PopUpAddController implements Initializable {
                     unit,"",
                     "","",
                     "",1,id);
-            addTableView(item);
-            System.out.println("Add new item");
+            if (stockNo.equals("") && quantity == 0 && name.equals("") && shelf.equals("") && id.equals("")){
+                errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
+            }else{
+                addTableView(item);
+            }
+            System.out.println("Add item");
         }
     }
 
@@ -100,6 +110,7 @@ public class PopUpAddController implements Initializable {
     public void onClickStockNo(ActionEvent event){
         if(String.valueOf(stockCombo.getValue()).startsWith("1")){
             unitCombo.setItems(unitSeed);
+            unitCombo.setValue("เมล็ด");
             for (Warehouse warehouseSeed: controller.getWarehouseSeed()) {
 
                 String id = ((WarehouseSeed)warehouseSeed).getSeedId()+" : "+warehouseSeed.getName();
@@ -110,6 +121,7 @@ public class PopUpAddController implements Initializable {
 
         }else{
             unitCombo.setItems(unitProduct);
+            unitCombo.setValue("ซอง");
             for (Warehouse warehouseProduct: controller.getWarehouseProduct()) {
                 String id = ((WarehouseProduct) warehouseProduct).getProductId()+" : "+warehouseProduct.getName();
                 setB.add(id);

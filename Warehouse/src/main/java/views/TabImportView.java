@@ -6,6 +6,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,6 +24,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class TabImportView extends AnchorPane implements Initializable {
@@ -57,7 +59,7 @@ public class TabImportView extends AnchorPane implements Initializable {
     }
 
     @FXML
-    public void handlerBtnAddTab2(ActionEvent event) throws IOException {
+    public void handlerBtnAdd(ActionEvent event) throws IOException {
         Stage secondaryStage = new Stage();
         controller = new MainController();
         FXMLLoader loader = new FXMLLoader();
@@ -70,6 +72,30 @@ public class TabImportView extends AnchorPane implements Initializable {
         secondaryStage.setTitle("รับสินค้าเข้า");
         secondaryStage.setScene(new Scene(mainLayout, 400, 300));
         secondaryStage.show();
+    }
+
+    @FXML
+    public void handlerBtnRemove(ActionEvent event) throws IOException {
+        Warehouse warehouse = (Warehouse) importTable.getSelectionModel().getSelectedItem();
+        if (warehouse!=null){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("ยืนยันการลบข้อมูล");
+            alert.setHeaderText("ยืนยันการลบข้อมูล");
+            String show = "ลำดับที่ "+(wh.indexOf(warehouse)+1)+" "+warehouse.getName();
+            alert.setContentText(show);
+            Optional<ButtonType> result = alert.showAndWait();
+            if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
+                wh.remove(warehouse);
+                initData();
+                System.out.println("Remove item");
+            }
+        }
+    }
+
+    @FXML
+    public void handlerBtnCancel(ActionEvent event) throws IOException {
+        wh.clear();
+        initData();
     }
 
     public void initColumn(){

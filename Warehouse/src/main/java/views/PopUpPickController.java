@@ -59,6 +59,7 @@ public class PopUpPickController implements Initializable{
     public void onClickStockNo(ActionEvent event){
         if(String.valueOf(stockCombo.getValue()).startsWith("1")){
             unitCombo.setItems(unitSeed);
+            unitCombo.setValue("เมล็ด");
             for (Warehouse warehouseSeed: controller.getWarehouseSeed()) {
                 String id = ((WarehouseSeed)warehouseSeed).getSeedId()+" : "+warehouseSeed.getName();
                 setA.add(id);
@@ -68,6 +69,7 @@ public class PopUpPickController implements Initializable{
 
         }else{
             unitCombo.setItems(unitProduct);
+            unitCombo.setValue("ซอง");
             for (Warehouse warehouseProduct: controller.getWarehouseProduct()) {
                 String id = ((WarehouseProduct)warehouseProduct).getProductId()+" : "+warehouseProduct.getName();
                 setB.add(id);
@@ -93,7 +95,7 @@ public class PopUpPickController implements Initializable{
                     "","",
                     "",1,id);
             addTableView(item);
-            System.out.println("Add new item");
+            System.out.println("Add item");
         }
         if (stockNo.equals("2")){
             WarehouseProduct item = new WarehouseProduct(quantity,"",
@@ -102,7 +104,7 @@ public class PopUpPickController implements Initializable{
                     "","",
                     "",1,id);
             addTableView(item);
-            System.out.println("Add new item");
+            System.out.println("Add item");
         }
     }
 

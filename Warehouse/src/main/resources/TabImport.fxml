@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.TabImportView">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.TabImportView">
    <children>
       <Label layoutX="41.0" layoutY="25.0" text="เลขที่เอกสาร">
          <font>
@@ -48,19 +48,19 @@
       <TextField fx:id="form" layoutX="162.0" layoutY="181.0" prefHeight="31.0" prefWidth="324.0" />
       <TableView fx:id="importTable" layoutX="28.0" layoutY="225.0" prefHeight="254.0" prefWidth="719.0">
          <columns>
-            <TableColumn fx:id="orderColumn" prefWidth="75.0" text="ลำดับ" />
-            <TableColumn fx:id="idColumn" prefWidth="75.0" text="รหัส" />
-            <TableColumn fx:id="nameProductColumn" prefWidth="223.0" text="รายชื่อสินค้า" />
-            <TableColumn fx:id="unitColumn" prefWidth="87.0" text="หน่วย" />
-            <TableColumn fx:id="amountColumn" minWidth="0.0" prefWidth="72.0" text="จำนวน" />
-            <TableColumn fx:id="stockColumn" prefWidth="78.0" text="เลขที่คลัง" />
-            <TableColumn fx:id="shelfColumn" prefWidth="108.0" text="ที่เก็บ" />
+            <TableColumn fx:id="orderColumn" prefWidth="75.0" style="-fx-alignment: CENTER-RIGHT;" text="ลำดับ" />
+            <TableColumn fx:id="idColumn" prefWidth="75.0" style="-fx-alignment: CENTER-RIGHT;" text="รหัส" />
+            <TableColumn fx:id="nameProductColumn" prefWidth="223.0" style="-fx-alignment: CENTER_LEFT;" text="รายชื่อสินค้า" />
+            <TableColumn fx:id="unitColumn" prefWidth="87.0" style="-fx-alignment: CENTER_LEFT;" text="หน่วย" />
+            <TableColumn fx:id="amountColumn" minWidth="0.0" prefWidth="72.0" style="-fx-alignment: CENTER-RIGHT;" text="จำนวน" />
+            <TableColumn fx:id="stockColumn" prefWidth="78.0" style="-fx-alignment: CENTER-RIGHT;" text="เลขที่คลัง" />
+            <TableColumn fx:id="shelfColumn" prefWidth="108.0" style="-fx-alignment: CENTER_LEFT;" text="ที่เก็บ" />
          </columns>
       </TableView>
-      <Button fx:id="addBtn" layoutX="31.0" layoutY="495.0" mnemonicParsing="false" onAction="#handlerBtnAddTab2" text="เพิ่ม" />
-      <Button fx:id="removeBtn" layoutX="89.0" layoutY="495.0" mnemonicParsing="false" text="ลบ" />
+      <Button fx:id="addBtn" layoutX="31.0" layoutY="495.0" mnemonicParsing="false" onAction="#handlerBtnAdd" text="เพิ่ม" />
+      <Button fx:id="removeBtn" layoutX="89.0" layoutY="495.0" mnemonicParsing="false" onAction="#handlerBtnRemove" text="ลบ" />
       <Button fx:id="saveBtn" layoutX="142.0" layoutY="495.0" mnemonicParsing="false" text="บันทึก" />
-      <Button fx:id="cancelBtn" layoutX="216.0" layoutY="495.0" mnemonicParsing="false" text="ยกเลิก" />
+      <Button fx:id="cancelBtn" layoutX="216.0" layoutY="495.0" mnemonicParsing="false" onAction="#handlerBtnCancel" text="ยกเลิก" />
       <TextField fx:id="recorderField" layoutX="162.0" layoutY="103.0" prefHeight="31.0" prefWidth="190.0" />
       <TextField fx:id="recipientField" layoutX="162.0" layoutY="139.0" prefHeight="31.0" prefWidth="190.0" />
    </children>
