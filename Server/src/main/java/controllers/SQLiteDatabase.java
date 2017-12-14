@@ -403,11 +403,63 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
     }
 
     public void UpdateWarehouseSeed(WarehouseSeed warehouse) {
-
+        System.out.println("Update warehouse seed quantity");
+        Connection connection = null;
+        try{
+            connection = prepareConnection();
+            if(connection != null){
+                String docNo = warehouse.getDocNo() + "";
+                String quantity = warehouse.getQuantity() + "";
+                String sql = "update warehouse_seed " +
+                            "set quantity=((select quantity " +
+                                            "from warehouse_seed " +
+                                            "where doc_no='"+docNo+"')-"+quantity+") " +
+                            "where doc_no='"+docNo+"'";
+                Statement statement = connection.createStatement();
+                int result = statement.executeUpdate(sql);
+                System.out.println(result);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     public void UpdateWarehouseProduct(WarehouseProduct warehouse) {
-
+        System.out.println("Update warehouse product quantity");
+        Connection connection = null;
+        try{
+            connection = prepareConnection();
+            if(connection != null){
+                String docNo = warehouse.getDocNo() + "";
+                String quantity = warehouse.getQuantity() + "";
+                String sql = "update warehouse_product " +
+                        "set quantity=((select quantity " +
+                        "from warehouse_product " +
+                        "where doc_no='"+docNo+"')-"+quantity+") " +
+                        "where doc_no='"+docNo+"'";
+                Statement statement = connection.createStatement();
+                int result = statement.executeUpdate(sql);
+                System.out.println(result);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
 
