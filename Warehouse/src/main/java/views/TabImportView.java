@@ -108,8 +108,6 @@ public class TabImportView extends AnchorPane implements Initializable {
     }
 
     public void initData(){
-        System.out.println("initData ");
-        System.out.println("wh = " + wh);
         ObservableList<Warehouse> data = FXCollections.observableList(wh);
         importTable.setItems(data);
     }

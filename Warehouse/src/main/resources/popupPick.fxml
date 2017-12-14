@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.PopUpPickController">
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.PopUpPickController">
     <children>
         <Label layoutX="80.0" layoutY="131.0" text="รหัส">
             <font>
@@ -26,7 +26,7 @@
         </Label>
         <ComboBox fx:id="unitCombo" layoutX="274.0" layoutY="173.0" prefHeight="31.0" prefWidth="98.0" promptText="Unit" />
         <Button fx:id="addBtn" layoutX="123.0" layoutY="255.0" mnemonicParsing="false" onAction="#handlerBtnAdd" text="เพิ่มลงตาราง" />
-        <Button fx:id="cancelBtn" layoutX="216.0" layoutY="255.0" mnemonicParsing="false" text="ยกเลิก" />
+        <Button fx:id="cancelBtn" layoutX="216.0" layoutY="255.0" mnemonicParsing="false" onAction="#handlerBtnCancel" text="ยกเลิก" />
         <Label alignment="CENTER" layoutY="23.0" prefHeight="31.0" prefWidth="400.0" text="เบิกสินค้าออกจากคลัง">
             <font>
                 <Font size="14.0" />

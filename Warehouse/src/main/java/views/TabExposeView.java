@@ -107,14 +107,11 @@ public class TabExposeView extends AnchorPane implements Initializable {
     }
 
     public void initData(){
-        System.out.println("initData ");
-        System.out.println("wh = " + wh);
         ObservableList<Warehouse> data = FXCollections.observableList(wh);
         exposeTable.setItems(data);
     }
     public void addTableView(Warehouse warehouse){
         wh.add(warehouse);
         initData();
-        System.out.println("warehouse = " + warehouse);
     }
 }
