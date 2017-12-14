@@ -197,7 +197,7 @@ public class TabImportView extends AnchorPane implements Initializable {
                 WarehouseProduct product = new WarehouseProduct(w.getQuantity(),w.getShelf()
                         ,Integer.parseInt(docNo.getText()),w.getName(),w.getUnit()
                         ,date,recorderField.getText(),recipientField.getText()
-                        ,form.getText(),2, ((WarehouseProduct) w).getProductId());
+                        ,form.getText(),2, ((WarehouseProduct) w).getProductId(),((WarehouseProduct)w).getCapacity());
                 controller.InsertToWarehouseProduct(product);
             }
         }
