@@ -157,7 +157,7 @@ public class TabExposeView extends AnchorPane implements Initializable {
                 WarehouseProduct product = new WarehouseProduct(w.getQuantity(),w.getShelf()
                         ,Integer.parseInt(docNo.getText()),w.getName(),w.getUnit()
                         ,date,recorderField.getText(),recipientField.getText()
-                        ,"",2, ((WarehouseProduct) w).getProductId());
+                        ,"",2, ((WarehouseProduct) w).getProductId(),((WarehouseProduct)w).getCapacity());
                 controller.InsertToWarehouseProduct(product);
             }
         }

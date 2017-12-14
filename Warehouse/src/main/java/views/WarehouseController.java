@@ -32,16 +32,17 @@ public class WarehouseController implements Initializable{
 
     public void setController(MainController controller) {
         this.controller = controller;
-        if (tabExposeView != null) {
-            tabExposeView.setController(controller);
-            tabImportView.setController(controller);
-        }
-    }
-
-    public void initialize(URL location, ResourceBundle resources) {
+//        if (tabExposeView != null) {
+//            tabExposeView.setController(controller);
+//            tabImportView.setController(controller);
+//        }
         initTabExposeView();
         initTabImportView();
         initTabSearchView();
+    }
+
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 
 
@@ -78,12 +79,15 @@ public class WarehouseController implements Initializable{
 
     public void initTabSearchView(){
         try {
+            System.out.println("on initTsb");
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/Tabsearch.fxml"));
             Pane tab = loader.load();
             searchTab.setContent(tab);
             tabSearchView = loader.getController();
-            tabSearchView.setController(controller);
+            System.out.println("controller = " + controller);
+            if (controller != null)
+                tabSearchView.setController(controller);
 
         } catch (IOException e) {
             e.printStackTrace();

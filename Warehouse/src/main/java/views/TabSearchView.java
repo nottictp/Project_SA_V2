@@ -17,6 +17,7 @@ import models.WarehouseProduct;
 import models.WarehouseSeed;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -41,14 +42,11 @@ public class TabSearchView extends AnchorPane implements Initializable {
     @FXML private ComboBox docCombo;
 
     WarehouseProduct warehouseProduct;
-    private List<Warehouse> wh;
+    private List<Warehouse> warehouses;
 
     private String search;
 
     MainController controller;
-    public void setController(MainController controller) {
-        this.controller = controller;
-    }
 
     ObservableList<String> comBoBox1 = FXCollections.observableArrayList("เมล็ดพันธุ์","สินค้า");
     ObservableList<String> comBoBox2 = FXCollections.observableArrayList("ชื่อ","รหัส");
@@ -56,8 +54,11 @@ public class TabSearchView extends AnchorPane implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        initColumn();
         typeSearchCombo.setItems(comBoBox1);
+        typeSearchCombo.setValue("เมล็ดพันธุ์");
         typeCombo.setItems(comBoBox2);
+        typeCombo.setValue("ชื่อ");
     }
 
     @FXML
@@ -65,29 +66,32 @@ public class TabSearchView extends AnchorPane implements Initializable {
 
     @FXML
     public void handlerBtnSearch(ActionEvent event){
-        String typeSearh = typeSearchCombo.getValue().toString();
-        String type = typeCombo.getValue().toString();
+        String typeSearch = typeSearchCombo.getValue();
+        System.out.println("typeSearch = " + typeSearch);
+        String type = typeCombo.getValue();
         search = searchField.getText();
-        if(typeSearh.equals("เมล็ดพันธุ์") && type.equals("ชื่อ")){
-            //method getWarehouseSeedName(search)
-        }else if(typeSearh.equals("เมล็ดพันธุ์") && type.equals("รหัส")){
-            //method getWarehouseSeedId(search)
-        }else if(typeSearh.equals("สินค้า") && type.equals("ชื่อ")){
-            //method getWarehouseProductName(search)
-        }else if(typeSearh.equals("สินค้า") && type.equals("รหัส")){
-            //method getWarehouseProductId(search)
+        System.out.println("search = " + search);
+        if(typeSearch.equals("เมล็ดพันธุ์") && type.equals("ชื่อ")){
+            System.out.println("controller = " + controller);
+            warehouses = controller.getWarehouseSeedName(search);
+        }else if(typeSearch.equals("เมล็ดพันธุ์") && type.equals("รหัส")){
+            warehouses = controller.getWarehouseSeedId(search);
+        }else if(typeSearch.equals("สินค้า") && type.equals("ชื่อ")){
+            warehouses = controller.getWarehouseProductName(search);
+        }else if(typeSearch.equals("สินค้า") && type.equals("รหัส")){
+            warehouses = controller.getWarehouseProductId(search);
         }
+        initData();
         System.out.println(search);
     }
 
 
     public void initColumn(){
-//        orderColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("order"));
         orderColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Warehouse,String>, ObservableValue<String>>() {
 
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Warehouse, String> param) {
-                return new SimpleStringProperty((wh.indexOf(param.getValue())+1)+"");
+                return new SimpleStringProperty((warehouses.indexOf(param.getValue())+1)+"");
             }
         });
         idColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Warehouse,String>, ObservableValue<String>>() {
@@ -103,29 +107,20 @@ public class TabSearchView extends AnchorPane implements Initializable {
         deliveryDateColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("docDate"));
         docNoColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("docNo"));
         unitColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("unit"));
-//        stockColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Warehouse,String>, ObservableValue<String>>() {
-//            @Override
-//            public ObservableValue call(TableColumn.CellDataFeatures<Warehouse,String> param) {
-//                if (param.getValue() instanceof WarehouseSeed){
-//                    return new SimpleStringProperty("1");
-//                }else{
-//                    return new SimpleStringProperty("2");
-//                }
-//            }
-//        });
+        senderColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("form"));
         recipientColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("recipient"));
         recorderColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("recorder"));
         shelfColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("shelf"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("name"));
-        capacityColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("name"));
+        capacityColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("capacity"));
     }
 
     public void initData(){
-        ObservableList<Warehouse> data = FXCollections.observableList(wh);
+        ObservableList<Warehouse> data = FXCollections.observableList(warehouses);
         dataTable.setItems(data);
     }
-    public void addTableView(Warehouse warehouse){
-        wh.add(warehouse);
-        initData();
+    public void setController(MainController controller) {
+        this.controller = controller;
     }
+
 }

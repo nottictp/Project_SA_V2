@@ -7,9 +7,10 @@ import javafx.stage.Stage;
 import views.WarehouseController;
 
 public class MainWarehouse extends Application{
+    private MainController controller;
     @Override
     public void start(Stage primaryStage) throws Exception{
-        MainController controller = new MainController();
+        controller = new MainController();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/warehouse.fxml"));
         AnchorPane mainLayout = loader.load();
