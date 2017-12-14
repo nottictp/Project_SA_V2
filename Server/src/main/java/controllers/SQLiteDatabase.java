@@ -384,6 +384,8 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
                                 "values ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
                         w.getDocNo()+"", w.getDocDate(), w.getProductId(), w.getName(), w.getUnit(),
                         w.getQuantity()+"", w.getShelf(), w.getRecorder(), w.getRecipient(), w.getForm());
+
+                System.out.println("sql = " + sql);
                 Statement statement = connection.createStatement();
                 int result = statement.executeUpdate(sql);
                 System.out.println(result);

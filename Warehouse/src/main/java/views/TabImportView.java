@@ -110,17 +110,6 @@ public class TabImportView extends AnchorPane implements Initializable {
         initData();
     }
 
-    @FXML
-    public void handlerBtnSave(ActionEvent event) throws IOException {
-        wh.clear();
-        docDate.setValue(LocalDate.now());
-        recorderField.clear();
-        recipientField.clear();
-        departmentCombo.getItems().clear();
-        form.clear();
-        docNo.clear();
-        initData();
-    }
 
     public void initColumn(){
 //        orderColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("order"));
@@ -181,9 +170,9 @@ public class TabImportView extends AnchorPane implements Initializable {
         for (Warehouse w : wh) {
             if(w.getType() == 1){
                 //warehouse seed
-                System.out.println("---seed---");
+                System.out.println("---import seed---");
 
-                String date = docDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH));
+                String date = docDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yy", Locale.ENGLISH));
                 System.out.println(((WarehouseSeed) w).getSeedId());
                 WarehouseSeed seed = new WarehouseSeed(w.getQuantity(),w.getShelf()
                         ,Integer.parseInt(docNo.getText()),w.getName(),w.getUnit()
@@ -192,8 +181,8 @@ public class TabImportView extends AnchorPane implements Initializable {
                 controller.insertToWarehouseSeed(seed);
             }else if(w.getType() == 2){
                 //warehouse product
-                System.out.println("---product---");
-                String date = docDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH));
+                System.out.println("---import product---");
+                String date = docDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yy", Locale.ENGLISH));
                 WarehouseProduct product = new WarehouseProduct(w.getQuantity(),w.getShelf()
                         ,Integer.parseInt(docNo.getText()),w.getName(),w.getUnit()
                         ,date,recorderField.getText(),recipientField.getText()
@@ -201,5 +190,14 @@ public class TabImportView extends AnchorPane implements Initializable {
                 controller.insertToWarehouseProduct(product);
             }
         }
+
+        wh.clear();
+        docDate.setValue(LocalDate.now());
+        recorderField.clear();
+        recipientField.clear();
+        departmentCombo.getItems().clear();
+        form.clear();
+        docNo.clear();
+        initData();
     }
 }
