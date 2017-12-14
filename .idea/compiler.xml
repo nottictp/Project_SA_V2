@@ -13,7 +13,7 @@
         <module name="Warehouse" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8">
       <module name="API" target="1.5" />
       <module name="Manufatory" target="1.5" />
       <module name="Marketing" target="1.5" />

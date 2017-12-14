@@ -36,6 +36,8 @@ public class PopUpAddController implements Initializable {
     private Button addBtn;
     @FXML
     private Button cancelBtn;
+    @FXML
+    private Label errorMsg;
     private TabImportView tabImportView;
 
 
@@ -67,8 +69,8 @@ public class PopUpAddController implements Initializable {
     }
 
     @FXML
-    public void handlerBtnAdd(ActionEvent event){
-        stockNo = stockCombo.getValue().toString().substring(0,1);
+    public void handlerBtnAdd(ActionEvent event) {
+        stockNo = stockCombo.getValue().toString().substring(0, 1);
         quantity = Integer.parseInt(amountField.getText());
         idName = String.valueOf(idProductCombo.getValue()).split(" : ");
         id = idName[0];
@@ -76,30 +78,38 @@ public class PopUpAddController implements Initializable {
         unit = String.valueOf(unitCombo.getValue());
         shelf = shelfField.getText();
 
-        if (stockNo.equals("1")){
-            WarehouseSeed item = new WarehouseSeed(quantity,shelf,
-                    0,name,unit,
-                    "","",
-                    "","",
-                    1,id);
+        if (stockNo.equals("1")) {
+            WarehouseSeed item = new WarehouseSeed(quantity, shelf,
+                    0, name, unit,
+                    "", "",
+                    "", "",
+                    1, id);
             addTableView(item);
             System.out.println("Add new item");
         }
-        if (stockNo.equals("2")){
-            WarehouseProduct item = new WarehouseProduct(quantity,shelf,
-                    0,name,
-                    unit,"",
-                    "","",
-                    "",2,id);
+        if (stockNo.equals("2")) {
+            WarehouseProduct item = new WarehouseProduct(quantity, shelf,
+                    0, name,
+                    unit, "",
+                    "", "",
+                    "", 2, id);
             addTableView(item);
             System.out.println("Add new item");
+
         }
+    }catch (NullPointerException e){
+            errorMsg.setText("กรุณากรอกข้อมูลให้ครบถ้วน");
+        }catch (NumberFormatException e){
+            errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
+        }
+
     }
 
     @FXML
     public void onClickStockNo(ActionEvent event){
         if(String.valueOf(stockCombo.getValue()).startsWith("1")){
             unitCombo.setItems(unitSeed);
+            unitCombo.setValue("เมล็ด");
             for (Warehouse warehouseSeed: controller.getWarehouseSeed()) {
 
                 String id = ((WarehouseSeed)warehouseSeed).getSeedId()+" : "+warehouseSeed.getName();
@@ -110,6 +120,7 @@ public class PopUpAddController implements Initializable {
 
         }else{
             unitCombo.setItems(unitProduct);
+            unitCombo.setValue("ซอง");
             for (Warehouse warehouseProduct: controller.getWarehouseProduct()) {
                 String id = ((WarehouseProduct) warehouseProduct).getProductId()+" : "+warehouseProduct.getName();
                 setB.add(id);

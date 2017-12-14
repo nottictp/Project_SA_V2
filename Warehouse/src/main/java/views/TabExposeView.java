@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class TabExposeView extends AnchorPane implements Initializable {
@@ -57,7 +58,6 @@ public class TabExposeView extends AnchorPane implements Initializable {
     }
 
     public void initColumn(){
-//        orderColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("order"));
         orderColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Warehouse,String>, ObservableValue<String>>() {
 
             @Override
@@ -91,7 +91,7 @@ public class TabExposeView extends AnchorPane implements Initializable {
     }
 
     @FXML
-    public void handlerBtnAddTab3(ActionEvent event) throws IOException {
+    public void handlerBtnAdd(ActionEvent event) throws IOException {
         Stage secondaryStage = new Stage();
         controller = new MainController();
         FXMLLoader loader = new FXMLLoader();
@@ -104,6 +104,30 @@ public class TabExposeView extends AnchorPane implements Initializable {
         secondaryStage.setTitle("เบิกสินค้าออก");
         secondaryStage.setScene(new Scene(mainLayout, 400, 300));
         secondaryStage.show();
+    }
+
+    @FXML
+    public void handlerBtnRemove(ActionEvent event) throws IOException {
+        Warehouse warehouse = (Warehouse) exposeTable.getSelectionModel().getSelectedItem();
+        if (warehouse!=null){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("ยืนยันการลบข้อมูล");
+            alert.setHeaderText("ยืนยันการลบข้อมูล");
+            String show = "ลำดับที่ "+(wh.indexOf(warehouse)+1)+" "+warehouse.getName();
+            alert.setContentText(show);
+            Optional<ButtonType> result = alert.showAndWait();
+            if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
+                wh.remove(warehouse);
+                initData();
+                System.out.println("Remove item");
+            }
+        }
+    }
+
+    @FXML
+    public void handlerBtnCancel(ActionEvent event) throws IOException {
+        wh.clear();
+        initData();
     }
 
     public void initData(){
