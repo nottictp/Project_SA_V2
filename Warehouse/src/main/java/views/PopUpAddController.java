@@ -69,38 +69,45 @@ public class PopUpAddController implements Initializable {
     }
 
     @FXML
-    public void handlerBtnAdd(ActionEvent event) {
+    public void handlerBtnAdd(ActionEvent event){
         try {
-        stockNo = stockCombo.getValue().toString().substring(0, 1);
-        quantity = Integer.parseInt(amountField.getText());
-        idName = String.valueOf(idProductCombo.getValue()).split(" : ");
-        id = idName[0];
-        name = idName[1];
-        unit = String.valueOf(unitCombo.getValue());
-        shelf = shelfField.getText();
+            System.out.println(stockNo);
+            stockNo = stockCombo.getValue().toString().substring(0,1);
+            System.out.println(stockNo);
+            quantity = Integer.parseInt(amountField.getText());
+            idName = String.valueOf(idProductCombo.getValue()).split(" : ");
+            id = idName[0];
+            name = idName[1];
+            unit = String.valueOf(unitCombo.getValue());
+            shelf = shelfField.getText();
 
-        if (stockNo.equals("1")) {
-            WarehouseSeed item = new WarehouseSeed(quantity, shelf,
-                    0, name, unit,
-                    "", "",
-                    "", "",
-                    1, id);
-            addTableView(item);
-            System.out.println("Add new item");
-        }
-        if (stockNo.equals("2")) {
-            WarehouseProduct item = new WarehouseProduct(quantity, shelf,
-                    0, name,
-                    unit, "",
-                    "", "",
-                    "", 2, id);
-            addTableView(item);
-            System.out.println("Add new item");
-        }
-    }catch (NullPointerException e){
+            if (stockNo.equals("1")){
+                WarehouseSeed item = new WarehouseSeed(quantity,shelf,
+                        0,name,unit,
+                        "","",
+                        "","",
+                        1,id);
+                addTableView(item);
+                System.out.println("Add item");
+            }
+            if (stockNo.equals("2")){
+                WarehouseProduct item = new WarehouseProduct(quantity,shelf,
+                        0,name,
+                        unit,"",
+                        "","",
+                        "",2,id);
+                    addTableView(item);
+                System.out.println("Add item");
+            }
+        }catch (NullPointerException e){
             errorMsg.setText("กรุณากรอกข้อมูลให้ครบถ้วน");
         }catch (NumberFormatException e){
             errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
+        }finally {
+            idProductCombo.getItems().clear();
+            amountField.clear();
+            shelfField.clear();
+            unitCombo.getItems().clear();
         }
 
     }
