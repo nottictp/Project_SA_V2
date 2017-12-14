@@ -22,6 +22,7 @@ import models.WarehouseSeed;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -81,7 +82,7 @@ public class TabImportView extends AnchorPane implements Initializable {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("ยืนยันการลบข้อมูล");
             alert.setHeaderText("ยืนยันการลบข้อมูล");
-            String show = "ลำดับที่ "+(wh.indexOf(warehouse)+1)+" "+warehouse.getName();
+            String show = "ลำดับที่ "+(wh.indexOf(warehouse)+1)+" รายการ : "+warehouse.getName();
             alert.setContentText(show);
             Optional<ButtonType> result = alert.showAndWait();
             if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
@@ -95,11 +96,28 @@ public class TabImportView extends AnchorPane implements Initializable {
     @FXML
     public void handlerBtnCancel(ActionEvent event) throws IOException {
         wh.clear();
+        docDate.setValue(LocalDate.now());
+        recorderField.clear();
+        recipientField.clear();
+        departmentCombo.getItems().clear();
+        form.clear();
+        docNo.clear();
+        initData();
+    }
+
+    @FXML
+    public void handlerBtnSave(ActionEvent event) throws IOException {
+        wh.clear();
+        docDate.setValue(LocalDate.now());
+        recorderField.clear();
+        recipientField.clear();
+        departmentCombo.getItems().clear();
+        form.clear();
+        docNo.clear();
         initData();
     }
 
     public void initColumn(){
-//        orderColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("order"));
         orderColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Warehouse,String>, ObservableValue<String>>() {
 
             @Override

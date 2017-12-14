@@ -114,6 +114,10 @@ public class PopUpPickController implements Initializable{
             errorMsg.setText("กรุณากรอกข้อมูลให้ครบถ้วน");
         }catch (NumberFormatException e){
             errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
+        }finally {
+            idProductCombo.getItems().clear();
+            amountField.clear();
+            unitCombo.getItems().clear();
         }
 
     }
@@ -123,8 +127,9 @@ public class PopUpPickController implements Initializable{
         Stage stage = (Stage) cancelBtn.getScene().getWindow();
         stage.close();
         System.out.println("Close popup");
-
     }
+
+
 
     public void addTableView(Warehouse warehouse){
         this.tabExposeView.addTableView(warehouse);

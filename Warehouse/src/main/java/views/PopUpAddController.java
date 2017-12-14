@@ -71,9 +71,7 @@ public class PopUpAddController implements Initializable {
     @FXML
     public void handlerBtnAdd(ActionEvent event){
         try {
-            System.out.println(stockNo);
             stockNo = stockCombo.getValue().toString().substring(0,1);
-            System.out.println(stockNo);
             quantity = Integer.parseInt(amountField.getText());
             idName = String.valueOf(idProductCombo.getValue()).split(" : ");
             id = idName[0];
@@ -103,6 +101,11 @@ public class PopUpAddController implements Initializable {
             errorMsg.setText("กรุณากรอกข้อมูลให้ครบถ้วน");
         }catch (NumberFormatException e){
             errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
+        }finally {
+            idProductCombo.getItems().clear();
+            amountField.clear();
+            shelfField.clear();
+            unitCombo.getItems().clear();
         }
 
     }

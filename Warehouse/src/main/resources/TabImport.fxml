@@ -59,7 +59,7 @@
       </TableView>
       <Button fx:id="addBtn" layoutX="31.0" layoutY="495.0" mnemonicParsing="false" onAction="#handlerBtnAdd" text="เพิ่ม" />
       <Button fx:id="removeBtn" layoutX="89.0" layoutY="495.0" mnemonicParsing="false" onAction="#handlerBtnRemove" text="ลบ" />
-      <Button fx:id="saveBtn" layoutX="142.0" layoutY="495.0" mnemonicParsing="false" text="บันทึก" />
+      <Button fx:id="saveBtn" layoutX="142.0" layoutY="495.0" mnemonicParsing="false" onAction="#handlerBtnSave" text="บันทึก" />
       <Button fx:id="cancelBtn" layoutX="216.0" layoutY="495.0" mnemonicParsing="false" onAction="#handlerBtnCancel" text="ยกเลิก" />
       <TextField fx:id="recorderField" layoutX="162.0" layoutY="103.0" prefHeight="31.0" prefWidth="190.0" />
       <TextField fx:id="recipientField" layoutX="162.0" layoutY="139.0" prefHeight="31.0" prefWidth="190.0" />
