@@ -31,7 +31,6 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         return null;
     }
 
-
     public List<Warehouse> getWarehouseSeed() {
         System.out.println("request warehouse seed");
         List<Warehouse> warehouseSeeds = new ArrayList<Warehouse>();
@@ -265,7 +264,7 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
             if(connection != null){
                 String sql = "select * " +
                         "from warehouse_product "+
-                        "join product on warehouse_product.product_id = product.product_id"+
+                        "join product on warehouse_product.product_id = product.product_id "+
                         "where name like '%"+name+"%'";
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(sql);
@@ -311,7 +310,7 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
             if(connection != null){
                 String sql = "select * " +
                         "from warehouse_product "+
-                        "join product on warehouse_product.product_id = product.product_id"+
+                        "join product on warehouse_product.product_id = product.product_id "+
                         "where product_id like '%"+id+"%'";
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(sql);
