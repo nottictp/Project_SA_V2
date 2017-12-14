@@ -70,6 +70,7 @@ public class PopUpAddController implements Initializable {
 
     @FXML
     public void handlerBtnAdd(ActionEvent event) {
+        try {
         stockNo = stockCombo.getValue().toString().substring(0, 1);
         quantity = Integer.parseInt(amountField.getText());
         idName = String.valueOf(idProductCombo.getValue()).split(" : ");
@@ -95,7 +96,6 @@ public class PopUpAddController implements Initializable {
                     "", 2, id);
             addTableView(item);
             System.out.println("Add new item");
-
         }
     }catch (NullPointerException e){
             errorMsg.setText("กรุณากรอกข้อมูลให้ครบถ้วน");
