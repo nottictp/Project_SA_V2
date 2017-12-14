@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.Warehouse;
@@ -32,6 +33,8 @@ public class PopUpPickController implements Initializable{
     private Button addBtn;
     @FXML
     private Button cancelBtn;
+    @FXML
+    private Label errorMsg;
     private TabExposeView tabExposeView;
 
     MainController controller;
@@ -81,31 +84,38 @@ public class PopUpPickController implements Initializable{
 
     @FXML
     public void handlerBtnAdd(ActionEvent event){
-        stockNo = stockCombo.getValue().toString().substring(0,1);
-        quantity = Integer.parseInt(amountField.getText());
-        idName = String.valueOf(idProductCombo.getValue()).split(" : ");
-        id = idName[0];
-        name = idName[1];
-        unit = String.valueOf(unitCombo.getValue());
+        try{
+            stockNo = stockCombo.getValue().toString().substring(0,1);
+            quantity = Integer.parseInt(amountField.getText());
+            idName = String.valueOf(idProductCombo.getValue()).split(" : ");
+            id = idName[0];
+            name = idName[1];
+            unit = String.valueOf(unitCombo.getValue());
 
-        if (stockNo.equals("1")){
-            WarehouseSeed item = new WarehouseSeed(quantity,"",
-                    0,name,
-                    unit,"",
-                    "","",
-                    "",1,id);
-            addTableView(item);
-            System.out.println("Add item");
+            if (stockNo.equals("1")){
+                WarehouseSeed item = new WarehouseSeed(quantity,"",
+                        0,name,
+                        unit,"",
+                        "","",
+                        "",1,id);
+                addTableView(item);
+                System.out.println("Add item");
+            }
+            if (stockNo.equals("2")){
+                WarehouseProduct item = new WarehouseProduct(quantity,"",
+                        0,name,
+                        unit,"",
+                        "","",
+                        "",1,id);
+                addTableView(item);
+                System.out.println("Add item");
+            }
+        }catch (NullPointerException e){
+            errorMsg.setText("กรุณากรอกข้อมูลให้ครบถ้วน");
+        }catch (NumberFormatException e){
+            errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
         }
-        if (stockNo.equals("2")){
-            WarehouseProduct item = new WarehouseProduct(quantity,"",
-                    0,name,
-                    unit,"",
-                    "","",
-                    "",1,id);
-            addTableView(item);
-            System.out.println("Add item");
-        }
+
     }
 
     @FXML

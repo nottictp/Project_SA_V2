@@ -49,9 +49,9 @@ public class PopUpAddController implements Initializable {
     Set setA = new HashSet();
     Set setB = new HashSet();
 
-    String stockNo="", id="", name="", unit="", shelf="";
+    String stockNo, id, name, unit, shelf;
     String[] idName;
-    int quantity=0;
+    int quantity;
     int order=1;
 
 
@@ -70,40 +70,41 @@ public class PopUpAddController implements Initializable {
 
     @FXML
     public void handlerBtnAdd(ActionEvent event){
-        stockNo = stockCombo.getValue().toString().substring(0,1);
-        quantity = Integer.parseInt(amountField.getText());
-        idName = String.valueOf(idProductCombo.getValue()).split(" : ");
-        id = idName[0];
-        name = idName[1];
-        unit = String.valueOf(unitCombo.getValue());
-        shelf = shelfField.getText();
+        try {
+            System.out.println(stockNo);
+            stockNo = stockCombo.getValue().toString().substring(0,1);
+            System.out.println(stockNo);
+            quantity = Integer.parseInt(amountField.getText());
+            idName = String.valueOf(idProductCombo.getValue()).split(" : ");
+            id = idName[0];
+            name = idName[1];
+            unit = String.valueOf(unitCombo.getValue());
+            shelf = shelfField.getText();
 
-        if (stockNo.equals("1")){
-            WarehouseSeed item = new WarehouseSeed(quantity,shelf,
-                    0,name,unit,
-                    "","",
-                    "","",
-                    1,id);
-            if (stockNo.equals("") && quantity == 0 && name.equals("") && shelf.equals("") && id.equals("")){
-                errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
-            }else {
+            if (stockNo.equals("1")){
+                WarehouseSeed item = new WarehouseSeed(quantity,shelf,
+                        0,name,unit,
+                        "","",
+                        "","",
+                        1,id);
                 addTableView(item);
+                System.out.println("Add item");
             }
-            System.out.println("Add item");
-        }
-        if (stockNo.equals("2")){
-            WarehouseProduct item = new WarehouseProduct(quantity,shelf,
-                    0,name,
-                    unit,"",
-                    "","",
-                    "",1,id);
-            if (stockNo.equals("") && quantity == 0 && name.equals("") && shelf.equals("") && id.equals("")){
-                errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
-            }else{
-                addTableView(item);
+            if (stockNo.equals("2")){
+                WarehouseProduct item = new WarehouseProduct(quantity,shelf,
+                        0,name,
+                        unit,"",
+                        "","",
+                        "",1,id);
+                    addTableView(item);
+                System.out.println("Add item");
             }
-            System.out.println("Add item");
+        }catch (NullPointerException e){
+            errorMsg.setText("กรุณากรอกข้อมูลให้ครบถ้วน");
+        }catch (NumberFormatException e){
+            errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
         }
+
     }
 
     @FXML
