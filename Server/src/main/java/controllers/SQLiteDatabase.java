@@ -328,7 +328,7 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
                     String recipient = resultSet.getString("recipient");
                     String form = resultSet.getString("form");
                     double capacity = resultSet.getDouble("contain");
-                    
+
                     WarehouseProduct product = new WarehouseProduct(quantity,shelf,docNo,name2,unit,docDate,recorder,recipient,form,1,productId,capacity);
                     warehouseProductIds.add(product);
                     System.out.println("response warehouse product id");
@@ -402,12 +402,66 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         }
     }
 
-    public void UpdateWarehouseSeed(WarehouseSeed warehouse) {
-
+    public void updateWarehouseSeed(WarehouseSeed warehouse) {
+        System.out.println("Update warehouse seed quantity");
+        Connection connection = null;
+        try{
+            connection = prepareConnection();
+            if(connection != null){
+                String docNo = warehouse.getDocNo() + "";
+                String sId = warehouse.getSeedId()+"";
+                String quantity = warehouse.getQuantity() + "";
+                String sql = "update warehouse_seed " +
+                            "set quantity=((select quantity " +
+                                            "from warehouse_seed " +
+                                            "where seed_id='"+sId+"')-"+quantity+") " +
+                            "where seed_id='"+sId+"'";
+                Statement statement = connection.createStatement();
+                int result = statement.executeUpdate(sql);
+                System.out.println(result);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
-    public void UpdateWarehouseProduct(WarehouseProduct warehouse) {
-
+    public void updateWarehouseProduct(WarehouseProduct warehouse) {
+        System.out.println("Update warehouse product quantity");
+        Connection connection = null;
+        try{
+            connection = prepareConnection();
+            if(connection != null){
+                String docNo = warehouse.getDocNo() + "";
+                String pId = warehouse.getProductId()+"";
+                String quantity = warehouse.getQuantity() + "";
+                String sql = "update warehouse_product " +
+                        "set quantity=((select quantity " +
+                        "from warehouse_product " +
+                        "where product_id='"+pId+"')-"+quantity+") " +
+                        "where product_id='"+pId+"'";
+                Statement statement = connection.createStatement();
+                int result = statement.executeUpdate(sql);
+                System.out.println(result);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
 

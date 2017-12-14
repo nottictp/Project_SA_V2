@@ -24,7 +24,7 @@ public interface WarehouseManagerDB {
 
     void insertToWarehouseProduct(WarehouseProduct warehouse);
 
-    void UpdateWarehouseSeed(WarehouseSeed warehouse);
+    void updateWarehouseSeed(WarehouseSeed warehouse);
 
-    void UpdateWarehouseProduct(WarehouseProduct warehouse);
+    void updateWarehouseProduct(WarehouseProduct warehouse);
 }
