@@ -265,6 +265,7 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
             if(connection != null){
                 String sql = "select * " +
                         "from warehouse_product "+
+                        "join product on warehouse_product.product_id = product.product_id"+
                         "where name like '%"+name+"%'";
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(sql);
@@ -280,6 +281,7 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
                     String recorder = resultSet.getString("recorder");
                     String recipient = resultSet.getString("recipient");
                     String form = resultSet.getString("form");
+                    double capacity = resultSet.getDouble("contain");
 
                     WarehouseProduct product = new WarehouseProduct(quantity,shelf,docNo,name2,unit,docDate,recorder,recipient,form,1,productId);
                     warehouseProductNames.add(product);

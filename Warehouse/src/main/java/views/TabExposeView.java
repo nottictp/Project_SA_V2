@@ -22,10 +22,8 @@ import models.WarehouseSeed;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class TabExposeView extends AnchorPane implements Initializable {
     @FXML private Button removeBtn;
@@ -139,14 +137,30 @@ public class TabExposeView extends AnchorPane implements Initializable {
 
     @FXML
     public void handlerBtnEdit(ActionEvent event) throws IOException {
-        wh.clear();
-        docDate.setValue(LocalDate.now());
-        recorderField.clear();
-        recipientField.clear();
-        departmentCombo.getItems().clear();
-        note.clear();
-        docNo.clear();
-        initData();
+        System.out.println("wh = " + wh);
+        for (Warehouse w : wh) {
+            if(w.getType() == 1){
+                //warehouse seed
+                System.out.println("---seed---");
+
+                String date = docDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH));
+                System.out.println(((WarehouseSeed) w).getSeedId());
+                WarehouseSeed seed = new WarehouseSeed(w.getQuantity(),w.getShelf()
+                        ,Integer.parseInt(docNo.getText()),w.getName(),w.getUnit()
+                        ,date,recorderField.getText(),recipientField.getText()
+                        ,"",1, ((WarehouseSeed) w).getSeedId());
+                controller.InsertToWarehouseSeed(seed);
+            }else if(w.getType() == 2){
+                //warehouse product
+                System.out.println("---product---");
+                String date = docDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH));
+                WarehouseProduct product = new WarehouseProduct(w.getQuantity(),w.getShelf()
+                        ,Integer.parseInt(docNo.getText()),w.getName(),w.getUnit()
+                        ,date,recorderField.getText(),recipientField.getText()
+                        ,"",2, ((WarehouseProduct) w).getProductId());
+                controller.InsertToWarehouseProduct(product);
+            }
+        }
     }
 
     public void initData(){
