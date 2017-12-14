@@ -59,10 +59,15 @@ public class TabSearchView extends AnchorPane implements Initializable {
     public void handlerBtnSearch(ActionEvent event){
         String typeSearh = typeSearchCombo.getValue().toString();
         String type = typeCombo.getValue().toString();
-
+        search = searchField.getText();
         if(typeSearh.equals("เมล็ดพันธุ์") && type.equals("ชื่อ")){
-            search = searchField.getText();
-
+            //method getWarehouseSeedName(search)
+        }else if(typeSearh.equals("เมล็ดพันธุ์") && type.equals("รหัส")){
+            //method getWarehouseSeedId(search)
+        }else if(typeSearh.equals("สินค้า") && type.equals("ชื่อ")){
+            //method getWarehouseProductName(search)
+        }else if(typeSearh.equals("สินค้า") && type.equals("รหัส")){
+            //method getWarehouseProductId(search)
         }
         System.out.println(search);
     }

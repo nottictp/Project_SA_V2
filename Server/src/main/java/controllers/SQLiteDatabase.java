@@ -160,6 +160,151 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         }return null;
     }
 
+    public List<Warehouse> getWarehouseSeedName(String name){
+        System.out.println("request warehouse seed name");
+        List<Warehouse> warehouseSeedNames = new ArrayList<Warehouse>();
+        Connection connection = null;
+        try {
+            connection = prepareConnection();
+            if(connection != null){
+                String sql = "select * " +
+                        "from warehouse_seed "+
+                        "where name like '%"+name+"%'";
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);
+
+                while (resultSet.next()){
+                    int docNo = resultSet.getInt("doc_no");
+                    String docDate = resultSet.getString("doc_date");
+                    String unit = resultSet.getString("unit");
+                    String seedId = resultSet.getString("seed_id");
+                    String name2 = resultSet.getString("name");
+                    int quantity = resultSet.getInt("quantity");
+                    String shelf = resultSet.getString("shelf");
+                    String recorder = resultSet.getString("recorder");
+                    String recipient = resultSet.getString("recipient");
+                    String form = resultSet.getString("form");
+
+                    WarehouseSeed seed = new WarehouseSeed(quantity,shelf,docNo,name2,unit,docDate,recorder,recipient,form,1,seedId);
+                    warehouseSeedNames.add(seed);
+                    System.out.println("response warehouse seed name");
+                    System.out.println("w = " + seed);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }return warehouseSeedNames;
+    }
+
+    public List<Warehouse> getWarehouseSeedId(String id) {
+        System.out.println("request warehouse seed id");
+        List<Warehouse> warehouseSeedIds = new ArrayList<Warehouse>();
+        Connection connection = null;
+        try {
+            connection = prepareConnection();
+            if(connection != null){
+                String sql = "select * " +
+                        "from warehouse_seed "+
+                        "where seed_id like '%"+id+"%'";
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);
+
+                while (resultSet.next()){
+                    int docNo = resultSet.getInt("doc_no");
+                    String docDate = resultSet.getString("doc_date");
+                    String unit = resultSet.getString("unit");
+                    String seedId = resultSet.getString("seed_id");
+                    String name2 = resultSet.getString("name");
+                    int quantity = resultSet.getInt("quantity");
+                    String shelf = resultSet.getString("shelf");
+                    String recorder = resultSet.getString("recorder");
+                    String recipient = resultSet.getString("recipient");
+                    String form = resultSet.getString("form");
+
+                    WarehouseSeed seed = new WarehouseSeed(quantity,shelf,docNo,name2,unit,docDate,recorder,recipient,form,1,seedId);
+                    warehouseSeedIds.add(seed);
+                    System.out.println("response warehouse seed id");
+                    System.out.println("w = " + seed);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }return warehouseSeedIds;
+    }
+
+    public List<Warehouse> getWarehouseProductName(String name) {
+        System.out.println("request warehouse product name");
+        List<Warehouse> warehouseProductNames = new ArrayList<Warehouse>();
+        Connection connection = null;
+        try {
+            connection = prepareConnection();
+            if(connection != null){
+                String sql = "select * " +
+                        "from warehouse_product "+
+                        "where name like '%"+name+"%'";
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);
+
+                while (resultSet.next()){
+                    int docNo = resultSet.getInt("doc_no");
+                    String docDate = resultSet.getString("doc_date");
+                    String unit = resultSet.getString("unit");
+                    String productId = resultSet.getString("product_id");
+                    String name2 = resultSet.getString("name");
+                    int quantity = resultSet.getInt("quantity");
+                    String shelf = resultSet.getString("shelf");
+                    String recorder = resultSet.getString("recorder");
+                    String recipient = resultSet.getString("recipient");
+                    String form = resultSet.getString("form");
+
+                    WarehouseProduct product = new WarehouseProduct(quantity,shelf,docNo,name2,unit,docDate,recorder,recipient,form,1,productId);
+                    warehouseProductNames.add(product);
+                    System.out.println("response warehouse product name");
+                    System.out.println("w = " + product);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }return warehouseProductNames;
+    }
+
+    public List<Warehouse> getWarehouseProductId(String id) {
+        System.out.println("request warehouse product id");
+        List<Warehouse> warehouseProductIds = new ArrayList<Warehouse>();
+        Connection connection = null;
+        try {
+            connection = prepareConnection();
+            if(connection != null){
+                String sql = "select * " +
+                        "from warehouse_product "+
+                        "where product_id like '%"+id+"%'";
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);
+
+                while (resultSet.next()){
+                    int docNo = resultSet.getInt("doc_no");
+                    String docDate = resultSet.getString("doc_date");
+                    String unit = resultSet.getString("unit");
+                    String productId = resultSet.getString("product_id");
+                    String name2 = resultSet.getString("name");
+                    int quantity = resultSet.getInt("quantity");
+                    String shelf = resultSet.getString("shelf");
+                    String recorder = resultSet.getString("recorder");
+                    String recipient = resultSet.getString("recipient");
+                    String form = resultSet.getString("form");
+
+                    WarehouseProduct product = new WarehouseProduct(quantity,shelf,docNo,name2,unit,docDate,recorder,recipient,form,1,productId);
+                    warehouseProductIds.add(product);
+                    System.out.println("response warehouse product id");
+                    System.out.println("w = " + product);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }return warehouseProductIds;
+    }
+
+
 //    public void addSeed(){
 //        List<Seed> seeds = new ArrayList<Seed>();
 //        Connection connection = null;

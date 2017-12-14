@@ -12,5 +12,11 @@ public interface WarehouseManagerDB {
 
     List<Warehouse> getWarehouseProduct();
 
+    List<Warehouse> getWarehouseSeedName(String name);
 
+    List<Warehouse> getWarehouseSeedId(String id);
+
+    List<Warehouse> getWarehouseProductName(String name);
+
+    List<Warehouse> getWarehouseProductId(String id);
 }

@@ -36,4 +36,20 @@ public class MainController {
         return warehouseList;
     }
 
+    public List<Warehouse> getWarehouseSeedName(String name){
+        return executor.getWarehouseSeedName(name);
+    }
+
+    public List<Warehouse> getWarehouseSeedId(String id){
+        return executor.getWarehouseSeedId(id);
+    }
+
+    public List<Warehouse> getWarehouseProductName(String name){
+        return executor.getWarehouseProductName(name);
+    }
+
+    public List<Warehouse> getWarehouseProductId(String id){
+        return executor.getWarehouseProductId(id);
+    }
+
 }
