@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import models.Warehouse;
 import models.WarehouseProduct;
 import models.WarehouseSeed;
@@ -58,7 +59,6 @@ public class PopUpPickController implements Initializable{
     public void onClickStockNo(ActionEvent event){
         if(String.valueOf(stockCombo.getValue()).startsWith("1")){
             unitCombo.setItems(unitSeed);
-            //System.out.println(controller.getWarehouseSeed().get());
             for (Warehouse warehouseSeed: controller.getWarehouseSeed()) {
                 String id = ((WarehouseSeed)warehouseSeed).getSeedId()+" : "+warehouseSeed.getName();
                 setA.add(id);
@@ -79,7 +79,6 @@ public class PopUpPickController implements Initializable{
 
     @FXML
     public void handlerBtnAdd(ActionEvent event){
-//        stockNo = String.valueOf(stockCombo.getValue()).substring(0,1);
         stockNo = stockCombo.getValue().toString().substring(0,1);
         quantity = Integer.parseInt(amountField.getText());
         idName = String.valueOf(idProductCombo.getValue()).split(" : ");
@@ -88,13 +87,31 @@ public class PopUpPickController implements Initializable{
         unit = String.valueOf(unitCombo.getValue());
 
         if (stockNo.equals("1")){
-            WarehouseSeed item = new WarehouseSeed(quantity,"",0,name,unit,"","","","",1,id);
+            WarehouseSeed item = new WarehouseSeed(quantity,"",
+                    0,name,
+                    unit,"",
+                    "","",
+                    "",1,id);
             addTableView(item);
+            System.out.println("Add new item");
         }
         if (stockNo.equals("2")){
-            WarehouseProduct item = new WarehouseProduct(quantity,"",0,name,unit,"","","","",1,id);
+            WarehouseProduct item = new WarehouseProduct(quantity,"",
+                    0,name,
+                    unit,"",
+                    "","",
+                    "",1,id);
             addTableView(item);
+            System.out.println("Add new item");
         }
+    }
+
+    @FXML
+    public void handlerBtnCancel(ActionEvent event){
+        Stage stage = (Stage) cancelBtn.getScene().getWindow();
+        stage.close();
+        System.out.println("Close popup");
+
     }
 
     public void addTableView(Warehouse warehouse){

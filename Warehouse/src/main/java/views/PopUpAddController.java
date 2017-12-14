@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import models.Warehouse;
 import models.WarehouseInfo;
 import models.WarehouseProduct;
@@ -76,12 +77,22 @@ public class PopUpAddController implements Initializable {
         shelf = shelfField.getText();
 
         if (stockNo.equals("1")){
-            WarehouseSeed item = new WarehouseSeed(quantity,shelf,0,name,unit,"","","","",1,id);
+            WarehouseSeed item = new WarehouseSeed(quantity,shelf,
+                    0,name,unit,
+                    "","",
+                    "","",
+                    1,id);
             addTableView(item);
+            System.out.println("Add new item");
         }
         if (stockNo.equals("2")){
-            WarehouseProduct item = new WarehouseProduct(quantity,shelf,0,name,unit,"","","","",1,id);
+            WarehouseProduct item = new WarehouseProduct(quantity,shelf,
+                    0,name,
+                    unit,"",
+                    "","",
+                    "",1,id);
             addTableView(item);
+            System.out.println("Add new item");
         }
     }
 
@@ -89,7 +100,6 @@ public class PopUpAddController implements Initializable {
     public void onClickStockNo(ActionEvent event){
         if(String.valueOf(stockCombo.getValue()).startsWith("1")){
             unitCombo.setItems(unitSeed);
-            //System.out.println(controller.getWarehouseSeed().get());
             for (Warehouse warehouseSeed: controller.getWarehouseSeed()) {
 
                 String id = ((WarehouseSeed)warehouseSeed).getSeedId()+" : "+warehouseSeed.getName();
@@ -111,7 +121,9 @@ public class PopUpAddController implements Initializable {
 
     @FXML
     public void handlerBtnCancel(ActionEvent event){
-
+        Stage stage = (Stage) cancelBtn.getScene().getWindow();
+        stage.close();
+        System.out.println("Close popup");
     }
 
     public void showTable(){
