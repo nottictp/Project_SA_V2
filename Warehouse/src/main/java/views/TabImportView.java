@@ -21,8 +21,10 @@ import models.WarehouseSeed;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class TabImportView extends AnchorPane implements Initializable {
@@ -45,7 +47,8 @@ public class TabImportView extends AnchorPane implements Initializable {
     @FXML private TableView importTable;
     @FXML private DatePicker docDate;
     private List<Warehouse> wh;
-
+    private List<WarehouseSeed> whSeed;
+    private List<WarehouseProduct> whProduct;
     private MainController controller;
     private int orderNo = -1;
 
@@ -54,6 +57,8 @@ public class TabImportView extends AnchorPane implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         initColumn();
         wh = new ArrayList<Warehouse>();
+        whSeed = new ArrayList<WarehouseSeed>();
+        whProduct = new ArrayList<WarehouseProduct>();
     }
 
     @FXML
@@ -124,5 +129,33 @@ public class TabImportView extends AnchorPane implements Initializable {
 
     public TableView getImportTable() {
         return importTable;
+    }
+
+    @FXML
+    public void handlerBtnInsert(){
+        System.out.println("wh = " + wh);
+        for (Warehouse w : wh) {
+            if(w.getType() == 1){
+                //warehouse seed
+                System.out.println("---seed---");
+
+                String date = docDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH));
+                System.out.println(((WarehouseSeed) w).getSeedId());
+                WarehouseSeed seed = new WarehouseSeed(w.getQuantity(),w.getShelf()
+                        ,Integer.parseInt(docNo.getText()),w.getName(),w.getUnit()
+                        ,date,recorderField.getText(),recipientField.getText()
+                        ,form.getText(),1, ((WarehouseSeed) w).getSeedId());
+                controller.InsertToWarehouseSeed(seed);
+            }else if(w.getType() == 2){
+                //warehouse product
+                System.out.println("---product---");
+                String date = docDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH));
+                WarehouseProduct product = new WarehouseProduct(w.getQuantity(),w.getShelf()
+                        ,Integer.parseInt(docNo.getText()),w.getName(),w.getUnit()
+                        ,date,recorderField.getText(),recipientField.getText()
+                        ,form.getText(),1, ((WarehouseProduct) w).getProductId());
+                controller.InsertToWarehouseProduct(product);
+            }
+        }
     }
 }

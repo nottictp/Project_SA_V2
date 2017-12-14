@@ -19,4 +19,12 @@ public interface WarehouseManagerDB {
     List<Warehouse> getWarehouseProductName(String name);
 
     List<Warehouse> getWarehouseProductId(String id);
+
+    void insertToWarehouseSeed(WarehouseSeed warehouse);
+
+    void insertToWarehouseProduct(WarehouseProduct warehouse);
+
+    void UpdateWarehouseSeed(WarehouseSeed warehouse);
+
+    void UpdateWarehouseProduct(WarehouseProduct warehouse);
 }

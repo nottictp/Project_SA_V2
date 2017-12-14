@@ -157,6 +157,14 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
              }
         }catch (SQLException e) {
                 e.printStackTrace();
+        }finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }return null;
     }
 
@@ -193,6 +201,14 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }return warehouseSeedNames;
     }
 
@@ -229,6 +245,14 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }return warehouseSeedIds;
     }
 
@@ -265,6 +289,14 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }return warehouseProductNames;
     }
 
@@ -301,7 +333,77 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }return warehouseProductIds;
+    }
+
+    public void insertToWarehouseSeed(WarehouseSeed w) {
+        System.out.println("Insert to Warehouse seed");
+        Connection connection = null;
+        try{
+            connection = prepareConnection();
+            if(connection != null){
+                String sql = String.format("insert into warehouse_seed "+
+                        "values ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+                        w.getDocNo()+"", w.getDocDate(), w.getSeedId(), w.getName(), w.getUnit(),
+                        w.getQuantity()+"", w.getShelf(), w.getRecorder(), w.getRecipient(), w.getForm());
+                Statement statement = connection.createStatement();
+                int result = statement.executeUpdate(sql);
+                System.out.println(result);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void insertToWarehouseProduct(WarehouseProduct w) {
+        System.out.println("Insert to Warehouse product");
+        Connection connection = null;
+        try{
+            connection = prepareConnection();
+            if(connection != null){
+                String sql = String.format("insert into warehouse_product "+
+                                "values ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+                        w.getDocNo()+"", w.getDocDate(), w.getProductId(), w.getName(), w.getUnit(),
+                        w.getQuantity()+"", w.getShelf(), w.getRecorder(), w.getRecipient(), w.getForm());
+                Statement statement = connection.createStatement();
+                int result = statement.executeUpdate(sql);
+                System.out.println(result);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void UpdateWarehouseSeed(WarehouseSeed warehouse) {
+
+    }
+
+    public void UpdateWarehouseProduct(WarehouseProduct warehouse) {
+
     }
 
 

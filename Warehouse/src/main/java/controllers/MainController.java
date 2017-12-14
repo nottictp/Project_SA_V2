@@ -52,4 +52,12 @@ public class MainController {
         return executor.getWarehouseProductId(id);
     }
 
+    public void InsertToWarehouseSeed(WarehouseSeed warehouse){
+        executor.insertToWarehouseSeed(warehouse);
+    }
+
+    public void InsertToWarehouseProduct(WarehouseProduct warehouse){
+        executor.insertToWarehouseProduct(warehouse);
+    }
+
 }

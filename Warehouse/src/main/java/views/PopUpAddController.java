@@ -90,7 +90,7 @@ public class PopUpAddController implements Initializable {
                     0,name,
                     unit,"",
                     "","",
-                    "",1,id);
+                    "",2,id);
             addTableView(item);
             System.out.println("Add new item");
         }
