@@ -15,6 +15,7 @@ import models.Warehouse;
 import models.WarehouseProduct;
 import models.WarehouseSeed;
 
+import javax.crypto.AEADBadTagException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.ResourceBundle;
@@ -41,13 +42,14 @@ public class PopUpPickController implements Initializable{
 
     ObservableList<String> shelfs = FXCollections.observableArrayList("1 : เมล็ดพันธุ์","2 : สินค้า");
     ObservableList<String> unitSeed = FXCollections.observableArrayList("เมล็ด");
-    ObservableList<String> unitProduct = FXCollections.observableArrayList("ซอง", "กระป๋อง");
+    ObservableList<String> unitProduct = FXCollections.observableArrayList("ซอง");
+    ObservableList<String> unitProduct2 = FXCollections.observableArrayList("กระป๋อง");
     ObservableList<String> seedId, productId;
 
     Set setA = new HashSet();
     Set setB = new HashSet();
     String stockNo, id, name, unit;
-    String[] idName;
+    String[] idName, checkProduct;
     int quantity;
     int order=1;
 
@@ -71,14 +73,28 @@ public class PopUpPickController implements Initializable{
             idProductCombo.setItems(seedId);
 
         }else{
-            unitCombo.setItems(unitProduct);
-            unitCombo.setValue("ซอง");
+
             for (Warehouse warehouseProduct: controller.getWarehouseProduct()) {
                 String id = ((WarehouseProduct)warehouseProduct).getProductId()+" : "+warehouseProduct.getName();
                 setB.add(id);
             }
             productId = FXCollections.observableArrayList(setB);
             idProductCombo.setItems(productId);
+
+        }
+    }
+
+    public void onClickId(ActionEvent event){
+        System.out.println(idProductCombo.getValue().toString());
+
+        checkProduct = idProductCombo.getValue().toString().split(" : ");
+
+        if(checkProduct[0].equals("3MEL0017") || checkProduct[0].equals("2VIN3029")){
+            unitCombo.setItems(unitProduct);
+            unitCombo.setValue("ซอง");
+        }else if (checkProduct[0].equals("1ZIN6110")){
+            unitCombo.setItems(unitProduct2);
+            unitCombo.setValue("กระป๋อง");
         }
     }
 

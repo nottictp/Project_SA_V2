@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.PopUpPickController">
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.PopUpPickController">
     <children>
         <Label layoutX="80.0" layoutY="131.0" text="รหัส">
             <font>
@@ -32,7 +32,7 @@
                 <Font size="14.0" />
             </font></Label>
         <TextField fx:id="amountField" layoutX="148.0" layoutY="173.0" prefHeight="31.0" prefWidth="116.0" />
-        <ComboBox fx:id="idProductCombo" layoutX="148.0" layoutY="131.0" prefWidth="150.0" />
+        <ComboBox fx:id="idProductCombo" layoutX="148.0" layoutY="131.0" onAction="#onClickId" prefWidth="150.0" />
         <ComboBox fx:id="stockCombo" layoutX="148.0" layoutY="93.0" onAction="#onClickStockNo" prefWidth="150.0" />
       <Label fx:id="errorMsg" alignment="CENTER" layoutY="211.0" prefHeight="31.0" prefWidth="400.0" textFill="RED">
          <font>
