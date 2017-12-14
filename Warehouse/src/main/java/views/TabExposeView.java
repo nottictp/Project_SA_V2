@@ -149,7 +149,7 @@ public class TabExposeView extends AnchorPane implements Initializable {
                         ,Integer.parseInt(docNo.getText()),w.getName(),w.getUnit()
                         ,date,recorderField.getText(),recipientField.getText()
                         ,"",1, ((WarehouseSeed) w).getSeedId());
-                controller.InsertToWarehouseSeed(seed);
+                controller.updateWarehouseSeed(seed);
             }else if(w.getType() == 2){
                 //warehouse product
                 System.out.println("---product---");
@@ -157,8 +157,9 @@ public class TabExposeView extends AnchorPane implements Initializable {
                 WarehouseProduct product = new WarehouseProduct(w.getQuantity(),w.getShelf()
                         ,Integer.parseInt(docNo.getText()),w.getName(),w.getUnit()
                         ,date,recorderField.getText(),recipientField.getText()
-                        ,"",2, ((WarehouseProduct) w).getProductId());
-                controller.InsertToWarehouseProduct(product);
+                        ,"",2, ((WarehouseProduct) w).getProductId(),0);
+
+                controller.updateWarehouseProduct(product);
             }
         }
     }

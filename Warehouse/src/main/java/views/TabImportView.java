@@ -189,7 +189,7 @@ public class TabImportView extends AnchorPane implements Initializable {
                         ,Integer.parseInt(docNo.getText()),w.getName(),w.getUnit()
                         ,date,recorderField.getText(),recipientField.getText()
                         ,form.getText(),1, ((WarehouseSeed) w).getSeedId());
-                controller.InsertToWarehouseSeed(seed);
+                controller.insertToWarehouseSeed(seed);
             }else if(w.getType() == 2){
                 //warehouse product
                 System.out.println("---product---");
@@ -198,7 +198,7 @@ public class TabImportView extends AnchorPane implements Initializable {
                         ,Integer.parseInt(docNo.getText()),w.getName(),w.getUnit()
                         ,date,recorderField.getText(),recipientField.getText()
                         ,form.getText(),2, ((WarehouseProduct) w).getProductId(),((WarehouseProduct)w).getCapacity());
-                controller.InsertToWarehouseProduct(product);
+                controller.insertToWarehouseProduct(product);
             }
         }
     }
