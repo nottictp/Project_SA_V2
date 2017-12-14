@@ -169,7 +169,6 @@ public class TabImportView extends AnchorPane implements Initializable {
     public void setController(MainController controller) {
         this.controller = controller;
         initData();
-
     }
 
     public TableView getImportTable() {

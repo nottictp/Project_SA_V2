@@ -138,7 +138,7 @@ public class TabExposeView extends AnchorPane implements Initializable {
     }
 
     @FXML
-    public void handlerBtnSave(ActionEvent event) throws IOException {
+    public void handlerBtnEdit(ActionEvent event) throws IOException {
         wh.clear();
         docDate.setValue(LocalDate.now());
         recorderField.clear();

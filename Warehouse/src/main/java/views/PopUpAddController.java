@@ -40,7 +40,6 @@ public class PopUpAddController implements Initializable {
     private Label errorMsg;
     private TabImportView tabImportView;
 
-
     ObservableList<String> shelfs = FXCollections.observableArrayList("1: เมล็ดพันธุ์","2: สินค้า");
     ObservableList<String> unitProduct = FXCollections.observableArrayList("ซอง", "กระป๋อง");
     ObservableList<String> unitSeed = FXCollections.observableArrayList("เมล็ด");

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.TabExposeView">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.TabExposeView">
    <children>
       <Label layoutX="41.0" layoutY="25.0" text="เลขที่เอกสาร">
          <font>
@@ -58,7 +58,7 @@
       </TableView>
       <Button fx:id="addBtn" layoutX="31.0" layoutY="495.0" mnemonicParsing="false" onAction="#handlerBtnAdd" text="เพิ่ม" />
       <Button fx:id="removeBtn" layoutX="89.0" layoutY="495.0" mnemonicParsing="false" onAction="#handlerBtnRemove" text="ลบ" />
-      <Button fx:id="saveBtn" layoutX="142.0" layoutY="495.0" mnemonicParsing="false" onAction="#handlerBtnSave" text="บันทึก" />
+      <Button fx:id="saveBtn" layoutX="142.0" layoutY="495.0" mnemonicParsing="false" onAction="#handlerBtnEdit" text="บันทึก" />
       <Button fx:id="cancelBtn" layoutX="216.0" layoutY="495.0" mnemonicParsing="false" onAction="#handlerBtnCancel" text="ยกเลิก" />
       <TextField fx:id="recorderField" layoutX="161.0" layoutY="99.0" prefHeight="31.0" prefWidth="190.0" />
       <TextField fx:id="recipientField" layoutX="161.0" layoutY="137.0" prefHeight="31.0" prefWidth="190.0" />
