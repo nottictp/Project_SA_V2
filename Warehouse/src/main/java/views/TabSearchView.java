@@ -1,16 +1,23 @@
 package views;
 
 import controllers.MainController;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Callback;
+import models.Warehouse;
 import models.WarehouseProduct;
+import models.WarehouseSeed;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class TabSearchView extends AnchorPane implements Initializable {
@@ -31,9 +38,10 @@ public class TabSearchView extends AnchorPane implements Initializable {
     @FXML private Button printBtn;
     @FXML private ComboBox<String> typeSearchCombo;
     @FXML private ComboBox<String> typeCombo;
-    @FXML private ComboBox Doccombo;
+    @FXML private ComboBox docCombo;
 
     WarehouseProduct warehouseProduct;
+    private List<Warehouse> wh;
 
     private String search;
 
@@ -74,6 +82,50 @@ public class TabSearchView extends AnchorPane implements Initializable {
 
 
     public void initColumn(){
+//        orderColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("order"));
+        orderColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Warehouse,String>, ObservableValue<String>>() {
 
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Warehouse, String> param) {
+                return new SimpleStringProperty((wh.indexOf(param.getValue())+1)+"");
+            }
+        });
+        idColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Warehouse,String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue call(TableColumn.CellDataFeatures<Warehouse,String> param) {
+                if (param.getValue() instanceof WarehouseSeed){
+                    return new SimpleStringProperty(((WarehouseSeed) param.getValue()).getSeedId()+"");
+                }else{
+                    return new SimpleStringProperty(((WarehouseProduct) param.getValue()).getProductId()+"");
+                }
+            }
+        });
+        deliveryDateColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("docDate"));
+        docNoColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("docNo"));
+        unitColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("unit"));
+//        stockColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Warehouse,String>, ObservableValue<String>>() {
+//            @Override
+//            public ObservableValue call(TableColumn.CellDataFeatures<Warehouse,String> param) {
+//                if (param.getValue() instanceof WarehouseSeed){
+//                    return new SimpleStringProperty("1");
+//                }else{
+//                    return new SimpleStringProperty("2");
+//                }
+//            }
+//        });
+        recipientColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("recipient"));
+        recorderColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("recorder"));
+        shelfColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("shelf"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("name"));
+        capacityColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("name"));
+    }
+
+    public void initData(){
+        ObservableList<Warehouse> data = FXCollections.observableList(wh);
+        dataTable.setItems(data);
+    }
+    public void addTableView(Warehouse warehouse){
+        wh.add(warehouse);
+        initData();
     }
 }
