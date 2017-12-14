@@ -35,6 +35,8 @@ public class TabSearchView extends AnchorPane implements Initializable {
 
     WarehouseProduct warehouseProduct;
 
+    private String search;
+
     MainController controller;
     public void setController(MainController controller) {
         this.controller = controller;
@@ -56,10 +58,17 @@ public class TabSearchView extends AnchorPane implements Initializable {
     @FXML
     public void handlerBtnSearch(ActionEvent event){
         String typeSearh = typeSearchCombo.getValue().toString();
-        if(typeSearh.equals("เมล็ดพันธุ์")){
-
+        String type = typeCombo.getValue().toString();
+        search = searchField.getText();
+        if(typeSearh.equals("เมล็ดพันธุ์") && type.equals("ชื่อ")){
+            //method getWarehouseSeedName(search)
+        }else if(typeSearh.equals("เมล็ดพันธุ์") && type.equals("รหัส")){
+            //method getWarehouseSeedId(search)
+        }else if(typeSearh.equals("สินค้า") && type.equals("ชื่อ")){
+            //method getWarehouseProductName(search)
+        }else if(typeSearh.equals("สินค้า") && type.equals("รหัส")){
+            //method getWarehouseProductId(search)
         }
-        String search = searchField.getText();
         System.out.println(search);
     }
 
