@@ -1,6 +1,7 @@
 package views;
 
 import models.Warehouse;
+import models.WarehouseSeed;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -17,7 +18,9 @@ import java.util.List;
 import static javax.swing.text.html.HTML.Tag.HEAD;
 
 public class PrintPDFController {
-    public static void createBill(List<Warehouse> warehouses) {
+
+    public static void printPDF(List<Warehouse> warehouses) {
+        TabSearchView tabSearchView;
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy  HH:mm");
 
         try {
@@ -36,10 +39,21 @@ public class PrintPDFController {
             contentStream.showText(String.format("%100s", StringUtils.center("LittleBearWarehouse", 100)));
             contentStream.newLine();
             int warehouseSize = warehouses.size();
-            for (Warehouse wh:
-                 ) {
-                
+            for (Warehouse wh : warehouses) {
+                if (wh instanceof WarehouseSeed){
+                    WarehouseSeed whs = (WarehouseSeed) wh;
+                    String whsID = whs.getSeedId();
+                    String whsName = whs.getName();
+                    String whsUnit = whs.getUnit();
+                    int whsQuantity = whs.getQuantity();
+//                    whs.get
+                    contentStream.showText(String.format("%100s", StringUtils.center(whs.getSeedId(), 100)));
+                    contentStream.newLine();
+                }
+
             }
+
+
 
         } catch (IOException e) {
 
