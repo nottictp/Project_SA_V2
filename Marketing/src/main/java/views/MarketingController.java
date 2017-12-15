@@ -77,7 +77,7 @@ public class MarketingController implements Initializable {
     }
 
     public void checkAmountOfSeed(String id){
-        System.out.println("con"+controller);
+        System.out.println("con "+controller);
         DataToMarketing seedRatio = controller.getSeedRatio(id);
         String ratio = seedRatio.getRatio();
         int totalFather = seedRatio.getFatherQuantity();
