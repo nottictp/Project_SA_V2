@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -16,6 +17,7 @@ import javafx.util.Callback;
 import models.Producer;
 import models.SeedLot;
 import models.Warehouse;
+
 
 import java.io.Serializable;
 import java.net.URL;
@@ -81,38 +83,35 @@ public class TabSaveManufacture  implements Initializable {
                 grid.add(purchase, 2, 2);
                 grid.setVgap(10);
                 alert.getDialogPane().setContent(grid);
-                boolean check = false;
-                Double purchaseDouble;
-                if (!purchase.getText().equals("")){
-                    try {
-                        purchaseDouble = Double.parseDouble(purchase.getText());
-                        check = true;
-                    }catch (NumberFormatException e){
-                        check = false;
-                    }
-                }
                 Optional<ButtonType> result = alert.showAndWait();
                 if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
-                    if (!check){
-                        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
-                        alert1.setTitle("ยืนยันการลบข้อมูลคนขับ");
-                        alert1.setHeaderText("ยืนยันการลบข้อมูลคนขับ");
-                        String s = "";
-                        alert.setContentText(s);
+                    boolean check = false;
+                    Double purchaseDouble = 0.0;
+                    if (! purchase.getText().equals("")){
+                        try {
+                            purchaseDouble = Double.parseDouble(purchase.getText());
+                            check = true;
+                        }catch (NumberFormatException e){
+                            check = false;
+                        }
+                    }
 
-                        Optional<ButtonType> result1 = alert.showAndWait();
-                    }else if (check){
-                    System.out.println("testttttttt");}
+                    if (check){
+                    producer.setQualtity(purchaseDouble);
+                    dataTable.refresh();
+                    }else{
+                        System.out.println("ผิด");
+                    }
                 }
             }
         });
     }
-
-
-
-
-
-
+    @FXML
+    public void onActionLotNo(ActionEvent event){
+        producers = controller.getProducer(Integer.parseInt(lotNoCombo.getValue().toString()));
+        System.out.println("producers = " + producers);
+        initData();
+    }
 
     public void initColumn(){
         orderColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Producer,String>, ObservableValue<String>>() {
@@ -135,15 +134,14 @@ public class TabSaveManufacture  implements Initializable {
 
 
     public void initData(){
-        producers = new ArrayList<>();
-        producers.add(new Producer(1,2,"eiei",0.0));
         ObservableList<Producer> data = FXCollections.observableList(producers);
         dataTable.setItems(data);
     }
 
     public void setController(MainManufactoryController mainController) {
         this.controller = mainController;
-        initData();
         onDoubleClickDriver();
+        lotNoCombo.getItems().addAll(controller.getLotIdNotQuantity());
     }
+
 }

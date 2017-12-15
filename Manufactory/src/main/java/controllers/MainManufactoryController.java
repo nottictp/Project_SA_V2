@@ -3,6 +3,7 @@ package controllers;
 import managers.ManufactorManagerDB;
 import managers.WarehouseManagerDB;
 import models.Farmer;
+import models.Producer;
 import models.Seed;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -27,5 +28,21 @@ public class MainManufactoryController {
 
     public List<Seed> getSeed(){
         return executor.getSeed();
+    }
+
+    public void insertIdFarmer(List<Farmer> farmers, Seed seed,int quantity){
+        executor.insertIdFarmer(farmers,seed,quantity);
+    }
+
+    public List<Integer> getLotIdNotQuantity(){
+        return executor.getLotIdNotQuantity();
+    }
+
+    public void insertSeedLot(List<Producer> producers, String expire, String plantDate, String harvestDate, String testDate){
+        executor.insertSeedLot(producers,expire,plantDate,harvestDate,testDate);
+    }
+
+    public List<Producer> getProducer(int lotId){
+        return executor.getProducer(lotId);
     }
 }

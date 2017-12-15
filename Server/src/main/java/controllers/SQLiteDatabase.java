@@ -653,7 +653,8 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         try{
             connection = prepareConnection();
             if(connection != null){
-                String sql = "from producer\n" +
+                String sql = "select * " +
+                        "from producer\n" +
                         "join farmer\n" +
                         "on producer.farmer_id = farmer.farmer_id\n" +
                         "where lot_id=" + lotId;

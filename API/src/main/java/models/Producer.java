@@ -34,7 +34,7 @@ public class Producer implements Serializable {
         return qualtity;
     }
 
-    public void setQualtity(float qualtity) {
+    public void setQualtity(double qualtity) {
         this.qualtity = qualtity;
     }
 

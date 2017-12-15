@@ -16,7 +16,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <ComboBox fx:id="lotNoCombo" layoutX="151.0" layoutY="19.0" prefHeight="31.0" prefWidth="115.0" />
+      <ComboBox fx:id="lotNoCombo" layoutX="151.0" layoutY="19.0" onAction="#onActionLotNo" prefHeight="31.0" prefWidth="115.0" />
       <Label layoutX="411.0" layoutY="21.0" text="ผู้บันทึก">
          <font>
             <Font size="17.0" />
