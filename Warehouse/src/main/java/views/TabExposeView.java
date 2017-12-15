@@ -38,7 +38,6 @@ public class TabExposeView extends AnchorPane implements Initializable {
     @FXML private DatePicker docDate;
     @FXML private TextField recorderField;
     @FXML private TextField recipientField;
-    @FXML private ComboBox departmentCombo;
     @FXML private Button cancelBtn;
     @FXML private Button saveBtn;
     @FXML private TextField note;
@@ -130,7 +129,6 @@ public class TabExposeView extends AnchorPane implements Initializable {
         docDate.setValue(LocalDate.now());
         recorderField.clear();
         recipientField.clear();
-        departmentCombo.getItems().clear();
         note.clear();
         docNo.clear();
         initData();
@@ -212,7 +210,6 @@ public class TabExposeView extends AnchorPane implements Initializable {
                 docDate.setValue(LocalDate.now());
                 recorderField.clear();
                 recipientField.clear();
-                departmentCombo.getItems().clear();
                 note.clear();
                 docNo.clear();
                 initData();
@@ -222,7 +219,6 @@ public class TabExposeView extends AnchorPane implements Initializable {
         docDate.setValue(LocalDate.now());
         recorderField.clear();
         recipientField.clear();
-        departmentCombo.getItems().clear();
         note.clear();
         docNo.clear();
         initData();
