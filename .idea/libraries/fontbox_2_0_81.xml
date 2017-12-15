@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="fontbox-2.0.81">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/fontbox-2.0.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/pdfbox-2.0.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/xmpbox-2.0.8.jar!/" />
+      <root url="file://$PROJECT_DIR$" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/API/src/main/java" />
+      <root url="file://$PROJECT_DIR$/Manufactory/src/main/java" />
+      <root url="file://$PROJECT_DIR$/Marketing/src/main/java" />
+      <root url="file://$PROJECT_DIR$/Server/src/main/java" />
+      <root url="file://$PROJECT_DIR$/Warehouse/src/main/java" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$" recursive="false" />
+  </library>
+</component>

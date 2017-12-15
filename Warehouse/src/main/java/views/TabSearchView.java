@@ -32,6 +32,7 @@ public class TabSearchView extends AnchorPane implements Initializable {
     @FXML private TableColumn senderColumn;
     @FXML private TableColumn capacityColumn;
     @FXML private TableColumn docNoColumn;
+    @FXML private TableColumn amountColumn;
     @FXML private TableColumn nameColumn;
     @FXML private TableColumn deliveryDateColumn;
     @FXML private TableColumn recipientColumn;
@@ -41,7 +42,6 @@ public class TabSearchView extends AnchorPane implements Initializable {
     @FXML private ComboBox<String> typeCombo;
     @FXML private ComboBox docCombo;
 
-    WarehouseProduct warehouseProduct;
     private List<Warehouse> warehouses;
 
     private String search;
@@ -113,6 +113,7 @@ public class TabSearchView extends AnchorPane implements Initializable {
         shelfColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("shelf"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("name"));
         capacityColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("capacity"));
+        amountColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("quantity"));
     }
 
     public void initData(){

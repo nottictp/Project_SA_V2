@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="582.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="75.0" layoutY="36.0" text="Lot No.">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="lotNoCombo" layoutX="150.0" layoutY="34.0" prefHeight="31.0" prefWidth="115.0" />
+      <Label layoutX="75.0" layoutY="94.0" text="ผู้บันทึก">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="tab2RecorderCombo" layoutX="150.0" layoutY="92.0" prefHeight="31.0" prefWidth="389.0" />
+      <TableView fx:id="tab2DataTable" layoutX="75.0" layoutY="158.0" prefHeight="320.0" prefWidth="622.0">
+         <columns>
+            <TableColumn fx:id="orderColumn" prefWidth="87.0" text="ลำดับ" />
+            <TableColumn prefWidth="84.0" text="ID" />
+            <TableColumn prefWidth="251.0" text="ชื่อ" />
+            <TableColumn prefWidth="105.0" text="จำนวนที่รับซื้อ" />
+            <TableColumn prefWidth="94.0" text="หน่วย" />
+         </columns>
+      </TableView>
+      <Button fx:id="saveBtn" layoutX="75.0" layoutY="491.0" mnemonicParsing="false" text="บันทึก" />
+      <Button fx:id="cancelBtn" layoutX="150.0" layoutY="491.0" mnemonicParsing="false" text="ยกเลิก" />
+   </children>
+</AnchorPane>
