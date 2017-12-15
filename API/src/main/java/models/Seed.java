@@ -6,12 +6,38 @@ public class Seed implements Serializable{
     private int seedID, qualtity;
     private String name;
     private double weightPerUnit;
+    private double unitPerArea;
 
-    public Seed(int seedID, String name, int qualtity, double weightPerUnit) {
+    public Seed(int seedID, int qualtity, String name, double weightPerUnit, double unitPerArea) {
         this.seedID = seedID;
         this.qualtity = qualtity;
         this.name = name;
         this.weightPerUnit = weightPerUnit;
+        this.unitPerArea = unitPerArea;
+    }
+
+    public int getSeedID() {
+        return seedID;
+    }
+
+    public void setSeedID(int seedID) {
+        this.seedID = seedID;
+    }
+
+    public double getWeightPerUnit() {
+        return weightPerUnit;
+    }
+
+    public void setWeightPerUnit(double weightPerUnit) {
+        this.weightPerUnit = weightPerUnit;
+    }
+
+    public double getUnitPerArea() {
+        return unitPerArea;
+    }
+
+    public void setUnitPerArea(double unitPerArea) {
+        this.unitPerArea = unitPerArea;
     }
 
     public int getSeed_ID() {
