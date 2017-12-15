@@ -1,6 +1,6 @@
 package views;
 
-import controllers.MainController;
+import controllers.MainWarehouseController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -17,7 +17,6 @@ import models.WarehouseProduct;
 import models.WarehouseSeed;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -46,7 +45,7 @@ public class TabSearchView extends AnchorPane implements Initializable {
 
     private String search;
 
-    MainController controller;
+    MainWarehouseController controller;
 
     ObservableList<String> comBoBox1 = FXCollections.observableArrayList("เมล็ดพันธุ์","สินค้า");
     ObservableList<String> comBoBox2 = FXCollections.observableArrayList("ชื่อ","รหัส");
@@ -120,7 +119,7 @@ public class TabSearchView extends AnchorPane implements Initializable {
         ObservableList<Warehouse> data = FXCollections.observableList(warehouses);
         dataTable.setItems(data);
     }
-    public void setController(MainController controller) {
+    public void setController(MainWarehouseController controller) {
         this.controller = controller;
     }
 

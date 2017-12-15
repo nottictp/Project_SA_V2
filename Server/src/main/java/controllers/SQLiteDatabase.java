@@ -348,7 +348,7 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         }return warehouseProductIds;
     }
 
-    public void insertToWarehouseSeed(WarehouseSeed w) {
+    public void insertToWarehouseSeed(WarehouseSeed w) throws Exception {
         System.out.println("Insert to Warehouse seed");
         Connection connection = null;
         try{
@@ -364,6 +364,7 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            throw e;
         }finally {
             if(connection != null){
                 try {

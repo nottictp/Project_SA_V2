@@ -1,4 +1,4 @@
-import controllers.MainController;
+import controllers.MainWarehouseController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -7,10 +7,10 @@ import javafx.stage.Stage;
 import views.WarehouseController;
 
 public class MainWarehouse extends Application{
-    private MainController controller;
+    private MainWarehouseController controller;
     @Override
     public void start(Stage primaryStage) throws Exception{
-        controller = new MainController();
+        controller = new MainWarehouseController();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/warehouse.fxml"));
         AnchorPane mainLayout = loader.load();

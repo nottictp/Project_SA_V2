@@ -1,20 +1,12 @@
 package views;
 
-import controllers.MainController;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
+import controllers.MainWarehouseController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import models.WarehouseProduct;
 
-import javax.xml.soap.Text;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,10 +19,10 @@ public class WarehouseController implements Initializable{
     private TabExposeView tabExposeView;
     private TabImportView tabImportView;
     private TabSearchView tabSearchView;
-    private MainController controller;
+    private MainWarehouseController controller;
 
 
-    public void setController(MainController controller) {
+    public void setController(MainWarehouseController controller) {
         this.controller = controller;
         initTabExposeView();
         initTabImportView();

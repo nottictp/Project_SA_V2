@@ -1,6 +1,6 @@
 package views;
 
-import controllers.MainController;
+import controllers.MainWarehouseController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,7 +15,6 @@ import models.WarehouseSeed;
 
 import java.net.URL;
 import java.util.HashSet;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -54,7 +53,7 @@ public class PopUpAddController implements Initializable {
     int order=1;
 
 
-    MainController controller;
+    MainWarehouseController controller;
     WarehouseController warehouse;
     WarehouseSeed warehouseSeed = WarehouseInfo.getInstance().getWarehouseSeed();
     WarehouseProduct warehouseProduct = WarehouseInfo.getInstance().getWarehouseProduct();
@@ -63,7 +62,7 @@ public class PopUpAddController implements Initializable {
         stockCombo.setItems(shelfs);
     }
 
-    public void setController(MainController controller){
+    public void setController(MainWarehouseController controller){
         this.controller = controller;
     }
 

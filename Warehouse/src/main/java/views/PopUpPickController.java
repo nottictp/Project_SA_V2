@@ -1,6 +1,6 @@
 package views;
 
-import controllers.MainController;
+import controllers.MainWarehouseController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,7 +15,6 @@ import models.Warehouse;
 import models.WarehouseProduct;
 import models.WarehouseSeed;
 
-import javax.crypto.AEADBadTagException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.ResourceBundle;
@@ -38,7 +37,7 @@ public class PopUpPickController implements Initializable{
     private Label errorMsg;
     private TabExposeView tabExposeView;
 
-    MainController controller;
+    MainWarehouseController controller;
 
     ObservableList<String> shelfs = FXCollections.observableArrayList("1 : เมล็ดพันธุ์","2 : สินค้า");
     ObservableList<String> unitSeed = FXCollections.observableArrayList("เมล็ด");
@@ -57,7 +56,7 @@ public class PopUpPickController implements Initializable{
         stockCombo.setItems(shelfs);
     }
 
-    public void setController(MainController controller){
+    public void setController(MainWarehouseController controller){
         this.controller = controller;
     }
 
@@ -73,7 +72,6 @@ public class PopUpPickController implements Initializable{
             idProductCombo.setItems(seedId);
 
         }else{
-
             for (Warehouse warehouseProduct: controller.getWarehouseProduct()) {
                 String id = ((WarehouseProduct)warehouseProduct).getProductId()+" : "+warehouseProduct.getName();
                 setB.add(id);
@@ -85,17 +83,22 @@ public class PopUpPickController implements Initializable{
     }
 
     public void onClickId(ActionEvent event){
-        System.out.println(idProductCombo.getValue().toString());
+        System.out.println("value"+idProductCombo.getValue().toString());
 
         checkProduct = idProductCombo.getValue().toString().split(" : ");
 
-        if(checkProduct[0].equals("3MEL0017") || checkProduct[0].equals("2VIN3029")){
-            unitCombo.setItems(unitProduct);
-            unitCombo.setValue("ซอง");
-        }else if (checkProduct[0].equals("1ZIN6110")){
-            unitCombo.setItems(unitProduct2);
-            unitCombo.setValue("กระป๋อง");
+        if(String.valueOf(stockCombo.getValue()).startsWith("1")) {
+                unitCombo.setValue("เมล็ด");
+        }else{
+            if(checkProduct[0].equals("3MEL0017") || checkProduct[0].equals("2VIN3029")){
+                unitCombo.setItems(unitProduct);
+                unitCombo.setValue("ซอง");
+            }else if (checkProduct[0].equals("1ZIN6110")){
+                unitCombo.setItems(unitProduct2);
+                unitCombo.setValue("กระป๋อง");
+            }
         }
+
     }
 
     @FXML
@@ -131,7 +134,7 @@ public class PopUpPickController implements Initializable{
         }catch (NumberFormatException e){
             errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
         }finally {
-            idProductCombo.getItems().clear();
+            System.out.println("idProductCombo = " + idProductCombo.getItems());
             amountField.clear();
             unitCombo.getItems().clear();
         }

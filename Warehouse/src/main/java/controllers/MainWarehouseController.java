@@ -7,13 +7,14 @@ import models.WarehouseSeed;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainController {
+public class MainWarehouseController {
     private WarehouseManagerDB executor;
 
-    public MainController() {
+    public MainWarehouseController() {
         ApplicationContext bf = new ClassPathXmlApplicationContext("warehouse_config.xml");
         executor = (WarehouseManagerDB) bf.getBean("WarehouseDbManager");
     }
@@ -52,7 +53,8 @@ public class MainController {
         return executor.getWarehouseProductId(id);
     }
 
-    public void insertToWarehouseSeed(WarehouseSeed warehouse){
+    public void insertToWarehouseSeed(WarehouseSeed warehouse) throws Exception {
+
         executor.insertToWarehouseSeed(warehouse);
     }
 
