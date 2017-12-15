@@ -42,10 +42,10 @@ public class TabSearchView extends AnchorPane implements Initializable {
     @FXML private ComboBox docCombo;
 
     private List<Warehouse> warehouses;
-
+    private PrintPDFController printPDFController;
     private String search;
 
-    MainWarehouseController controller;
+    private MainWarehouseController controller;
 
     ObservableList<String> comBoBox1 = FXCollections.observableArrayList("เมล็ดพันธุ์","สินค้า");
     ObservableList<String> comBoBox2 = FXCollections.observableArrayList("ชื่อ","รหัส");
@@ -58,10 +58,15 @@ public class TabSearchView extends AnchorPane implements Initializable {
         typeSearchCombo.setValue("เมล็ดพันธุ์");
         typeCombo.setItems(comBoBox2);
         typeCombo.setValue("ชื่อ");
+        printPDFController = PrintPDFController.getInstant();
     }
 
     @FXML
-    public void handlerBtnPrint(ActionEvent event){    }
+    public void handlerBtnPrint(ActionEvent event){
+        System.out.println("in Method Print");
+        printPDFController.setNumber(printPDFController.getNumber() + 1);
+        printPDFController.printPDF(warehouses);
+    }
 
     @FXML
     public void handlerBtnSearch(ActionEvent event){
@@ -121,6 +126,7 @@ public class TabSearchView extends AnchorPane implements Initializable {
     }
     public void setController(MainWarehouseController controller) {
         this.controller = controller;
+
     }
 
 }

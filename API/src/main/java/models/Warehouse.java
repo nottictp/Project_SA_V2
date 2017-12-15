@@ -14,7 +14,10 @@ public class Warehouse implements Serializable{
         this.type = type;
     }
 
-    public Warehouse(int quantity, String shelf, int docNo, String name, String unit, String docDate, String recorder, String recipient, String form, int type) {
+    public Warehouse(int quantity, String shelf,
+                     int docNo, String name, String unit,
+                     String docDate, String recorder,
+                     String recipient, String form, int type) {
         this.quantity = quantity;
         this.shelf = shelf;
         this.docNo = docNo;
