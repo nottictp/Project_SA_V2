@@ -640,11 +640,11 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         return lotIds;
     }
 
-
     @Override
-    public void insertSeedLot() {
+    public void insertSeedLot(List<Producer> producers, String expire, String plantDate, String harvestDate, String testDate) {
 
     }
+
 
     @Override
     public List<Producer> getProducer(int lotId) {

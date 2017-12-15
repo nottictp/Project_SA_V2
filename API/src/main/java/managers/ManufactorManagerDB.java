@@ -19,7 +19,7 @@ public interface ManufactorManagerDB {
 
     List<Integer> getLotIdNotQuantity();
 
-    void insertSeedLot();
+    void insertSeedLot(List<Producer> producers, String expire, String plantDate, String harvestDate, String testDate);
 
     List<Producer> getProducer(int lotId);
 
