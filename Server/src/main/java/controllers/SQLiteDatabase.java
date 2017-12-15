@@ -481,7 +481,7 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
                 ResultSet resultSet = statement.executeQuery(sql);
                 while(resultSet.next()){
                     String group = resultSet.getString("group");
-                    double area = resultSet.getDouble("area");
+                    double area = resultSet.getDouble("areas");
                     areas.put(group, area);
                 }
 
@@ -513,7 +513,19 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(sql);
                 while(resultSet.next()){
+                    int farmerId = resultSet.getInt("farmer_id");
+                    int identityId = resultSet.getInt("identity_id");
+                    String name = resultSet.getString("name");
+                    String surname = resultSet.getString("surname");
+                    String address = resultSet.getString("address");
+                    String phoneNo = resultSet.getString("phonenumber");
+                    Double capacityArea = resultSet.getDouble("capacity_area");
+                    String status = resultSet.getString("production_status");
+                    String groupFarmer = resultSet.getString("group_farmer");
 
+                    Farmer farmer = new Farmer(farmerId,identityId,name,surname,address,phoneNo,status,groupFarmer,capacityArea);
+
+                    farmers.add(farmer);
                 }
             }
         } catch (SQLException e) {
@@ -565,39 +577,21 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         }
         return seeds;
     }
-//    public void addSeed(){
-//        List<Seed> seeds = new ArrayList<Seed>();
-//        Connection connection = null;
-//        connection = prepareConnection();
-//        try {
-//            if(connection != null){
-//                String sql = "select * from seed";
-//                Statement statement = connection.createStatement();
-//                ResultSet resultSet = statement.executeQuery(sql);
-//
-//                while (resultSet.next()){
-//                    int seedId = resultSet.getInt("seed_id");
-//                    String name = resultSet.getString("name");
-//                    int quantity = resultSet.getInt("quantity");
-//                    double weightPerUnit = resultSet.getDouble("weight_per_unit");
-//                    System.out.println(seedId + " "+ name+" "+quantity+" "+weightPerUnit);
-//                    Seed seed = new Seed(seedId, name, quantity, weightPerUnit);
-//                    seeds.add(seed);
-//
-//                }
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }finally {
-//            if (connection != null){
-//                try {
-//                    connection.close();
-//                } catch (SQLException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//    }
+
+    @Override
+    public void insertIdFarmer(List<Farmer> farmers) {
+
+    }
+
+    @Override
+    public List<Producer> getLotId() {
+        return null;
+    }
+
+    @Override
+    public void insertSeedLot() {
+
+    }
 
 
 }

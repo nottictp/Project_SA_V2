@@ -6,9 +6,9 @@ public class Farmer implements Serializable{
 
     private int farmer_id, identity_id;
     private String name, surname, address, phoneNum,production_status,group;
-    private float capacity_area;
+    private double capacity_area;
 
-    public Farmer(int farmer_id, int identity_id, String name, String surname, String address, String phoneNum, String production_status, String group, float capacity_area) {
+    public Farmer(int farmer_id, int identity_id, String name, String surname, String address, String phoneNum, String production_status, String group, double capacity_area) {
         this.farmer_id = farmer_id;
         this.identity_id = identity_id;
         this.name = name;
@@ -84,11 +84,11 @@ public class Farmer implements Serializable{
         this.group = group;
     }
 
-    public float getCapacity_area() {
+    public double getCapacity_area() {
         return capacity_area;
     }
 
-    public void setCapacity_area(float capacity_area) {
+    public void setCapacity_area(double capacity_area) {
         this.capacity_area = capacity_area;
     }
 }

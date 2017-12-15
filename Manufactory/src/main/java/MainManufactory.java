@@ -7,14 +7,15 @@ import javafx.stage.Stage;
 import views.ManufactoryController;
 
 public class MainManufactory extends Application{
+    private ManufactoryController manufactoryController;
     @Override
     public void start(Stage primaryStage) throws Exception{
         MainManufactoryController controller = new MainManufactoryController();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/manufact.fxml"));
         Pane mainLayout = loader.load();
-        ManufactoryController marketingController = loader.getController();
-        marketingController.setController(controller);
+        manufactoryController = loader.getController();
+        manufactoryController.setController(controller);
 
         primaryStage.setTitle("Manufactory");
         primaryStage.setScene(new Scene(mainLayout, 774, 582));
