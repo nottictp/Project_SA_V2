@@ -39,6 +39,7 @@ public class TabDistributed extends AnchorPane implements Initializable {
     @FXML private TableColumn capacityColumn;
 
     private MainManufactoryController controller;
+    private PrintDistributedController printDistributedController;
     private ObservableList<String> units = FXCollections.observableArrayList("เมล็ด",
             "กรัม" , "กิโลกรัม", "ตัน");
     private double area;
@@ -47,6 +48,7 @@ public class TabDistributed extends AnchorPane implements Initializable {
         initColumn();
         unitCombo.setItems(units);
         unitCombo.setValue("เมล็ด");
+        printDistributedController = PrintDistributedController.getInstant();
     }
 
     public void initColumn(){
@@ -86,7 +88,6 @@ public class TabDistributed extends AnchorPane implements Initializable {
         }
         List<Farmer> farmers = controller.getGroupFarmer(group);
         System.out.println("farmers = " + farmers);
-
         return farmers;
     }
 

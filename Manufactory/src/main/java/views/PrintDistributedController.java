@@ -1,5 +1,6 @@
 package views;
 
+import models.Farmer;
 import models.Warehouse;
 import models.WarehouseProduct;
 import models.WarehouseSeed;
@@ -31,7 +32,7 @@ public class PrintDistributedController {
         return printDistributedController;
     }
 
-    public void printPDF(List<Warehouse> warehouses) {
+    public void printPDF(List<Farmer> farmers) {
         System.out.println("in PrintPDF");
         System.out.println("number = " + number);
 //        TabSearchView tabSearchView;
@@ -67,32 +68,16 @@ public class PrintDistributedController {
             contentStream.showText("------------------------------"+"------------------------------"+
                     "------------------------------"+"------------------------------");
             contentStream.newLine();
-            for(int i = 0; i < warehouses.size(); i++) {
-                if (warehouses.get(i) instanceof WarehouseSeed){
-                    WarehouseSeed whs = (WarehouseSeed) warehouses.get(i);
-                    String whsID = whs.getSeedId();
-                    String whsName = whs.getName();
-                    int whsQuantity = whs.getQuantity();
-                    String whsUnit = whs.getUnit();
-                    String whsDocDate = whs.getDocDate();
-                    contentStream.showText(String.format("%20s%-40s%10s%15s%15s", StringUtils.center(whsID, 20),
-                            whsName, StringUtils.center(whsQuantity+"", 10),
-                            StringUtils.center(whsUnit, 15), StringUtils.center(whsDocDate, 15)));
+            for(int i = 0; i < farmers.size(); i++) {
+                    String farmerID = String.valueOf(farmers.get(i).getFarmer_id());
+                    String farmerName = farmers.get(i).getName();
+                    String farmerCapacity = String.valueOf(farmers.get(i).getCapacity_area());
+                    String farmerGroup = farmers.get(i).getGroup();
+                    contentStream.showText(String.format("%15s%20s%-40s%15s", StringUtils.center(farmerGroup,15),
+                            StringUtils.center(farmerID, 20),
+                            farmerName, StringUtils.center(farmerCapacity, 10)));
                     contentStream.newLine();
-                }else {
-                    WarehouseProduct whp = (WarehouseProduct) warehouses.get(i);
-                    String whpID = whp.getProductId();
-                    String whpName = whp.getName();
-                    int whpQuantity = whp.getQuantity();
-                    String whpUnit = whp.getUnit();
-                    String whpDocDate = whp.getDocDate();
-                    contentStream.showText(String.format("%20s%-40s%10s%15s%15s", StringUtils.center(whpID, 20),
-//                                StringUtils.center(whpName, 10),
-                            whpName,
-                            StringUtils.center(whpQuantity+"", 10),
-                            StringUtils.center(whpUnit,15), StringUtils.center(whpDocDate,15)));
-                    contentStream.newLine();
-                }
+
             }
             contentStream.endText();
             System.out.println("Content added");
