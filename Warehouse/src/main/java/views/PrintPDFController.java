@@ -12,11 +12,12 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 
 import static javax.swing.text.html.HTML.Tag.HEAD;
 
 public class PrintPDFController {
-    public static void createBill(Warehouse warehouse) {
+    public static void createBill(List<Warehouse> warehouses) {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy  HH:mm");
 
         try {
@@ -34,6 +35,11 @@ public class PrintPDFController {
             Instant instant = Instant.from(localDateTime.atZone(ZoneId.systemDefault()));
             contentStream.showText(String.format("%100s", StringUtils.center("LittleBearWarehouse", 100)));
             contentStream.newLine();
+            int warehouseSize = warehouses.size();
+            for (Warehouse wh:
+                 ) {
+                
+            }
 
         } catch (IOException e) {
 
