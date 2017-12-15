@@ -6,5 +6,5 @@ import java.io.Serializable;
 
 public class TabSaveManufacture extends AnchorPane implements Serializable{
 
-    
+
 }
