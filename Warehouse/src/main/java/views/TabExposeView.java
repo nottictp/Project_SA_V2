@@ -175,7 +175,6 @@ public class TabExposeView extends AnchorPane implements Initializable {
 
     @FXML
     public void handlerBtnEdit(ActionEvent event) throws IOException {
-        System.out.println("wh = " + wh);
         for (Warehouse w : wh) {
             if(w.getType() == 1){
                 //warehouse seed
@@ -209,6 +208,14 @@ public class TabExposeView extends AnchorPane implements Initializable {
                 initData();
             }
         }
+        wh.clear();
+        docDate.setValue(LocalDate.now());
+        recorderField.clear();
+        recipientField.clear();
+        departmentCombo.getItems().clear();
+        note.clear();
+        docNo.clear();
+        initData();
     }
     public void initData(){
         ObservableList<Warehouse> data = FXCollections.observableList(wh);

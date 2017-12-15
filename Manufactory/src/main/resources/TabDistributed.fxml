@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="582.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="68.0" layoutY="34.0" text="วันที่">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="datePicker" layoutX="119.0" layoutY="32.0" prefHeight="31.0" prefWidth="169.0" />
+      <Label layoutX="359.0" layoutY="35.0" text="ผู้บันทึก">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="tab1RecorderCombo" layoutX="440.0" layoutY="33.0" prefHeight="31.0" prefWidth="279.0" />
+      <Label layoutX="68.0" layoutY="88.0" text="ผลิต">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="typeCombo" layoutX="119.0" layoutY="86.0" prefHeight="31.0" prefWidth="220.0" />
+      <Label layoutX="384.0" layoutY="88.0" text="จำนวน">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="amountField" layoutX="465.0" layoutY="86.0" prefHeight="31.0" prefWidth="142.0" />
+      <ComboBox fx:id="unitCombo" layoutX="624.0" layoutY="86.0" prefHeight="31.0" prefWidth="103.0" promptText="หน่วย" />
+      <Button fx:id="farmerSearchBtn" layoutX="335.0" layoutY="154.0" mnemonicParsing="false" text="ค้นหาเกษตรกร" />
+      <TableView fx:id="tab1DataTable" layoutX="68.0" layoutY="212.0" prefHeight="261.0" prefWidth="656.0">
+         <columns>
+            <TableColumn fx:id="groupColumn" prefWidth="110.0" text="กลุ่ม" />
+            <TableColumn prefWidth="111.0" text="ID" />
+            <TableColumn prefWidth="318.0" text="ชื่อ" />
+            <TableColumn prefWidth="116.0" text="กำลังผลิต" />
+         </columns>
+      </TableView>
+      <Button fx:id="submitBtn" layoutX="361.0" layoutY="489.0" mnemonicParsing="false" text="ยืนยัน" />
+   </children>
+</AnchorPane>
