@@ -38,6 +38,7 @@ public class MarketingController implements Initializable {
 
     private MainController controller;
     private WarehouseProduct warehouseProduct = MarketingInfo.getInstance().getWarehouseProduct();
+    private PrintPDFController printPDFController;
 
     public void initialize(URL location, ResourceBundle resources) {
         if (controller != null){
@@ -98,6 +99,7 @@ public class MarketingController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("วัตถุดิบเพียงพอในการผลิต");
             alert.showAndWait();
+//            printPDFController.printOrderScript(warehouseProduct,id,name,unit,quantity);
             System.out.println("OK!!");
         }else if(totalFather < checkFather && totalMother >= checkMother){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
