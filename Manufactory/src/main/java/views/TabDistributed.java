@@ -149,6 +149,8 @@ public class TabDistributed extends AnchorPane implements Initializable {
         amountField.clear();
         datePicker.setValue(LocalDate.now());
         tab1RecorderTextField.clear();
+        farmers.clear();
+        initData(farmers);
 
     }
 
