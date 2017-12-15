@@ -531,7 +531,39 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
     }
 
     public List<Seed> getSeed(){
-        return null;
+        System.out.println("get seeds");
+        List<Seed> seeds = new ArrayList<Seed>();
+        Connection connection = null;
+        try{
+            connection = prepareConnection();
+            if(connection != null){
+                String sql = "select *\n" +
+                        "from seed\n" +
+                        "where not name like '%พ่อ' and not name like '%แม่'";
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);
+                while(resultSet.next()){
+                    int id = resultSet.getInt("seed_id");
+                    String name = resultSet.getString("name");
+                    int quantity = resultSet.getInt("quantity");
+                    double wpu = resultSet.getDouble("weight_per_unit");
+                    double upa = resultSet.getDouble("unit_per_area");
+                    Seed seed = new Seed(id, quantity, name, wpu, upa);
+                    seeds.add(seed);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return seeds;
     }
 //    public void addSeed(){
 //        List<Seed> seeds = new ArrayList<Seed>();

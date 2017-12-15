@@ -8,8 +8,8 @@
    <children>
       <TabPane layoutY="-1.0" prefHeight="582.0" prefWidth="774.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="100.0">
         <tabs>
-          <Tab text="กระจายการผลิต" />
-          <Tab text="บันทึกผลการผลิต" />
+          <Tab fx:id="distributedTab" text="กระจายการผลิต" />
+          <Tab fx:id="saveManufactureTab" text="บันทึกผลการผลิต" />
         </tabs>
       </TabPane>
    </children>

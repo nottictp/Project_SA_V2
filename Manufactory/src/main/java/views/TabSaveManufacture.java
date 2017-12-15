@@ -20,7 +20,7 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TabSaveManufacture  implements Serializable {
+public class TabSaveManufacture  implements Initializable {
 
     @FXML
     private ComboBox lotNoCombo;
@@ -45,6 +45,11 @@ public class TabSaveManufacture  implements Serializable {
 
     private MainManufactoryController controller;
 
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 
     public void setController(MainManufactoryController mainController) {
         this.controller = mainController;
