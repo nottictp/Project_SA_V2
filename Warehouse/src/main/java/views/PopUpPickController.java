@@ -1,6 +1,6 @@
 package views;
 
-import controllers.MainController;
+import controllers.MainWarehouseController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,7 +15,6 @@ import models.Warehouse;
 import models.WarehouseProduct;
 import models.WarehouseSeed;
 
-import javax.crypto.AEADBadTagException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.ResourceBundle;
@@ -38,7 +37,7 @@ public class PopUpPickController implements Initializable{
     private Label errorMsg;
     private TabExposeView tabExposeView;
 
-    MainController controller;
+    MainWarehouseController controller;
 
     ObservableList<String> shelfs = FXCollections.observableArrayList("1 : เมล็ดพันธุ์","2 : สินค้า");
     ObservableList<String> unitSeed = FXCollections.observableArrayList("เมล็ด");
@@ -57,7 +56,7 @@ public class PopUpPickController implements Initializable{
         stockCombo.setItems(shelfs);
     }
 
-    public void setController(MainController controller){
+    public void setController(MainWarehouseController controller){
         this.controller = controller;
     }
 

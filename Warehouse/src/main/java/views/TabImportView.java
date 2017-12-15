@@ -1,12 +1,11 @@
 package views;
 
-import controllers.MainController;
+import controllers.MainWarehouseController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,6 +21,7 @@ import models.WarehouseSeed;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -52,7 +52,7 @@ public class TabImportView extends AnchorPane implements Initializable {
     private List<Warehouse> wh;
     private List<WarehouseSeed> whSeed;
     private List<WarehouseProduct> whProduct;
-    private MainController controller;
+    private MainWarehouseController controller;
     private int orderNo = -1;
 
 
@@ -67,7 +67,7 @@ public class TabImportView extends AnchorPane implements Initializable {
     @FXML
     public void handlerBtnAdd(ActionEvent event) throws IOException {
         Stage secondaryStage = new Stage();
-        controller = new MainController();
+        controller = new MainWarehouseController();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/popupAdd.fxml"));
         AnchorPane mainLayout = loader.load();
@@ -155,7 +155,7 @@ public class TabImportView extends AnchorPane implements Initializable {
         initData();
     }
 
-    public void setController(MainController controller) {
+    public void setController(MainWarehouseController controller) {
         this.controller = controller;
         initData();
     }
@@ -178,7 +178,16 @@ public class TabImportView extends AnchorPane implements Initializable {
                         ,Integer.parseInt(docNo.getText()),w.getName(),w.getUnit()
                         ,date,recorderField.getText(),recipientField.getText()
                         ,form.getText(),1, ((WarehouseSeed) w).getSeedId());
-                controller.insertToWarehouseSeed(seed);
+                try {
+                    controller.insertToWarehouseSeed(seed);
+                } catch (Exception e) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Dialog");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Doc number duplicates");
+
+                    alert.showAndWait();
+                }
             }else if(w.getType() == 2){
                 //warehouse product
                 System.out.println("---import product---");

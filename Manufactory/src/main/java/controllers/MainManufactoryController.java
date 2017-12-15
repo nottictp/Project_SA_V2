@@ -9,9 +9,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.util.List;
 import java.util.Map;
 
-public class MainController {
+public class MainManufactoryController {
     private ManufactorManagerDB executor;
-    public MainController() {
+    public MainManufactoryController() {
         ApplicationContext bf = new ClassPathXmlApplicationContext("manufactor_config.xml");
         executor = (ManufactorManagerDB) bf.getBean("ManufactoryDbManager");
     }

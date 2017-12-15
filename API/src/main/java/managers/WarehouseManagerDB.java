@@ -4,6 +4,7 @@ import models.Warehouse;
 import models.WarehouseProduct;
 import models.WarehouseSeed;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface WarehouseManagerDB {
@@ -20,7 +21,7 @@ public interface WarehouseManagerDB {
 
     List<Warehouse> getWarehouseProductId(String id);
 
-    void insertToWarehouseSeed(WarehouseSeed warehouse);
+    void insertToWarehouseSeed(WarehouseSeed warehouse) throws Exception;
 
     void insertToWarehouseProduct(WarehouseProduct warehouse);
 

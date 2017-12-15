@@ -1,4 +1,4 @@
-import controllers.MainController;
+import controllers.MainManufactoryController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,7 +9,7 @@ import views.ManufactoryController;
 public class MainManufactory extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
-        MainController controller = new MainController();
+        MainManufactoryController controller = new MainManufactoryController();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/manufact.fxml"));
         Pane mainLayout = loader.load();

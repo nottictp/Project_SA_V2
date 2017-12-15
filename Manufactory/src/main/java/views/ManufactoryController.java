@@ -1,6 +1,6 @@
 package views;
 
-import controllers.MainController;
+import controllers.MainManufactoryController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -23,13 +23,13 @@ public class ManufactoryController implements Initializable{
     @FXML private TableColumn purchaseColumn;
     @FXML private TableColumn unitColumn;
 
-    MainController controller;
+    MainManufactoryController controller;
 
     public void initialize(URL location, ResourceBundle resources) {
 
     }
 
-    public void setController(MainController controller) {
+    public void setController(MainManufactoryController controller) {
         this.controller = controller;
     }
 }
