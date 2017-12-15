@@ -21,7 +21,7 @@ public interface ManufactorManagerDB {
 
     void insertSeedLot();
 
-    List<Producer> getProducer(String lotId);
+    List<Producer> getProducer(int lotId);
 
 
 }

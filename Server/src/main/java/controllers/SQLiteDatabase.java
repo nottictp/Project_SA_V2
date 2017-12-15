@@ -647,8 +647,37 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
     }
 
     @Override
-    public List<Producer> getProducer(String lotId) {
-        return null;
+    public List<Producer> getProducer(int lotId) {
+        List<Producer> producers = new ArrayList<>();
+        Connection connection = null;
+        try{
+            connection = prepareConnection();
+            if(connection != null){
+                String sql = "from producer\n" +
+                        "join farmer\n" +
+                        "on producer.farmer_id = farmer.farmer_id\n" +
+                        "where lot_id=" + lotId;
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);
+                while(resultSet.next()){
+                    int farmerId = resultSet.getInt("farmer_id");
+                    String name = resultSet.getString("name") + " " + resultSet.getString("surname");
+                    Producer producer = new Producer(lotId, farmerId, name, 0);
+                    producers.add(producer);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return producers;
     }
 
 
