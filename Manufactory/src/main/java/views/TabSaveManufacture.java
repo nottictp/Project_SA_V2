@@ -21,10 +21,9 @@ import models.Warehouse;
 
 import java.io.Serializable;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class TabSaveManufacture  implements Initializable {
 
@@ -60,6 +59,10 @@ public class TabSaveManufacture  implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initColumn();
+        expireDate.setValue(LocalDate.now());
+        plantDate.setValue(LocalDate.now());
+        harvestDate.setValue(LocalDate.now());
+        testDate.setValue(LocalDate.now());
     }
 
     public void onDoubleClickDriver() {
@@ -143,5 +146,20 @@ public class TabSaveManufacture  implements Initializable {
         onDoubleClickDriver();
         lotNoCombo.getItems().addAll(controller.getLotIdNotQuantity());
     }
+    @FXML
+    public void onClickSaveBtn(ActionEvent event){
+        String eDate = expireDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yy", Locale.ENGLISH));
+        String pDate = plantDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yy", Locale.ENGLISH));
+        String hDate = harvestDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yy", Locale.ENGLISH));
+        String tDate = testDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yy", Locale.ENGLISH));
 
+        controller.insertSeedLot(producers, eDate, pDate, hDate, tDate);
+
+        //reset
+        dataTable.getItems().clear();
+        expireDate.setValue(LocalDate.now());
+        plantDate.setValue(LocalDate.now());
+        harvestDate.setValue(LocalDate.now());
+        testDate.setValue(LocalDate.now());
+    }
 }
