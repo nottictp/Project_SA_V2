@@ -466,7 +466,13 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         }
     }
 
+    public Map<String, Double> getGroupArea(){
+        return null;
+    }
 
+    public List<Farmer> getGroupFarmer(String group){
+        return null;
+    }
 //    public void addSeed(){
 //        List<Seed> seeds = new ArrayList<Seed>();
 //        Connection connection = null;
