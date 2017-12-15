@@ -581,12 +581,63 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
 
     @Override
     public void insertIdFarmer(List<Farmer> farmers, Seed seed, int quantity) {
-
+        Connection connection = null;
+        try{
+            connection = prepareConnection();
+            if(connection != null){
+                String sql1 = String.format("insert into Seed_lot(seed_id, quantity)\n" +
+                                            "values (%d, %d)", seed.getSeedID(), quantity);
+                Statement statement = connection.createStatement();
+                int result = statement.executeUpdate(sql1);
+                if (result != 0){
+                    for (Farmer farmer : farmers){
+                        String sql2 = String.format("insert into Producer(lot_id, farmer_id)\n" +
+                                "values ((select max(lot_id) from Seed_lot), %d)", farmer.getFarmer_id());
+                        result = statement.executeUpdate(sql2);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     @Override
-    public List<String> getLotIdNotQuantity() {
-        return null;
+    public List<Integer> getLotIdNotQuantity() {
+        List<Integer> lotIds = new ArrayList<>();
+        Connection connection = null;
+        try{
+            connection = prepareConnection();
+            if(connection != null){
+                String sql = "select lot_id\n" +
+                        "from producer\n" +
+                        "where quantity is null\n" +
+                        "group by lot_id";
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);
+                while(resultSet.next())
+                    lotIds.add(resultSet.getInt("lot_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return lotIds;
     }
 
 

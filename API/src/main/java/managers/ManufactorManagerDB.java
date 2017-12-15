@@ -17,7 +17,7 @@ public interface ManufactorManagerDB {
 
     void insertIdFarmer(List<Farmer> farmers, Seed seed,int quantity);
 
-    List<String> getLotIdNotQuantity();
+    List<Integer> getLotIdNotQuantity();
 
     void insertSeedLot();
 
