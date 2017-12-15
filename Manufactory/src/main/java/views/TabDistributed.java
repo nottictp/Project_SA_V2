@@ -65,7 +65,6 @@ public class TabDistributed extends AnchorPane implements Initializable {
     public void initData(List<Farmer> farmers){
         ObservableList<Farmer> data = FXCollections.observableList(farmers);
         dataTable.setItems(data);
-
     }
     public List<Farmer> search(Double area){
         Map<String, Double> groupArea = controller.getGroupArea();

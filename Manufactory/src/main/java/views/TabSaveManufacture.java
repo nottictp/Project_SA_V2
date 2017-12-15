@@ -6,20 +6,22 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.fxml.Initializable;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
+import models.Producer;
 import models.SeedLot;
 import models.Warehouse;
 
 import java.io.Serializable;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class TabSaveManufacture  implements Initializable {
@@ -39,48 +41,109 @@ public class TabSaveManufacture  implements Initializable {
     @FXML
     private TableColumn purchaseColumn;
     @FXML
-    private TableColumn unitColumn;
-    @FXML
-    private TableColumn expireColumn;
-    @FXML
-    private TableColumn plantDateColumn;
-    @FXML
-    private TableColumn harvestDateColumn;
-    @FXML
-    private TableColumn testDateColumn;
-    @FXML
     private Button saveBtn;
     @FXML
     private Button cancelBtn;
 
+    @FXML private DatePicker expireDate;
+    @FXML private DatePicker plantDate;
+    @FXML private DatePicker harvestDate;
+    @FXML private DatePicker testDate;
+
+
     private MainManufactoryController controller;
-    private List<SeedLot> seedLots;
+    private List<Producer> producers;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        initColumn();
     }
-//    public void initColumn(){
-//        orderColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SeedLot,String>, ObservableValue<String>>() {
-//
-//            @Override
-//            public ObservableValue<String> call(TableColumn.CellDataFeatures<SeedLot, String> seedLot) {
-//                return new SimpleStringProperty((seedLots.indexOf(seedLot.getValue())+1)+"");
-//            }
-//        });
-//        tab1IDColumn.setCellValueFactory(new PropertyValueFactory<Farmer,String>("farmer_id"));
-//        tab1nameColumn.setCellValueFactory(new PropertyValueFactory<Farmer,String>("name"));
-//
-//        capacityColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Farmer,String>, ObservableValue<String>>() {
-//            @Override
-//            public ObservableValue call(TableColumn.CellDataFeatures<Farmer,String> farmer) {
-//                return new SimpleStringProperty(String.format("%,.2f",farmer.getValue().getCapacity_area()));
-//            }
-//        });
-//    }
+
+    public void onDoubleClickDriver() {
+        dataTable.setOnMouseClicked((MouseEvent even) -> {
+            Producer producer = (Producer) dataTable.getSelectionModel().getSelectedItem();
+            if (even.getClickCount() == 2 && (producer != null)) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText("กรอกจำนวนที่รับซื้อ");
+                Label text1 = new Label("ชื่อ: ");
+                Label text2 = new Label(producer.getName());
+                Label text3 = new Label("จำนวนที่รับซื้อ: ");
+                text1.setPrefWidth(120);
+                TextField purchase = new TextField();
+                purchase.setText(producer.getQualtity()+"");
+
+                GridPane grid = new GridPane();
+
+                grid.add(text1, 1, 1);
+                grid.add(text2, 2, 1);
+                grid.add(text3, 1, 2);
+                grid.add(purchase, 2, 2);
+                grid.setVgap(10);
+                alert.getDialogPane().setContent(grid);
+                boolean check = false;
+                Double purchaseDouble;
+                if (!purchase.getText().equals("")){
+                    try {
+                        purchaseDouble = Double.parseDouble(purchase.getText());
+                        check = true;
+                    }catch (NumberFormatException e){
+                        check = false;
+                    }
+                }
+                Optional<ButtonType> result = alert.showAndWait();
+                if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
+                    if (!check){
+                        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert1.setTitle("ยืนยันการลบข้อมูลคนขับ");
+                        alert1.setHeaderText("ยืนยันการลบข้อมูลคนขับ");
+                        String s = "";
+                        alert.setContentText(s);
+
+                        Optional<ButtonType> result1 = alert.showAndWait();
+                    }else if (check){
+                    System.out.println("testttttttt");}
+                }
+            }
+        });
+    }
+
+
+
+
+
+
+
+    public void initColumn(){
+        orderColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Producer,String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Producer, String> produce) {
+                return new SimpleStringProperty((producers.indexOf(produce.getValue())+1)+"");
+            }
+        });
+        idColumn.setCellValueFactory(new PropertyValueFactory<Producer,String>("farmer_id"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Producer,String>("name"));
+
+        purchaseColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Producer,String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue call(TableColumn.CellDataFeatures<Producer,String> producer) {
+                return new SimpleStringProperty(String.format("%,.2f",producer.getValue().getQualtity()));
+            }
+        });
+    }
+
+
+
+    public void initData(){
+        producers = new ArrayList<>();
+        producers.add(new Producer(1,2,"eiei",0.0));
+        ObservableList<Producer> data = FXCollections.observableList(producers);
+        dataTable.setItems(data);
+    }
 
     public void setController(MainManufactoryController mainController) {
         this.controller = mainController;
+        initData();
+        onDoubleClickDriver();
     }
 }
