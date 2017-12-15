@@ -24,10 +24,6 @@ public class WarehouseController implements Initializable{
 
     public void setController(MainWarehouseController controller) {
         this.controller = controller;
-//        if (tabExposeView != null) {
-//            tabExposeView.setController(controller);
-//            tabImportView.setController(controller);
-//        }
         initTabExposeView();
         initTabImportView();
         initTabSearchView();
