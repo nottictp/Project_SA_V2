@@ -24,11 +24,11 @@
       <ComboBox fx:id="recorderCombo" layoutX="150.0" layoutY="92.0" prefHeight="31.0" prefWidth="389.0" />
       <TableView fx:id="dataTable" layoutX="75.0" layoutY="158.0" prefHeight="320.0" prefWidth="622.0">
          <columns>
-            <TableColumn fx:id="orderColumn" prefWidth="87.0" text="ลำดับ" />
-            <TableColumn fx:id="idColumn" prefWidth="84.0" text="ID" />
-            <TableColumn fx:id="nameColumn" prefWidth="251.0" text="ชื่อ" />
-            <TableColumn fx:id="purchaseColumn" prefWidth="105.0" text="จำนวนที่รับซื้อ" />
-            <TableColumn fx:id="unitColumn" prefWidth="94.0" text="หน่วย" />
+            <TableColumn fx:id="orderColumn" prefWidth="87.0" style="-fx-alignment: CENTER_RIGHT;" text="ลำดับ" />
+            <TableColumn fx:id="idColumn" prefWidth="60.0" style="-fx-alignment: CENTER_RIGHT;" text="ID" />
+            <TableColumn fx:id="nameColumn" prefWidth="275.0" style="-fx-alignment: CENTER_LEFT;" text="ชื่อ" />
+            <TableColumn fx:id="purchaseColumn" prefWidth="105.0" style="-fx-alignment: CENTER_RIGHT;" text="จำนวนที่รับซื้อ" />
+            <TableColumn fx:id="unitColumn" prefWidth="94.0" style="-fx-alignment: CENTER_LEFT;" text="หน่วย" />
          </columns>
       </TableView>
       <Button fx:id="saveBtn" layoutX="75.0" layoutY="491.0" mnemonicParsing="false" text="บันทึก" />

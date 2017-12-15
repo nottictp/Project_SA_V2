@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="582.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.TabDistributed">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="582.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.TabDistributed">
    <children>
       <Label layoutX="67.0" layoutY="52.0" text="วันที่">
          <font>
@@ -36,13 +36,13 @@
       </Label>
       <TextField fx:id="amountField" layoutX="464.0" layoutY="104.0" prefHeight="31.0" prefWidth="142.0" />
       <ComboBox fx:id="unitCombo" layoutX="623.0" layoutY="104.0" prefHeight="31.0" prefWidth="103.0" promptText="หน่วย" />
-      <Button fx:id="farmerSearchBtn" layoutX="335.0" layoutY="158.0" mnemonicParsing="false" text="ค้นหาเกษตรกร" />
-      <TableView fx:id="dataTable" layoutX="60.0" layoutY="202.0" prefHeight="289.0" prefWidth="656.0">
+      <Button fx:id="farmerSearchBtn" layoutX="335.0" layoutY="158.0" mnemonicParsing="false" onAction="#searchFarmer" text="ค้นหาเกษตรกร" />
+      <TableView fx:id="dataTable" layoutX="60.0" layoutY="202.0" prefHeight="289.0" prefWidth="669.0">
          <columns>
-            <TableColumn fx:id="groupColumn" prefWidth="110.0" text="กลุ่ม" />
-            <TableColumn fx:id="tab1IDColumn" prefWidth="111.0" text="ID" />
-            <TableColumn fx:id="tab1nameColumn" prefWidth="318.0" text="ชื่อ" />
-            <TableColumn fx:id="capacityColumn" prefWidth="116.0" text="กำลังผลิต" />
+            <TableColumn fx:id="groupColumn" prefWidth="110.0" style="-fx-alignment: CENTER_LEFT;" text="กลุ่ม" />
+            <TableColumn fx:id="tab1IDColumn" prefWidth="78.0" style="-fx-alignment: CENTER_RIGHT;" text="ID" />
+            <TableColumn fx:id="tab1nameColumn" prefWidth="339.0" style="-fx-alignment: CENTER_LEFT;" text="ชื่อ" />
+            <TableColumn fx:id="capacityColumn" prefWidth="128.0" style="-fx-alignment: CENTER_RIGHT;" text="กำลังผลิต" />
          </columns>
       </TableView>
       <Button fx:id="submitBtn" layoutX="356.0" layoutY="498.0" mnemonicParsing="false" text="ยืนยัน" />

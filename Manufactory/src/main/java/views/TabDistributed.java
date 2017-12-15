@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -14,6 +15,7 @@ import javafx.util.Callback;
 import javafx.util.StringConverter;
 import models.Farmer;
 import models.Seed;
+
 
 import java.io.Serializable;
 import java.net.URL;
@@ -60,18 +62,18 @@ public class TabDistributed extends AnchorPane implements Initializable {
         });
     }
 
-    public void initData(){
-        List<Farmer> farmers = search(Integer.parseInt(amountField.getText()));
+    public void initData(List<Farmer> farmers){
         ObservableList<Farmer> data = FXCollections.observableList(farmers);
         dataTable.setItems(data);
 
     }
-    public List<Farmer> search(int amount){
-        Double area = 0.0;//คำนวณพื้นที่
+    public List<Farmer> search(Double area){
         Map<String, Double> groupArea = controller.getGroupArea();
         String group = ""; // กลุ่มที่มีพื้นที่ใกล้เคียงสุด
         Double diff1 = 100000000000.0;
         for(Map.Entry<String,Double> entry: groupArea.entrySet()){
+            System.out.println("Notttt");
+            System.out.println(entry.getValue()+" "+area);
             if (entry.getValue()>area){
                 Double diff2 = entry.getValue()-area;
                 if (diff2 < diff1){
@@ -84,6 +86,7 @@ public class TabDistributed extends AnchorPane implements Initializable {
             }
         }
         List<Farmer> farmers = controller.getGroupFarmer(group);
+        System.out.println("farmers = " + farmers);
 
         return farmers;
     }
@@ -108,6 +111,23 @@ public class TabDistributed extends AnchorPane implements Initializable {
                 return null;
             }
         });
+    }
+
+    @FXML
+    public void searchFarmer(ActionEvent event){
+        Seed seed = (Seed) typeCombo.getValue();
+        String unit = unitCombo.getValue().toString();
+        double amount = Double.parseDouble(amountField.getText());
+        if(unit.equals("เมล็ด")){
+            area = amount/seed.getUnitPerArea();
+        }else if (unit.equals("กรัม")){
+            area = amount/seed.getWeightPerUnit()/seed.getUnitPerArea();
+        }else if (unit.equals("กิโลกรัม")){
+            area = amount*1000/seed.getWeightPerUnit()/seed.getUnitPerArea();
+        }else if (unit.equals("ตัน")){
+            area = amount*1000*1000/seed.getWeightPerUnit()/seed.getUnitPerArea();
+        }
+        initData(search(area));
     }
 
     public double getArea() {
