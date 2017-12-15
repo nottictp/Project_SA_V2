@@ -642,7 +642,35 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
 
     @Override
     public void insertSeedLot(List<Producer> producers, String expire, String plantDate, String harvestDate, String testDate) {
-
+        Connection connection = null;
+        try{
+            connection = prepareConnection();
+            if(connection != null){
+                String sql1 = String.format("update seed_lot\n" +
+                                            "set expire=\"%s\", plant_date=\"%s\", harvest_date=\"%s\", test_date=\"%s\"\n" +
+                                            "where lot_id=%d", expire, plantDate, harvestDate, testDate, producers.get(0).getLot_id());
+                Statement statement = connection.createStatement();
+                int result = statement.executeUpdate(sql1);
+                if (result != 0){
+                    for(Producer producer : producers){
+                        String sql2 = "update producer " +
+                                    "set quantity="+producer.getQualtity()+
+                                    " where lot_id="+producer.getLot_id()+" and farmer_id="+producer.getFarmer_id();
+                        result = statement.executeUpdate(sql2);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
 
