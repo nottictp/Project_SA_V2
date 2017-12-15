@@ -129,6 +129,11 @@ public class TabDistributed extends AnchorPane implements Initializable {
         initData(search(area));
     }
 
+    @FXML
+    public void onClickSaveBtn(ActionEvent event){
+
+    }
+
     public double getArea() {
         return area;
     }
