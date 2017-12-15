@@ -1,9 +1,6 @@
 package views;
 
-import models.Farmer;
-import models.Warehouse;
-import models.WarehouseProduct;
-import models.WarehouseSeed;
+import models.*;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -32,7 +29,7 @@ public class PrintDistributedController {
         return printDistributedController;
     }
 
-    public void printPDF(List<Farmer> farmers) {
+    public void printPDF(List<Farmer> farmers, String seed, double amount,String unit) {
         System.out.println("in PrintPDF");
         System.out.println("number = " + number);
 //        TabSearchView tabSearchView;
@@ -52,6 +49,8 @@ public class PrintDistributedController {
             LocalDateTime localDateTime = LocalDateTime.now();
             Instant instant = Instant.from(localDateTime.atZone(ZoneId.systemDefault()));
             contentStream.showText(String.format("%130s", StringUtils.center("LittleBearWarehouse", 130)));
+            contentStream.newLine();
+            contentStream.showText(String.format("ผลิต : %20s จำนวน : %,.2f %s",StringUtils.center(seed,20),amount,unit));
             contentStream.newLine();
             contentStream.showText("------------------------------"+"------------------------------"+
                     "------------------------------"+"------------------------------");

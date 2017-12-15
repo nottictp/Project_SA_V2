@@ -19,6 +19,7 @@ import models.Seed;
 
 import java.io.Serializable;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -47,6 +48,7 @@ public class TabDistributed extends AnchorPane implements Initializable {
     private Seed seed;
     private double amount;
     private int quantity;
+    private String unit;
     public void initialize(URL location, ResourceBundle resources) {
         initColumn();
         unitCombo.setItems(units);
@@ -119,7 +121,7 @@ public class TabDistributed extends AnchorPane implements Initializable {
     @FXML
     public void searchFarmer(ActionEvent event){
         seed = (Seed) typeCombo.getValue();
-        String unit = unitCombo.getValue().toString();
+        unit = unitCombo.getValue().toString();
         amount = Double.parseDouble(amountField.getText());
         if(unit.equals("เมล็ด")){
             area = amount/seed.getUnitPerArea();
@@ -139,7 +141,15 @@ public class TabDistributed extends AnchorPane implements Initializable {
 
     @FXML
     public void onClickSaveBtn(ActionEvent event){
+        unit = unitCombo.getValue().toString();
+        amount = Double.parseDouble(amountField.getText());
+        printDistributedController.setNumber(printDistributedController.getNumber() +1);
+        printDistributedController.printPDF(farmers,seed.getName(),amount,unit);
         controller.insertIdFarmer(farmers,seed,quantity);
+        amountField.clear();
+        datePicker.setValue(LocalDate.now());
+        tab1RecorderTextField.clear();
+
     }
 
     public double getArea() {
