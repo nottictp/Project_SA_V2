@@ -45,7 +45,7 @@
             <TableColumn fx:id="capacityColumn" prefWidth="128.0" style="-fx-alignment: CENTER_RIGHT;" text="กำลังผลิต" />
          </columns>
       </TableView>
-      <Button fx:id="submitBtn" layoutX="356.0" layoutY="498.0" mnemonicParsing="false" text="ยืนยัน" />
+      <Button fx:id="submitBtn" layoutX="356.0" layoutY="498.0" mnemonicParsing="false" onAction="#onClickSaveBtn" text="ยืนยัน" />
       <TextField fx:id="tab1RecorderTextField" layoutX="428.0" layoutY="50.0" prefHeight="31.0" prefWidth="299.0" />
    </children>
 </AnchorPane>

@@ -43,7 +43,10 @@ public class TabDistributed extends AnchorPane implements Initializable {
     private ObservableList<String> units = FXCollections.observableArrayList("เมล็ด",
             "กรัม" , "กิโลกรัม", "ตัน");
     private double area;
-
+    private List<Farmer> farmers;
+    private Seed seed;
+    private double amount;
+    private int quantity;
     public void initialize(URL location, ResourceBundle resources) {
         initColumn();
         unitCombo.setItems(units);
@@ -86,7 +89,7 @@ public class TabDistributed extends AnchorPane implements Initializable {
                 break;
             }
         }
-        List<Farmer> farmers = controller.getGroupFarmer(group);
+        farmers = controller.getGroupFarmer(group);
         System.out.println("farmers = " + farmers);
         return farmers;
     }
@@ -115,24 +118,28 @@ public class TabDistributed extends AnchorPane implements Initializable {
 
     @FXML
     public void searchFarmer(ActionEvent event){
-        Seed seed = (Seed) typeCombo.getValue();
+        seed = (Seed) typeCombo.getValue();
         String unit = unitCombo.getValue().toString();
-        double amount = Double.parseDouble(amountField.getText());
+        amount = Double.parseDouble(amountField.getText());
         if(unit.equals("เมล็ด")){
             area = amount/seed.getUnitPerArea();
+            quantity = (int) amount;
         }else if (unit.equals("กรัม")){
             area = amount/seed.getWeightPerUnit()/seed.getUnitPerArea();
+            quantity = (int) (amount/seed.getWeightPerUnit());
         }else if (unit.equals("กิโลกรัม")){
             area = amount*1000/seed.getWeightPerUnit()/seed.getUnitPerArea();
+            quantity = (int) (amount*1000/seed.getWeightPerUnit());
         }else if (unit.equals("ตัน")){
             area = amount*1000*1000/seed.getWeightPerUnit()/seed.getUnitPerArea();
+            quantity = (int) (amount*1000*1000/seed.getWeightPerUnit());
         }
         initData(search(area));
     }
 
     @FXML
     public void onClickSaveBtn(ActionEvent event){
-
+        controller.insertIdFarmer(farmers,seed,quantity);
     }
 
     public double getArea() {
@@ -141,5 +148,37 @@ public class TabDistributed extends AnchorPane implements Initializable {
 
     public void setArea(double area) {
         this.area = area;
+    }
+
+    public List<Farmer> getFarmers() {
+        return farmers;
+    }
+
+    public void setFarmers(List<Farmer> farmers) {
+        this.farmers = farmers;
+    }
+
+    public Seed getSeed() {
+        return seed;
+    }
+
+    public void setSeed(Seed seed) {
+        this.seed = seed;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
