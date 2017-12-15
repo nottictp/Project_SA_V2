@@ -1,6 +1,7 @@
 package managers;
 
 import models.Farmer;
+import models.Producer;
 import models.Seed;
 
 import java.util.List;
@@ -13,4 +14,10 @@ public interface ManufactorManagerDB {
     List<Farmer> getGroupFarmer(String group);
 
     List<Seed> getSeed();
+
+    void insertIdFarmer(List<Farmer> farmers);
+
+    List<Producer> getLotId();
+
+    void insertSeedLot();
 }

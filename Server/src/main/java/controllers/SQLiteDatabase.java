@@ -577,39 +577,21 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         }
         return seeds;
     }
-//    public void addSeed(){
-//        List<Seed> seeds = new ArrayList<Seed>();
-//        Connection connection = null;
-//        connection = prepareConnection();
-//        try {
-//            if(connection != null){
-//                String sql = "select * from seed";
-//                Statement statement = connection.createStatement();
-//                ResultSet resultSet = statement.executeQuery(sql);
-//
-//                while (resultSet.next()){
-//                    int seedId = resultSet.getInt("seed_id");
-//                    String name = resultSet.getString("name");
-//                    int quantity = resultSet.getInt("quantity");
-//                    double weightPerUnit = resultSet.getDouble("weight_per_unit");
-//                    System.out.println(seedId + " "+ name+" "+quantity+" "+weightPerUnit);
-//                    Seed seed = new Seed(seedId, name, quantity, weightPerUnit);
-//                    seeds.add(seed);
-//
-//                }
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }finally {
-//            if (connection != null){
-//                try {
-//                    connection.close();
-//                } catch (SQLException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//    }
+
+    @Override
+    public void insertIdFarmer(List<Farmer> farmers) {
+
+    }
+
+    @Override
+    public List<Producer> getLotId() {
+        return null;
+    }
+
+    @Override
+    public void insertSeedLot() {
+
+    }
 
 
 }
