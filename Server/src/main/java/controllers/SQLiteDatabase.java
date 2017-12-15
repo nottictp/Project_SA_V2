@@ -578,19 +578,26 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         return seeds;
     }
 
+
     @Override
-    public void insertIdFarmer(List<Farmer> farmers) {
+    public void insertIdFarmer(List<Farmer> farmers, Seed seed, int quantity) {
 
     }
 
     @Override
-    public List<Producer> getLotId() {
+    public List<String> getLotIdNotQuantity() {
         return null;
     }
+
 
     @Override
     public void insertSeedLot() {
 
+    }
+
+    @Override
+    public List<Producer> getProducer(String lotId) {
+        return null;
     }
 
 

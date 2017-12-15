@@ -5,10 +5,12 @@ import java.io.Serializable;
 public class Producer implements Serializable {
     private int lot_id, farmer_id;
     private float qualtity;
+    private String name;
 
-    public Producer(int lot_id, int farmer_id, float qualtity) {
+    public Producer(int lot_id, int farmer_id, String name, float qualtity) {
         this.lot_id = lot_id;
         this.farmer_id = farmer_id;
+        this.name = name;
         this.qualtity = qualtity;
     }
 
@@ -34,5 +36,9 @@ public class Producer implements Serializable {
 
     public void setQualtity(float qualtity) {
         this.qualtity = qualtity;
+    }
+
+    public String getName() {
+        return name;
     }
 }
