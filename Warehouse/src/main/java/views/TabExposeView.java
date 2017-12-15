@@ -135,30 +135,77 @@ public class TabExposeView extends AnchorPane implements Initializable {
         initData();
     }
 
+//    @FXML
+//    public void handlerBtnEdit(ActionEvent event) throws IOException {
+//        System.out.println("wh = " + wh);
+//        for (Warehouse w : wh) {
+//            if(w.getType() == 1){
+//                //warehouse seed
+//                System.out.println("---seed---");
+//
+//                String date = docDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yy", Locale.ENGLISH));
+//                System.out.println(((WarehouseSeed) w).getSeedId());
+//                WarehouseSeed seed = new WarehouseSeed(w.getQuantity(),w.getShelf()
+//                        ,Integer.parseInt(docNo.getText()),w.getName(),w.getUnit()
+//                        ,date,recorderField.getText(),recipientField.getText()
+//                        ,"",1, ((WarehouseSeed) w).getSeedId());
+//                controller.updateWarehouseSeed(seed);
+//            }else if(w.getType() == 2){
+//                //warehouse product
+//                System.out.println("---product---");
+//                String date = docDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yy", Locale.ENGLISH));
+//                WarehouseProduct product = new WarehouseProduct(w.getQuantity(),w.getShelf()
+//                        ,Integer.parseInt(docNo.getText()),w.getName(),w.getUnit()
+//                        ,date,recorderField.getText(),recipientField.getText()
+//                        ,"",2, ((WarehouseProduct) w).getProductId(),0);
+//
+//                controller.updateWarehouseProduct(product);
+//
+//                wh.clear();
+//                docDate.setValue(LocalDate.now());
+//                recorderField.clear();
+//                recipientField.clear();
+//                departmentCombo.getItems().clear();
+//                note.clear();
+//                docNo.clear();
+//                initData();
+//            }
+//        }
+//    }
+
     @FXML
     public void handlerBtnEdit(ActionEvent event) throws IOException {
         for (Warehouse w : wh) {
             if(w.getType() == 1){
                 //warehouse seed
-                System.out.println("---seed---");
+                System.out.println("---expose seed---");
 
-                String date = docDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH));
+                String date = docDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yy", Locale.ENGLISH));
                 System.out.println(((WarehouseSeed) w).getSeedId());
-                WarehouseSeed seed = new WarehouseSeed(w.getQuantity(),w.getShelf()
+                WarehouseSeed seed = new WarehouseSeed(w.getQuantity()*(-1),w.getShelf()
                         ,Integer.parseInt(docNo.getText()),w.getName(),w.getUnit()
                         ,date,recorderField.getText(),recipientField.getText()
                         ,"",1, ((WarehouseSeed) w).getSeedId());
-                controller.updateWarehouseSeed(seed);
+                controller.insertToWarehouseSeed(seed);
             }else if(w.getType() == 2){
                 //warehouse product
-                System.out.println("---product---");
-                String date = docDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH));
-                WarehouseProduct product = new WarehouseProduct(w.getQuantity(),w.getShelf()
+                System.out.println("---expose product---");
+                String date = docDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yy", Locale.ENGLISH));
+                WarehouseProduct product = new WarehouseProduct(w.getQuantity()*(-1),w.getShelf()
                         ,Integer.parseInt(docNo.getText()),w.getName(),w.getUnit()
                         ,date,recorderField.getText(),recipientField.getText()
                         ,"",2, ((WarehouseProduct) w).getProductId(),0);
 
-                controller.updateWarehouseProduct(product);
+                controller.insertToWarehouseProduct(product);
+
+                wh = new ArrayList<Warehouse>();
+                docDate.setValue(LocalDate.now());
+                recorderField.clear();
+                recipientField.clear();
+                departmentCombo.getItems().clear();
+                note.clear();
+                docNo.clear();
+                initData();
             }
         }
         wh.clear();
@@ -170,7 +217,6 @@ public class TabExposeView extends AnchorPane implements Initializable {
         docNo.clear();
         initData();
     }
-
     public void initData(){
         ObservableList<Warehouse> data = FXCollections.observableList(wh);
         exposeTable.setItems(data);

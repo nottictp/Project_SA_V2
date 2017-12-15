@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="582.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.ManufactoryController">
+<AnchorPane prefHeight="582.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.ManufactoryController">
    <children>
       <TabPane layoutY="-1.0" prefHeight="582.0" prefWidth="774.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="100.0">
         <tabs>
@@ -20,31 +20,30 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="68.0" layoutY="34.0" text="วันที่">
+                        <Label layoutX="67.0" layoutY="54.0" text="วันที่">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="datePicker" layoutX="119.0" layoutY="32.0" prefHeight="31.0" prefWidth="169.0" />
-                        <Label layoutX="359.0" layoutY="35.0" text="ผู้บันทึก">
+                        <DatePicker fx:id="datePicker" layoutX="118.0" layoutY="52.0" prefHeight="31.0" prefWidth="169.0" />
+                        <Label layoutX="358.0" layoutY="55.0" text="ผู้บันทึก">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="tab1RecorderCombo" layoutX="440.0" layoutY="33.0" prefHeight="31.0" prefWidth="279.0" />
-                        <Label layoutX="68.0" layoutY="88.0" text="ผลิต">
+                        <Label layoutX="67.0" layoutY="108.0" text="ผลิต">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="typeCombo" layoutX="119.0" layoutY="86.0" prefHeight="31.0" prefWidth="220.0" />
-                        <Label layoutX="384.0" layoutY="88.0" text="จำนวน">
+                        <ComboBox fx:id="typeCombo" layoutX="118.0" layoutY="106.0" prefHeight="31.0" prefWidth="220.0" />
+                        <Label layoutX="383.0" layoutY="108.0" text="จำนวน">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="amountField" layoutX="465.0" layoutY="86.0" prefHeight="31.0" prefWidth="142.0" />
-                        <ComboBox fx:id="unitCombo" layoutX="624.0" layoutY="86.0" prefHeight="31.0" prefWidth="103.0" promptText="หน่วย" />
+                        <TextField fx:id="amountField" layoutX="464.0" layoutY="106.0" prefHeight="31.0" prefWidth="142.0" />
+                        <ComboBox fx:id="unitCombo" layoutX="623.0" layoutY="106.0" prefHeight="31.0" prefWidth="103.0" promptText="หน่วย" />
                         <Button fx:id="farmerSearchBtn" layoutX="335.0" layoutY="154.0" mnemonicParsing="false" text="ค้นหาเกษตรกร" />
                         <TableView fx:id="tab1DataTable" layoutX="68.0" layoutY="212.0" prefHeight="261.0" prefWidth="656.0">
                           <columns>
@@ -52,9 +51,15 @@
                             <TableColumn prefWidth="111.0" text="ID" />
                               <TableColumn prefWidth="318.0" text="ชื่อ" />
                               <TableColumn prefWidth="116.0" text="กำลังผลิต" />
+                              <TableColumn prefWidth="75.0" text="plant date" />
+                              <TableColumn prefWidth="75.0" text="harvesy date" />
+                              <TableColumn prefWidth="75.0" text="test date" />
                           </columns>
                         </TableView>
                         <Button fx:id="submitBtn" layoutX="361.0" layoutY="489.0" mnemonicParsing="false" text="ยืนยัน" />
+                        <Label layoutX="57.0" layoutY="14.0" text="Lot No." />
+                        <Label layoutX="118.0" layoutY="14.0" text="5" />
+                        <TextField fx:id="tab1RecorderTextField" layoutX="464.0" layoutY="52.0" prefHeight="31.0" prefWidth="264.0" />
                      </children>
                   </AnchorPane>
             </content>

@@ -31,7 +31,6 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         return null;
     }
 
-
     public List<Warehouse> getWarehouseSeed() {
         System.out.println("request warehouse seed");
         List<Warehouse> warehouseSeeds = new ArrayList<Warehouse>();
@@ -265,7 +264,7 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
             if(connection != null){
                 String sql = "select * " +
                         "from warehouse_product "+
-                        "join product on warehouse_product.product_id = product.product_id"+
+                        "join product on warehouse_product.product_id = product.product_id "+
                         "where name like '%"+name+"%'";
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(sql);
@@ -311,8 +310,9 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
             if(connection != null){
                 String sql = "select * " +
                         "from warehouse_product "+
-                        "join product on warehouse_product.product_id = product.product_id"+
+                        "join product on warehouse_product.product_id = product.product_id "+
                         "where product_id like '%"+id+"%'";
+                System.out.println("sql "+sql);
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(sql);
 
@@ -385,6 +385,8 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
                                 "values ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
                         w.getDocNo()+"", w.getDocDate(), w.getProductId(), w.getName(), w.getUnit(),
                         w.getQuantity()+"", w.getShelf(), w.getRecorder(), w.getRecipient(), w.getForm());
+
+                System.out.println("sql = " + sql);
                 Statement statement = connection.createStatement();
                 int result = statement.executeUpdate(sql);
                 System.out.println(result);
@@ -464,7 +466,68 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         }
     }
 
+    public Map<String, Double> getGroupArea(){
+        System.out.println("get group area");
+        Map<String, Double> areas = new HashMap<String, Double>();
+        Connection connection = null;
+        try{
+            connection = prepareConnection();
+            if(connection != null){
+                String sql = "select farmer.group_farmer as \"group\", sum(farmer.capacity_area) as areas\n" +
+                        "from farmer\n" +
+                        "group by farmer.group_farmer";
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);
+                while(resultSet.next()){
+                    String group = resultSet.getString("group");
+                    double area = resultSet.getDouble("area");
+                    areas.put(group, area);
+                }
 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return areas;
+    }
+
+    public List<Farmer> getGroupFarmer(String group){
+        System.out.println("get group farmer");
+        List<Farmer> farmers = new ArrayList<Farmer>();
+        Connection connection = null;
+        try{
+            connection = prepareConnection();
+            if(connection != null){
+                String sql = "select *\n" +
+                        "from farmer\n" +
+                        "where group_farmer = '" + group + "'";
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);
+                while(resultSet.next()){
+
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return farmers;
+    }
 //    public void addSeed(){
 //        List<Seed> seeds = new ArrayList<Seed>();
 //        Connection connection = null;
