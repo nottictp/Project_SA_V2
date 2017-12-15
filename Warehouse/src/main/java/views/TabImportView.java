@@ -40,7 +40,6 @@ public class TabImportView extends AnchorPane implements Initializable {
     @FXML private TableColumn shelfColumn;
     @FXML private TextField recorderField;
     @FXML private TextField recipientField;
-    @FXML private ComboBox departmentCombo;
     @FXML private Button cancelBtn;
     @FXML private Button saveBtn;
     @FXML private Button removeBtn;
@@ -104,7 +103,6 @@ public class TabImportView extends AnchorPane implements Initializable {
         docDate.setValue(LocalDate.now());
         recorderField.clear();
         recipientField.clear();
-        departmentCombo.getItems().clear();
         form.clear();
         docNo.clear();
         initData();
@@ -204,7 +202,6 @@ public class TabImportView extends AnchorPane implements Initializable {
         docDate.setValue(LocalDate.now());
         recorderField.clear();
         recipientField.clear();
-        departmentCombo.getItems().clear();
         form.clear();
         docNo.clear();
         initData();
