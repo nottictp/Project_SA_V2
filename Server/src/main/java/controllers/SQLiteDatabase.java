@@ -467,11 +467,66 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
     }
 
     public Map<String, Double> getGroupArea(){
-        return null;
+        System.out.println("get group area");
+        Map<String, Double> areas = new HashMap<String, Double>();
+        Connection connection = null;
+        try{
+            connection = prepareConnection();
+            if(connection != null){
+                String sql = "select farmer.group_farmer as \"group\", sum(farmer.capacity_area) as areas\n" +
+                        "from farmer\n" +
+                        "group by farmer.group_farmer";
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);
+                while(resultSet.next()){
+                    String group = resultSet.getString("group");
+                    double area = resultSet.getDouble("area");
+                    areas.put(group, area);
+                }
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return areas;
     }
 
     public List<Farmer> getGroupFarmer(String group){
-        return null;
+        System.out.println("get group farmer");
+        List<Farmer> farmers = new ArrayList<Farmer>();
+        Connection connection = null;
+        try{
+            connection = prepareConnection();
+            if(connection != null){
+                String sql = "select *\n" +
+                        "from farmer\n" +
+                        "where group_farmer = '" + group + "'";
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);
+                while(resultSet.next()){
+
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return farmers;
     }
 //    public void addSeed(){
 //        List<Seed> seeds = new ArrayList<Seed>();
