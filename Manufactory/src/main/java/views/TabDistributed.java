@@ -11,11 +11,14 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
+import javafx.util.StringConverter;
 import models.Farmer;
+import models.Seed;
 
 import java.io.Serializable;
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class TabDistributed extends AnchorPane implements Initializable {
@@ -34,10 +37,14 @@ public class TabDistributed extends AnchorPane implements Initializable {
     @FXML private TableColumn capacityColumn;
 
     private MainManufactoryController controller;
-
+    private ObservableList<String> units = FXCollections.observableArrayList("เมล็ด",
+            "กรัม" , "กิโลกรัม", "ตัน");
+    private double area;
 
     public void initialize(URL location, ResourceBundle resources) {
         initColumn();
+        unitCombo.setItems(units);
+        unitCombo.setValue("เมล็ด");
     }
 
     public void initColumn(){
@@ -60,13 +67,54 @@ public class TabDistributed extends AnchorPane implements Initializable {
 
     }
     public List<Farmer> search(int amount){
-        // TODO Get All Data
+        Double area = 0.0;//คำนวณพื้นที่
+        Map<String, Double> groupArea = controller.getGroupArea();
+        String group = ""; // กลุ่มที่มีพื้นที่ใกล้เคียงสุด
+        Double diff1 = 100000000000.0;
+        for(Map.Entry<String,Double> entry: groupArea.entrySet()){
+            if (entry.getValue()>area){
+                Double diff2 = entry.getValue()-area;
+                if (diff2 < diff1){
+                    group = entry.getKey();
+                }
+            }
+            else if (entry.getValue()==area){
+                group=entry.getKey();
+                break;
+            }
+        }
+        List<Farmer> farmers = controller.getGroupFarmer(group);
 
-        //TODO Search
-        return null;
+        return farmers;
     }
 
     public void setController(MainManufactoryController controller){
         this.controller = controller;
+
+        List<Seed> seeds = controller.getSeed();
+        System.out.println("seeds = " + seeds);
+        typeCombo.getItems().addAll(seeds);
+        typeCombo.setValue(seeds.get(0));
+
+        typeCombo.setConverter(new StringConverter() {
+            @Override
+            public String toString(Object object) {
+                Seed seed = (Seed) object;
+                return seed.getName();
+            }
+
+            @Override
+            public Object fromString(String string) {
+                return null;
+            }
+        });
+    }
+
+    public double getArea() {
+        return area;
+    }
+
+    public void setArea(double area) {
+        this.area = area;
     }
 }
