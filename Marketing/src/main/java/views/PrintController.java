@@ -6,38 +6,35 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType0Font;
-import sun.applet.Main;
 
 import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.List;
 
-public class PrintPDFController {
-    private static PrintPDFController printPDFController;
-    private int number;
-    private MarketingController marketingController;
+public class PrintController {
+    private static PrintController printController;
     private MainController mainController;
+    private int number;
 
-    private PrintPDFController() {
-        number = 0;
+    private PrintController(){
+        number=0;
     }
 
-    public static PrintPDFController getInstant(){
-        if (printPDFController == null){
-            printPDFController = new PrintPDFController();
+    public static PrintController getInstant(){
+        if (printController == null){
+            printController = new PrintController();
         }
 
-        return printPDFController;
+        return printController;
     }
 
-    public void printManufactureScript(WarehouseProduct warehouseProduct,String productID,
-                                 String productName,int productQuantity,String productUnit) {
+    public void printManufactureScript(String productID,
+                                 String productName,String productUnit,int productQuantity) {
 
         try {
-            File file = new File("./PDF/Warehouse/warehouse.pdf");
+            File file = new File("./PDF/Marketing/marketing.pdf");
             PDDocument document = PDDocument.load(file);
 
             PDPage page = document.getPage(0);
@@ -67,6 +64,10 @@ public class PrintPDFController {
             int totalMother = seedRatio.getMotherQuantity();
             String nameFather = seedRatio.getFatherName();
             String nameMother = seedRatio.getMotherName();
+            System.out.println("nameMother = " + nameMother);
+            System.out.println("nameFather = " + nameFather);
+            System.out.println("totalMother = " + totalMother);
+            System.out.println("nameFather = " + nameFather);
             contentStream.showText(String.format("-----------"+"-----------"+
                     "-----------"+"-----------"+"-----------"));
             contentStream.newLine();
@@ -87,7 +88,7 @@ public class PrintPDFController {
 
             contentStream.endText();
             contentStream.close();
-            document.save(new File("./PDF/Warehouse/" + "MarketingList" + number +".pdf"));
+            document.save(new File("./PDF/Marketing/" + "MarketingList" + number +".pdf"));
             document.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -117,16 +118,20 @@ public class PrintPDFController {
 
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public MainController getMainController() {
+        return mainController;
+    }
+
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
     }
 
     public int getNumber() {
         return number;
     }
 
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
+    public void setNumber(int number) {
+        this.number = number;
     }
 }
 

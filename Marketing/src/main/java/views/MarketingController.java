@@ -3,7 +3,6 @@ package views;
 import controllers.MainController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -30,7 +29,7 @@ public class MarketingController implements Initializable {
 
     ObservableList<String> productID;
     ObservableList<String> units = FXCollections.observableArrayList("เมล็ด");
-    String id;
+    String id,name,unit;
     private int quantity;//quantity in program
     private int fatherAmount;
     private int motherAmount;
@@ -38,12 +37,13 @@ public class MarketingController implements Initializable {
 
     private MainController controller;
     private WarehouseProduct warehouseProduct = MarketingInfo.getInstance().getWarehouseProduct();
-    private PrintPDFController printPDFController;
+    private PrintController printController;
 
     public void initialize(URL location, ResourceBundle resources) {
         if (controller != null){
             typeCombo.setItems(comboBoxData());
             unitCombo.setItems(units);
+            printController = PrintController.getInstant();
         }
     }
 
@@ -70,10 +70,10 @@ public class MarketingController implements Initializable {
     @FXML
     public void handlerBtnManufacture(){
         quantity = Integer.parseInt(amountField.getText());
-        String unit = String.valueOf(unitCombo.getValue());
+        unit = String.valueOf(unitCombo.getValue());
         String[] idName = String.valueOf(typeCombo.getValue()).split(" : ");
         id = idName[0];
-        String name = idName[1];
+        name = idName[1];
         checkAmountOfSeed(id);
     }
 
@@ -99,7 +99,13 @@ public class MarketingController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("วัตถุดิบเพียงพอในการผลิต");
             alert.showAndWait();
-//            printPDFController.printOrderScript(warehouseProduct,id,name,unit,quantity);
+            System.out.println("id = " + id);
+            System.out.println("name = " + name);
+            System.out.println("unit = " + unit);
+            System.out.println("quantity = " + quantity);
+            System.out.println(printController);
+//            printController.setNumber(printController.getNumber() + 1);
+//            printController.printManufactureScript(id,name,unit,quantity);
             System.out.println("OK!!");
         }else if(totalFather < checkFather && totalMother >= checkMother){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
