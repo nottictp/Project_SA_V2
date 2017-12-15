@@ -3,6 +3,7 @@ package controllers;
 import managers.ManufactorManagerDB;
 import managers.WarehouseManagerDB;
 import models.Farmer;
+import models.Seed;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -22,5 +23,9 @@ public class MainManufactoryController {
 
     public List<Farmer> getGroupFarmer(String group){
         return executor.getGroupFarmer(group);
+    }
+
+    public List<Seed> getSeed(){
+        return executor.getSeed();
     }
 }
