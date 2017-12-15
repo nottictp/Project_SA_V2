@@ -312,6 +312,7 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
                         "from warehouse_product "+
                         "join product on warehouse_product.product_id = product.product_id "+
                         "where product_id like '%"+id+"%'";
+                System.out.println("sql "+sql);
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(sql);
 

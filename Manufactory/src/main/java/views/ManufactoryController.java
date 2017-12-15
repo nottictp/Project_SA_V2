@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 public class ManufactoryController implements Initializable{
 
     @FXML private DatePicker datePicker;
-    @FXML private ComboBox tab1RecorderCombo;
+    @FXML private TextField tab1RecorderTextField;
     @FXML private ComboBox lotNoCombo;
     @FXML private ComboBox typeCombo;
     @FXML private ComboBox unitCombo;
