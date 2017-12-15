@@ -529,6 +529,10 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         }
         return farmers;
     }
+
+    public List<Seed> getSeed(){
+        return null;
+    }
 //    public void addSeed(){
 //        List<Seed> seeds = new ArrayList<Seed>();
 //        Connection connection = null;
