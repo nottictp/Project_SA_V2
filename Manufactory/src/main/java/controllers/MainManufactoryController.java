@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.scene.control.ComboBox;
 import managers.ManufactorManagerDB;
 import managers.WarehouseManagerDB;
 import models.Farmer;
@@ -12,7 +13,10 @@ import java.util.List;
 import java.util.Map;
 
 public class MainManufactoryController {
+
+    private List<Integer> lotIds;
     private ManufactorManagerDB executor;
+
     public MainManufactoryController() {
         ApplicationContext bf = new ClassPathXmlApplicationContext("manufactor_config.xml");
         executor = (ManufactorManagerDB) bf.getBean("ManufactoryDbManager");
@@ -44,5 +48,13 @@ public class MainManufactoryController {
 
     public List<Producer> getProducer(int lotId){
         return executor.getProducer(lotId);
+    }
+
+    public List<Integer> getLotIds() {
+        return lotIds;
+    }
+
+    public void setLotIds(List<Integer> lotIds) {
+        this.lotIds = lotIds;
     }
 }
