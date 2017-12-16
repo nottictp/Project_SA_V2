@@ -53,8 +53,8 @@ public class TabDistributed extends AnchorPane implements Initializable {
     private double amount;
     private int quantity;
     private TabSaveManufacture tabSave;
-
     private String unit;
+
     public void initialize(URL location, ResourceBundle resources) {
         initColumn();
         unitCombo.setItems(units);
