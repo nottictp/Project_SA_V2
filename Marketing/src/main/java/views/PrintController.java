@@ -59,6 +59,7 @@ public class PrintController {
             contentStream.showText(String.format("จำนวน : %20s%20s", productQuantity,productUnit));
             contentStream.newLine();
 
+            System.out.println(mainController);
             DataToMarketing seedRatio = mainController.getSeedRatio(productID);
             int totalFather = seedRatio.getFatherQuantity();
             int totalMother = seedRatio.getMotherQuantity();
@@ -123,6 +124,7 @@ public class PrintController {
     }
 
     public void setMainController(MainController mainController) {
+        System.out.println("set main");
         this.mainController = mainController;
     }
 

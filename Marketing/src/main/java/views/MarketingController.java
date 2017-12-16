@@ -40,6 +40,7 @@ public class MarketingController implements Initializable {
     private PrintController printController;
 
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("initialize");
         if (controller != null){
             typeCombo.setItems(comboBoxData());
             unitCombo.setItems(units);
@@ -52,6 +53,8 @@ public class MarketingController implements Initializable {
         if (typeCombo != null){
             typeCombo.setItems(comboBoxData());
             unitCombo.setItems(units);
+            printController = PrintController.getInstant();
+            printController.setMainController(controller);
         }
     }
 
@@ -104,8 +107,8 @@ public class MarketingController implements Initializable {
             System.out.println("unit = " + unit);
             System.out.println("quantity = " + quantity);
             System.out.println(printController);
-//            printController.setNumber(printController.getNumber() + 1);
-//            printController.printManufactureScript(id,name,unit,quantity);
+            printController.setNumber(printController.getNumber() + 1);
+            printController.printManufactureScript(id,name,unit,quantity);
             System.out.println("OK!!");
         }else if(totalFather < checkFather && totalMother >= checkMother){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
