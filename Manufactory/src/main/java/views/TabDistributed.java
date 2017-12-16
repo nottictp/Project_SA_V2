@@ -19,6 +19,7 @@ import models.Seed;
 
 import java.io.Serializable;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -38,19 +39,25 @@ public class TabDistributed extends AnchorPane implements Initializable {
     @FXML private TableColumn tab1nameColumn;
     @FXML private TableColumn capacityColumn;
 
+
+    private ComboBox lotId;
     private MainManufactoryController controller;
     private PrintDistributedController printDistributedController;
     private ObservableList<String> units = FXCollections.observableArrayList("เมล็ด",
             "กรัม" , "กิโลกรัม", "ตัน");
     private double area;
     private List<Farmer> farmers;
+    private List<Integer> lotIds;
     private Seed seed;
     private double amount;
     private int quantity;
+    private TabSaveManufacture tabSave;
+
     public void initialize(URL location, ResourceBundle resources) {
         initColumn();
         unitCombo.setItems(units);
         unitCombo.setValue("เมล็ด");
+        lotIds = new ArrayList<>();
         printDistributedController = PrintDistributedController.getInstant();
     }
 
@@ -140,6 +147,7 @@ public class TabDistributed extends AnchorPane implements Initializable {
     @FXML
     public void onClickSaveBtn(ActionEvent event){
         controller.insertIdFarmer(farmers,seed,quantity);
+        tabSave.initCombo();
     }
 
     public double getArea() {
@@ -180,5 +188,9 @@ public class TabDistributed extends AnchorPane implements Initializable {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public void setTabSaveManufacture(TabSaveManufacture tabSaveManufacture){
+        this.tabSave = tabSaveManufacture;
     }
 }

@@ -56,5 +56,7 @@ public class ManufactoryController implements Initializable{
         this.controller = controller;
         TabDistributed();
         TabSaveManufacture();
+        tabDistributed.setTabSaveManufacture(tabSaveManufacture);
+
     }
 }

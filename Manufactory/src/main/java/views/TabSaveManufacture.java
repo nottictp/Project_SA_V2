@@ -109,6 +109,7 @@ public class TabSaveManufacture  implements Initializable {
             }
         });
     }
+
     @FXML
     public void onActionLotNo(ActionEvent event){
         producers = controller.getProducer(Integer.parseInt(lotNoCombo.getValue().toString()));
@@ -144,8 +145,9 @@ public class TabSaveManufacture  implements Initializable {
     public void setController(MainManufactoryController mainController) {
         this.controller = mainController;
         onDoubleClickDriver();
-        lotNoCombo.getItems().addAll(controller.getLotIdNotQuantity());
+
     }
+
     @FXML
     public void onClickSaveBtn(ActionEvent event){
         String eDate = expireDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yy", Locale.ENGLISH));
@@ -161,5 +163,17 @@ public class TabSaveManufacture  implements Initializable {
         plantDate.setValue(LocalDate.now());
         harvestDate.setValue(LocalDate.now());
         testDate.setValue(LocalDate.now());
+    }
+
+    public void setLotNoCombo(ComboBox lotNoCombo) {
+        this.lotNoCombo = lotNoCombo;
+    }
+
+    public ComboBox getLotNoCombo() {
+        return lotNoCombo;
+    }
+
+    public void initCombo(){
+        lotNoCombo.getItems().addAll(controller.getLotIdNotQuantity());
     }
 }
