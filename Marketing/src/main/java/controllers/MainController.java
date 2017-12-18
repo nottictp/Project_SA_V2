@@ -17,11 +17,9 @@ public class MainController {
         ApplicationContext bf = new ClassPathXmlApplicationContext("marketing_config.xml");
         executor = (MarketingManagerDB) bf.getBean("MarketingDbManager");
     }
-
     public List<Warehouse> getWarehouseProduct(){
         return executor.getWarehouseProduct();
     }
-
     public DataToMarketing getSeedRatio(String productId){
         return executor.getSeedRatio(productId);
     }

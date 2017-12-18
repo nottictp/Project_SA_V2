@@ -15,9 +15,7 @@ import models.Warehouse;
 import models.WarehouseProduct;
 
 import java.net.URL;
-import java.util.HashSet;
-import java.util.ResourceBundle;
-import java.util.Set;
+import java.util.*;
 
 public class MarketingController implements Initializable {
     @FXML private ComboBox typeCombo;
@@ -34,7 +32,11 @@ public class MarketingController implements Initializable {
     private int fatherAmount;
     private int motherAmount;
     private int childAmount;
-
+    private Map<String, String> product;
+    private Map<String, Integer> product2;
+    private Map<String, String> product3;
+    private List<String> sortName;
+    private List<String> nameIdQuan;
     private MainController controller;
     private WarehouseProduct warehouseProduct = MarketingInfo.getInstance().getWarehouseProduct();
     private PrintController printController;
@@ -46,6 +48,11 @@ public class MarketingController implements Initializable {
             unitCombo.setItems(units);
             printController = PrintController.getInstant();
         }
+        sortName = new ArrayList<>();
+        product = new HashMap<>();
+        product2 = new HashMap<>();
+        product3 = new HashMap<>();
+        nameIdQuan = new ArrayList<>();
     }
 
     public void setController(MainController controller) {
@@ -61,23 +68,44 @@ public class MarketingController implements Initializable {
     public ObservableList<String> comboBoxData(){
         System.out.println("get data into comboBox");
         for (Warehouse warehouse: controller.getWarehouseProduct()) {
-            String id = ((WarehouseProduct) warehouse).getProductId()
-                    + " : "+ ((WarehouseProduct) warehouse).getName();
-            System.out.println("id+name = " + id);
-            set.add(id);
-
-            productID = FXCollections.observableArrayList(set);
-        }return productID;
+            String id = ((WarehouseProduct) warehouse).getProductId();
+            String name = ((WarehouseProduct) warehouse).getName();
+            int quantity = ((WarehouseProduct) warehouse).getQuantity();
+            String unit = warehouse.getUnit();
+            product.put(name, id);
+            product3.put(name, unit);
+            if(!sortName.contains(name)){
+                sortName.add(name);
+                product2.put(name, quantity);
+            }else{
+                product2.put(name, product2.get(name)+quantity);
+            }
+            System.out.println("id+name = " + id+name);
+        }
+        Collections.sort(sortName);
+        for (String s: sortName) {
+            nameIdQuan.add(product.get(s)+" : "+s+" คงเหลือ: "+product2.get(s)+" "+product3.get(s));
+        }
+        productID = FXCollections.observableArrayList(nameIdQuan);
+        return productID;
     }
 
     @FXML
     public void handlerBtnManufacture(){
-        quantity = Integer.parseInt(amountField.getText());
-        unit = String.valueOf(unitCombo.getValue());
-        String[] idName = String.valueOf(typeCombo.getValue()).split(" : ");
-        id = idName[0];
-        name = idName[1];
-        checkAmountOfSeed(id);
+        try {
+            quantity = Integer.parseInt(amountField.getText());
+            unit = String.valueOf(unitCombo.getValue());
+            String[] idName = String.valueOf(typeCombo.getValue()).split(" : ");
+            id = idName[0];
+            name = idName[1];
+            if(quantity > 0){
+                checkAmountOfSeed(id);
+            }else{
+                System.out.println("error");
+            }
+        }catch (NumberFormatException e){
+            System.out.println("error");
+        }
     }
 
     public void checkAmountOfSeed(String id){
