@@ -93,16 +93,21 @@ public class MarketingController implements Initializable {
     @FXML
     public void handlerBtnManufacture(){
         try {
-            quantity = Integer.parseInt(amountField.getText());
-            unit = String.valueOf(unitCombo.getValue());
-            String[] idName = String.valueOf(typeCombo.getValue()).split(" : ");
-            id = idName[0];
-            name = idName[1];
-            if(quantity > 0){
-                checkAmountOfSeed(id);
+            if(amountField.getText() != null && unitCombo.getValue() != null && typeCombo.getValue() != null){
+                quantity = Integer.parseInt(amountField.getText());
+                unit = String.valueOf(unitCombo.getValue());
+                String[] idName = String.valueOf(typeCombo.getValue()).split(" : ");
+                id = idName[0];
+                name = idName[1];
+                if(quantity > 0){
+                    checkAmountOfSeed(id);
+                }else{
+                    System.out.println("error");
+                }
             }else{
-                System.out.println("error");
+                System.out.println("please select");
             }
+
         }catch (NumberFormatException e){
             System.out.println("error");
         }
