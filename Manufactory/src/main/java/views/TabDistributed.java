@@ -151,10 +151,10 @@ public class TabDistributed extends AnchorPane implements Initializable {
             if(amount>=0) {
                 initData(search(area));
             }else{
-                System.out.println("error");
+                System.out.println("ตรวจสอบข้อมูลอีกครั้ง");
             }
         }catch (NumberFormatException e){
-            System.out.println("error");
+            System.out.println("ตรวจสอบข้อมูลอีกครั้ง");
         }
     }
 
