@@ -104,30 +104,34 @@ public class PopUpPickController implements Initializable{
     @FXML
     public void handlerBtnAdd(ActionEvent event){
         try{
-            stockNo = stockCombo.getValue().toString().substring(0,1);
-            quantity = Integer.parseInt(amountField.getText());
-            idName = String.valueOf(idProductCombo.getValue()).split(" : ");
-            id = idName[0];
-            name = idName[1];
-            unit = String.valueOf(unitCombo.getValue());
+            if(Integer.parseInt(amountField.getText()) > 0){
+                stockNo = stockCombo.getValue().toString().substring(0,1);
+                quantity = Integer.parseInt(amountField.getText());
+                idName = String.valueOf(idProductCombo.getValue()).split(" : ");
+                id = idName[0];
+                name = idName[1];
+                unit = String.valueOf(unitCombo.getValue());
 
-            if (stockNo.equals("1")){
-                WarehouseSeed item = new WarehouseSeed(quantity,"",
-                        0,name,
-                        unit,"",
-                        "","",
-                        "",1,id);
-                addTableView(item);
-                System.out.println("Add item");
-            }
-            if (stockNo.equals("2")){
-                WarehouseProduct item = new WarehouseProduct(quantity,"",
-                        0,name,
-                        unit,"",
-                        "","",
-                        "",2,id,0);
-                addTableView(item);
-                System.out.println("Add item");
+                if (stockNo.equals("1")){
+                    WarehouseSeed item = new WarehouseSeed(quantity,"",
+                            0,name,
+                            unit,"",
+                            "","",
+                            "",1,id);
+                    addTableView(item);
+                    System.out.println("Add item");
+                }
+                if (stockNo.equals("2")){
+                    WarehouseProduct item = new WarehouseProduct(quantity,"",
+                            0,name,
+                            unit,"",
+                            "","",
+                            "",2,id,0);
+                    addTableView(item);
+                    System.out.println("Add item");
+                }
+            }else{
+                errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
             }
         }catch (NullPointerException e){
             errorMsg.setText("กรุณากรอกข้อมูลให้ครบถ้วน");
