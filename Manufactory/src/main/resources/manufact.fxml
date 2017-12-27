@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="582.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.ManufactoryController">
+<AnchorPane prefHeight="359.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.ManufactoryController">
    <children>
-      <TabPane layoutY="-1.0" prefHeight="582.0" prefWidth="774.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="100.0">
-        <tabs>
-          <Tab fx:id="distributedTab" text="กระจายการผลิต" />
-          <Tab fx:id="saveManufactureTab" text="บันทึกผลการผลิต" />
-        </tabs>
-      </TabPane>
+      <TableView layoutX="8.0" layoutY="81.0" prefHeight="233.0" prefWidth="758.0">
+        <columns>
+          <TableColumn fx:id="noCol" prefWidth="42.0" text="ลำดับ" />
+          <TableColumn fx:id="ordersCol" prefWidth="86.0" text="เลขที่ใบสั่งผลิต" />
+            <TableColumn fx:id="idCol" prefWidth="66.0" text="รหัสสินค้า" />
+            <TableColumn fx:id="nameCol" prefWidth="211.0" text="ชื่อสินค้า" />
+            <TableColumn fx:id="unitCol" prefWidth="49.0" text="หน่วย" />
+            <TableColumn fx:id="quantityCol" prefWidth="68.0" text="จำนวน" />
+            <TableColumn fx:id="groupCol" prefWidth="151.0" text="กลุ่มเกษตรกร" />
+            <TableColumn fx:id="statusCol" minWidth="0.0" prefWidth="84.0" text="สถานะ" />
+        </columns>
+      </TableView>
+      <Button fx:id="distributedBtn" layoutX="343.0" layoutY="323.0" mnemonicParsing="false" text="กระจายการผลิต" />
+      <Label fx:id="date" layoutX="655.0" layoutY="14.0" prefHeight="17.0" prefWidth="105.0" text="วันที่" />
+      <Label fx:id="listTable" layoutX="14.0" layoutY="54.0" prefHeight="17.0" prefWidth="127.0" text="รายการการผลิต" />
+      <Button fx:id="saveBtn" layoutX="451.0" layoutY="323.0" mnemonicParsing="false" text="บันทึกผลการผลิต" />
+      <Button fx:id="backBtn" layoutX="219.0" layoutY="323.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="ย้อนกลับ" />
    </children>
 </AnchorPane>
