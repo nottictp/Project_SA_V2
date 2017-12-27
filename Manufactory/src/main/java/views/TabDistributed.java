@@ -127,23 +127,35 @@ public class TabDistributed extends AnchorPane implements Initializable {
 
     @FXML
     public void searchFarmer(ActionEvent event){
-        seed = (Seed) typeCombo.getValue();
-        unit = unitCombo.getValue().toString();
-        amount = Double.parseDouble(amountField.getText());
-        if(unit.equals("เมล็ด")){
-            area = amount/seed.getUnitPerArea();
-            quantity = (int) amount;
-        }else if (unit.equals("กรัม")){
-            area = amount/seed.getWeightPerUnit()/seed.getUnitPerArea();
-            quantity = (int) (amount/seed.getWeightPerUnit());
-        }else if (unit.equals("กิโลกรัม")){
-            area = amount*1000/seed.getWeightPerUnit()/seed.getUnitPerArea();
-            quantity = (int) (amount*1000/seed.getWeightPerUnit());
-        }else if (unit.equals("ตัน")){
-            area = amount*1000*1000/seed.getWeightPerUnit()/seed.getUnitPerArea();
-            quantity = (int) (amount*1000*1000/seed.getWeightPerUnit());
+        try {
+            seed = (Seed) typeCombo.getValue();
+            unit = unitCombo.getValue().toString();
+
+                if (unit.equals("เมล็ด")) {
+                    amount = Integer.parseInt(amountField.getText());
+                    area = amount / seed.getUnitPerArea();
+                    quantity = (int) amount;
+                } else if (unit.equals("กรัม")) {
+                    amount = Double.parseDouble(amountField.getText());
+                    area = amount / seed.getWeightPerUnit() / seed.getUnitPerArea();
+                    quantity = (int) (amount / seed.getWeightPerUnit());
+                } else if (unit.equals("กิโลกรัม")) {
+                    amount = Double.parseDouble(amountField.getText());
+                    area = amount * 1000 / seed.getWeightPerUnit() / seed.getUnitPerArea();
+                    quantity = (int) (amount * 1000 / seed.getWeightPerUnit());
+                } else if (unit.equals("ตัน")) {
+                    amount = Double.parseDouble(amountField.getText());
+                    area = amount * 1000 * 1000 / seed.getWeightPerUnit() / seed.getUnitPerArea();
+                    quantity = (int) (amount * 1000 * 1000 / seed.getWeightPerUnit());
+                }
+            if(amount>=0) {
+                initData(search(area));
+            }else{
+                System.out.println("ตรวจสอบข้อมูลอีกครั้ง");
+            }
+        }catch (NumberFormatException e){
+            System.out.println("ตรวจสอบข้อมูลอีกครั้ง");
         }
-        initData(search(area));
     }
 
     @FXML
