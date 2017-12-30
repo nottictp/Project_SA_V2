@@ -77,7 +77,7 @@ public class PopUpAddController implements Initializable {
                 idName = String.valueOf(idProductCombo.getValue()).split(" : ");
                 id = idName[0];
                 name = idName[1];
-                unit = String.valueOf(unitCombo.getValue());
+                //unit = String.valueOf(unitCombo.getValue());
                 shelf = shelfField.getText();
 
                 if (stockNo.equals("1")){
@@ -109,7 +109,6 @@ public class PopUpAddController implements Initializable {
             idProductCombo.getItems().clear();
             amountField.clear();
             shelfField.clear();
-            unitCombo.getItems().clear();
         }
 
     }
@@ -117,8 +116,6 @@ public class PopUpAddController implements Initializable {
     @FXML
     public void onClickStockNo(ActionEvent event){
         if(String.valueOf(stockCombo.getValue()).startsWith("1")){
-            unitCombo.setItems(unitSeed);
-            unitCombo.setValue("เมล็ด");
             for (Warehouse warehouseSeed: controller.getWarehouseSeed()) {
 
                 String id = ((WarehouseSeed)warehouseSeed).getSeedId()+" : "+warehouseSeed.getName();
@@ -128,8 +125,6 @@ public class PopUpAddController implements Initializable {
             idProductCombo.setItems(seedId);
 
         }else{
-            unitCombo.setItems(unitProduct);
-            unitCombo.setValue("ซอง");
             for (Warehouse warehouseProduct: controller.getWarehouseProduct()) {
                 String id = ((WarehouseProduct) warehouseProduct).getProductId()+" : "+warehouseProduct.getName();
                 setB.add(id);

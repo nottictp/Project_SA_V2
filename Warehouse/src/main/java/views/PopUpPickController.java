@@ -62,8 +62,7 @@ public class PopUpPickController implements Initializable{
 
     public void onClickStockNo(ActionEvent event){
         if(String.valueOf(stockCombo.getValue()).startsWith("1")){
-            unitCombo.setItems(unitSeed);
-            unitCombo.setValue("เมล็ด");
+
             for (Warehouse warehouseSeed: controller.getWarehouseSeed()) {
                 String id = ((WarehouseSeed)warehouseSeed).getSeedId()+" : "+warehouseSeed.getName();
                 setA.add(id);
@@ -82,25 +81,6 @@ public class PopUpPickController implements Initializable{
         }
     }
 
-    public void onClickId(ActionEvent event){
-        System.out.println("value"+idProductCombo.getValue().toString());
-
-        checkProduct = idProductCombo.getValue().toString().split(" : ");
-
-        if(String.valueOf(stockCombo.getValue()).startsWith("1")) {
-                unitCombo.setValue("เมล็ด");
-        }else{
-            if(checkProduct[0].equals("3MEL0017") || checkProduct[0].equals("2VIN3029")){
-                unitCombo.setItems(unitProduct);
-                unitCombo.setValue("ซอง");
-            }else if (checkProduct[0].equals("1ZIN6110")){
-                unitCombo.setItems(unitProduct2);
-                unitCombo.setValue("กระป๋อง");
-            }
-        }
-
-    }
-
     @FXML
     public void handlerBtnAdd(ActionEvent event){
         try{
@@ -110,8 +90,8 @@ public class PopUpPickController implements Initializable{
                 idName = String.valueOf(idProductCombo.getValue()).split(" : ");
                 id = idName[0];
                 name = idName[1];
-                unit = String.valueOf(unitCombo.getValue());
-
+                //unit = String.valueOf(unitCombo.getValue());
+                unit = "กิโลกรัม";
                 if (stockNo.equals("1")){
                     WarehouseSeed item = new WarehouseSeed(quantity,"",
                             0,name,
@@ -140,7 +120,6 @@ public class PopUpPickController implements Initializable{
         }finally {
             System.out.println("idProductCombo = " + idProductCombo.getItems());
             amountField.clear();
-            unitCombo.getItems().clear();
         }
 
     }

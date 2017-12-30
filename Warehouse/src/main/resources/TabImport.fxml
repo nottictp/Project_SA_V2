@@ -44,10 +44,9 @@
             <TableColumn fx:id="orderColumn" prefWidth="75.0" style="-fx-alignment: CENTER-RIGHT;" text="ลำดับ" />
             <TableColumn fx:id="idColumn" prefWidth="75.0" style="-fx-alignment: CENTER-RIGHT;" text="รหัส" />
             <TableColumn fx:id="nameProductColumn" prefWidth="223.0" style="-fx-alignment: CENTER_LEFT;" text="รายชื่อสินค้า" />
-            <TableColumn fx:id="unitColumn" prefWidth="87.0" style="-fx-alignment: CENTER_LEFT;" text="หน่วย" />
-            <TableColumn fx:id="amountColumn" minWidth="0.0" prefWidth="72.0" style="-fx-alignment: CENTER-RIGHT;" text="จำนวน" />
-            <TableColumn fx:id="stockColumn" prefWidth="78.0" style="-fx-alignment: CENTER-RIGHT;" text="เลขที่คลัง" />
-            <TableColumn fx:id="shelfColumn" prefWidth="108.0" style="-fx-alignment: CENTER_LEFT;" text="ที่เก็บ" />
+            <TableColumn fx:id="amountColumn" minWidth="0.0" prefWidth="135.0" style="-fx-alignment: CENTER-RIGHT;" text="จำนวน(กิโลกรัม)" />
+            <TableColumn fx:id="stockColumn" prefWidth="101.0" style="-fx-alignment: CENTER-RIGHT;" text="เลขที่คลัง" />
+            <TableColumn fx:id="shelfColumn" prefWidth="109.0" style="-fx-alignment: CENTER_LEFT;" text="ที่เก็บ" />
          </columns>
       </TableView>
       <Button fx:id="addBtn" layoutX="31.0" layoutY="495.0" mnemonicParsing="false" onAction="#handlerBtnAdd" text="เพิ่ม" />

@@ -76,7 +76,6 @@ public class TabExposeView extends AnchorPane implements Initializable {
         });
         nameProductColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("name"));
         amountColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("quantity"));
-        unitColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("unit"));
         stockColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Warehouse,String>, ObservableValue<String>>() {
             @Override
             public ObservableValue call(TableColumn.CellDataFeatures<Warehouse,String> param) {

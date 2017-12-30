@@ -44,9 +44,8 @@
             <TableColumn fx:id="orderColumn" prefWidth="75.0" text="ลำดับ" />
             <TableColumn fx:id="idColumn" prefWidth="75.0" text="รหัส" />
             <TableColumn fx:id="nameProductColumn" prefWidth="223.0" text="รายชื่อสินค้า" />
-            <TableColumn fx:id="unitColumn" prefWidth="87.0" text="หน่วย" />
-            <TableColumn fx:id="amountColumn" minWidth="0.0" prefWidth="72.0" text="จำนวน" />
-            <TableColumn fx:id="stockColumn" prefWidth="78.0" text="เลขที่คลัง" />
+            <TableColumn fx:id="amountColumn" minWidth="0.0" prefWidth="130.0" text="จำนวน(กิโลกรัม)" />
+            <TableColumn fx:id="stockColumn" prefWidth="107.0" text="เลขที่คลัง" />
          </columns>
       </TableView>
       <Button fx:id="addBtn" layoutX="31.0" layoutY="495.0" mnemonicParsing="false" onAction="#handlerBtnAdd" text="เพิ่ม" />

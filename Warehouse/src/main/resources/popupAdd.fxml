@@ -14,7 +14,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="53.0" layoutY="165.0" text="จำนวน">
+      <Label layoutX="34.0" layoutY="166.0" text="จำนวน(กิโลกรัม)">
          <font>
             <Font size="17.0" />
          </font>
@@ -30,14 +30,13 @@
          </font>
       </Label>
       <TextField fx:id="shelfField" layoutX="155.0" layoutY="206.0" />
-      <ComboBox fx:id="unitCombo" layoutX="281.0" layoutY="163.0" prefHeight="31.0" prefWidth="98.0" promptText="Unit" />
       <Button fx:id="addBtn" layoutX="112.0" layoutY="261.0" mnemonicParsing="false" onAction="#handlerBtnAdd" text="เพิ่ม" />
       <Button fx:id="cancelBtn" layoutX="216.0" layoutY="261.0" mnemonicParsing="false" onAction="#handlerBtnCancel" text="ยกเลิก" />
       <Label alignment="CENTER" layoutY="7.0" prefHeight="31.0" prefWidth="400.0" text="เพื่มสินค้าเข้าคลัง">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <TextField fx:id="amountField" layoutX="158.0" layoutY="163.0" prefHeight="31.0" prefWidth="116.0" />
+      <TextField fx:id="amountField" layoutX="155.0" layoutY="164.0" prefHeight="31.0" prefWidth="150.0" />
       <ComboBox fx:id="idProductCombo" layoutX="155.0" layoutY="116.0" prefWidth="150.0" />
       <ComboBox fx:id="stockCombo" layoutX="155.0" layoutY="67.0" onAction="#onClickStockNo" prefWidth="150.0" />
       <Label fx:id="errorMsg" alignment="BOTTOM_LEFT" layoutX="155.0" layoutY="234.0" prefHeight="18.0" prefWidth="193.0" textFill="RED">
