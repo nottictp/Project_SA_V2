@@ -78,6 +78,7 @@ public class PopUpAddController implements Initializable {
                 id = idName[0];
                 name = idName[1];
                 //unit = String.valueOf(unitCombo.getValue());
+                unit = "กิโลกรัม";
                 shelf = shelfField.getText();
 
                 if (stockNo.equals("1")){
