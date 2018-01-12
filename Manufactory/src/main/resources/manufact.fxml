@@ -6,12 +6,11 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="359.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.ManufactoryController">
+<AnchorPane prefHeight="359.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.ManufactoryController">
    <children>
-      <TableView layoutX="8.0" layoutY="81.0" prefHeight="233.0" prefWidth="758.0">
+      <TableView layoutX="43.0" layoutY="79.0" prefHeight="233.0" prefWidth="672.0">
         <columns>
           <TableColumn fx:id="noCol" prefWidth="42.0" text="ลำดับ" />
-          <TableColumn fx:id="ordersCol" prefWidth="86.0" text="เลขที่ใบสั่งผลิต" />
             <TableColumn fx:id="idCol" prefWidth="66.0" text="รหัสสินค้า" />
             <TableColumn fx:id="nameCol" prefWidth="211.0" text="ชื่อสินค้า" />
             <TableColumn fx:id="unitCol" prefWidth="49.0" text="หน่วย" />
@@ -20,10 +19,10 @@
             <TableColumn fx:id="statusCol" minWidth="0.0" prefWidth="84.0" text="สถานะ" />
         </columns>
       </TableView>
-      <Button fx:id="distributedBtn" layoutX="343.0" layoutY="323.0" mnemonicParsing="false" text="กระจายการผลิต" />
-      <Label fx:id="date" layoutX="655.0" layoutY="14.0" prefHeight="17.0" prefWidth="105.0" text="วันที่" />
+      <Button fx:id="distributedBtn" layoutX="290.0" layoutY="320.0" mnemonicParsing="false" text="กระจายการผลิต" />
+      <Label fx:id="date" layoutX="655.0" layoutY="14.0" prefHeight="17.0" prefWidth="24.0" text="วันที่" />
       <Label fx:id="listTable" layoutX="14.0" layoutY="54.0" prefHeight="17.0" prefWidth="127.0" text="รายการการผลิต" />
-      <Button fx:id="saveBtn" layoutX="451.0" layoutY="323.0" mnemonicParsing="false" text="บันทึกผลการผลิต" />
-      <Button fx:id="backBtn" layoutX="219.0" layoutY="323.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="ย้อนกลับ" />
+      <Button fx:id="saveBtn" layoutX="393.0" layoutY="320.0" mnemonicParsing="false" text="บันทึกผลการผลิต" />
+      <Label fx:id="localDate" layoutX="679.0" layoutY="14.0" prefHeight="17.0" prefWidth="79.0" text="Label" />
    </children>
 </AnchorPane>

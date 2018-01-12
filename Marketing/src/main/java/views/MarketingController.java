@@ -3,25 +3,35 @@ package views;
 import controllers.MainController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import models.DataToMarketing;
 import models.MarketingInfo;
 import models.Warehouse;
 import models.WarehouseProduct;
 
+import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class MarketingController implements Initializable {
+
     @FXML private ComboBox typeCombo;
     @FXML private ComboBox unitCombo;
     @FXML private TextField amountField;
     @FXML private Button submitOrderBtn;
+    @FXML private Label errorMsg;
+
+
 
     Set set = new HashSet();
 
@@ -53,10 +63,15 @@ public class MarketingController implements Initializable {
         product2 = new HashMap<>();
         product3 = new HashMap<>();
         nameIdQuan = new ArrayList<>();
+
+
+
+
     }
 
     public void setController(MainController controller) {
         this.controller = controller;
+        System.out.println("typeCombo = " + typeCombo);
         if (typeCombo != null){
             typeCombo.setItems(comboBoxData());
             unitCombo.setItems(units);
@@ -103,11 +118,16 @@ public class MarketingController implements Initializable {
                 checkAmountOfSeed(id);
             }else{
                 System.out.println("ตรวจสอบข้อมูลอีกครั้ง");
+                errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
             }
         }catch (NullPointerException e){
-            System.out.println("กรุณากรอกข้อมูลให้ครบถ้วน");
+            System.out.println("NullPointerException");
+            errorMsg.setText("กรุณากรอกข้อมูลให้ครบถ้วน");
         }catch (NumberFormatException e){
-            System.out.println("ตรวจสอบข้อมูลอีกครั้ง");
+            System.out.println("NumberFormatException");
+            errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
+        }catch (Exception e){
+            errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
         }
     }
 
@@ -170,6 +190,8 @@ public class MarketingController implements Initializable {
             System.out.println("It need "+(totalMother-checkMother)*(-1));
         }
     }
+
+
 
     public String getId() {
         return id;

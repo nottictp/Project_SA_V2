@@ -1,11 +1,12 @@
+package entry;
+
 import controllers.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import views.MarketingCenter;
 import views.MarketingController;
 
 public class MainMarketing extends Application{
@@ -15,12 +16,12 @@ public class MainMarketing extends Application{
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/marketing.fxml"));
         AnchorPane mainLayout = loader.load();
-        MarketingController marketingController = loader.getController();
-        marketingController.setController(controller);
+        MarketingCenter marketingCenter = loader.getController();
+        marketingCenter.setController(controller);
 
 
         primaryStage.setTitle("Marketing");
-        primaryStage.setScene(new Scene(mainLayout, 400, 300));
+        primaryStage.setScene(new Scene(mainLayout, 650, 312));
         primaryStage.show();
     }
 

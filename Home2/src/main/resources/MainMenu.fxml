@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="307.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.views.HomeView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="307.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.HomeView">
    <children>
       <Label fx:id="date" layoutX="474.0" layoutY="14.0" prefHeight="17.0" prefWidth="113.0" text="วันที่" />
       <Label fx:id="nameCompany" layoutX="29.0" layoutY="38.0" prefHeight="17.0" prefWidth="157.0" text="ชื่อบริษัท" />

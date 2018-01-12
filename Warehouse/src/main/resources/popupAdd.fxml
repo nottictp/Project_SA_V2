@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.PopUpAddController">
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.PopUpAddController">
    <children>
-      <Label layoutX="58.0" layoutY="118.0" text="รหัส">
+      <Label layoutX="58.0" layoutY="113.0" text="รหัส">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="34.0" layoutY="166.0" text="จำนวน(กิโลกรัม)">
+      <Label layoutX="34.0" layoutY="156.0" text="จำนวน (กิโลกรัม)">
          <font>
             <Font size="17.0" />
          </font>
@@ -24,22 +24,22 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="54.0" layoutY="208.0" text="ที่เก็บ">
+      <Label layoutX="56.0" layoutY="202.0" text="ที่เก็บ">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <TextField fx:id="shelfField" layoutX="155.0" layoutY="206.0" />
-      <Button fx:id="addBtn" layoutX="112.0" layoutY="261.0" mnemonicParsing="false" onAction="#handlerBtnAdd" text="เพิ่ม" />
-      <Button fx:id="cancelBtn" layoutX="216.0" layoutY="261.0" mnemonicParsing="false" onAction="#handlerBtnCancel" text="ยกเลิก" />
-      <Label alignment="CENTER" layoutY="7.0" prefHeight="31.0" prefWidth="400.0" text="เพื่มสินค้าเข้าคลัง">
+      <TextField fx:id="shelfField" layoutX="155.0" layoutY="200.0" prefHeight="31.0" prefWidth="149.0" />
+      <Button fx:id="addBtn" layoutX="125.0" layoutY="261.0" mnemonicParsing="false" onAction="#handlerBtnAdd" text="เพิ่ม" />
+      <Button fx:id="cancelBtn" layoutX="229.0" layoutY="261.0" mnemonicParsing="false" onAction="#handlerBtnCancel" text="ยกเลิก" />
+      <Label alignment="CENTER" layoutY="14.0" prefHeight="31.0" prefWidth="400.0" text="เพื่มสินค้าเข้าคลัง">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font></Label>
-      <TextField fx:id="amountField" layoutX="155.0" layoutY="164.0" prefHeight="31.0" prefWidth="150.0" />
-      <ComboBox fx:id="idProductCombo" layoutX="155.0" layoutY="116.0" prefWidth="150.0" />
+      <TextField fx:id="amountField" layoutX="155.0" layoutY="154.0" prefHeight="31.0" prefWidth="150.0" />
+      <ComboBox fx:id="idProductCombo" layoutX="155.0" layoutY="111.0" prefWidth="150.0" />
       <ComboBox fx:id="stockCombo" layoutX="155.0" layoutY="67.0" onAction="#onClickStockNo" prefWidth="150.0" />
-      <Label fx:id="errorMsg" alignment="BOTTOM_LEFT" layoutX="155.0" layoutY="234.0" prefHeight="18.0" prefWidth="193.0" textFill="RED">
+      <Label fx:id="errorMsg" alignment="BOTTOM_LEFT" layoutX="112.0" layoutY="231.0" prefHeight="18.0" prefWidth="193.0" textFill="RED">
          <font>
             <Font size="14.0" />
          </font>

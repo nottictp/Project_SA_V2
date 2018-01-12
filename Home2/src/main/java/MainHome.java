@@ -1,12 +1,10 @@
-package main.java;
-
+import controllers.MainHomeController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import main.java.controllers.MainHomeController;
-import main.java.views.HomeView;
+import views.HomeView;
 
 import java.time.LocalDate;
 
@@ -16,7 +14,7 @@ public class MainHome extends Application {
     public void start(Stage primaryStage) throws Exception {
         controller = new MainHomeController();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../resources/MainMenu.fxml"));
+        loader.setLocation(getClass().getResource("/MainMenu.fxml"));
         AnchorPane mainLayout = loader.load();
         HomeView homeView = loader.getController();
         homeView.setController(controller);

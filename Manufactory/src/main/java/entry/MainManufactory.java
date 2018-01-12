@@ -1,3 +1,5 @@
+package entry;
+
 import controllers.MainManufactoryController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +20,7 @@ public class MainManufactory extends Application{
         manufactoryController.setController(controller);
 
         primaryStage.setTitle("Manufactory");
-        primaryStage.setScene(new Scene(mainLayout, 774, 582));
+        primaryStage.setScene(new Scene(mainLayout, 774, 359));
         primaryStage.show();
     }
 

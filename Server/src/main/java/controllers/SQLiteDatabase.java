@@ -579,7 +579,6 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
     }
 
 
-    @Override
     public void insertIdFarmer(List<Farmer> farmers, Seed seed, int quantity) {
         Connection connection = null;
         try{
@@ -610,7 +609,6 @@ public class SQLiteDatabase implements WarehouseManagerDB, ManufactorManagerDB, 
         }
     }
 
-    @Override
     public List<Integer> getLotIdNotQuantity() {
         List<Integer> lotIds = new ArrayList<>();
         Connection connection = null;

@@ -59,6 +59,7 @@ public class TabDistributed extends AnchorPane implements Initializable {
         initColumn();
         unitCombo.setItems(units);
         unitCombo.setValue("เมล็ด");
+        datePicker.setValue(LocalDate.now());
         lotIds = new ArrayList<>();
         printDistributedController = PrintDistributedController.getInstant();
     }
@@ -105,7 +106,6 @@ public class TabDistributed extends AnchorPane implements Initializable {
 
     public void setController(MainManufactoryController controller){
         this.controller = controller;
-
         List<Seed> seeds = controller.getSeed();
         System.out.println("seeds = " + seeds);
         typeCombo.getItems().addAll(seeds);
@@ -171,7 +171,7 @@ public class TabDistributed extends AnchorPane implements Initializable {
         farmers.clear();
         initData(farmers);
 
-        tabSave.initCombo();
+       // tabSave.initCombo();
     }
 
     public double getArea() {

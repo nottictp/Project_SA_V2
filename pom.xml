@@ -14,6 +14,7 @@
         <module>Manufactory</module>
         <module>Marketing</module>
         <module>Server</module>
+        <module>Home2</module>
     </modules>
     <dependencies>
         <dependency>

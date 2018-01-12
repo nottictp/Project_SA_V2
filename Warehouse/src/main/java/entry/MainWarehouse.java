@@ -1,3 +1,5 @@
+package entry;
+
 import controllers.MainWarehouseController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +20,7 @@ public class MainWarehouse extends Application{
         warehouseController.setController(controller);
 
         primaryStage.setTitle("Warehouse");
-        primaryStage.setScene(new Scene(mainLayout, 774, 582));
+        primaryStage.setScene(new Scene(mainLayout, 774, 540));
         primaryStage.show();
     }
 

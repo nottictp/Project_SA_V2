@@ -144,6 +144,7 @@ public class TabSaveManufacture  implements Initializable {
 
     public void setController(MainManufactoryController mainController) {
         this.controller = mainController;
+        initCombo();
         onDoubleClickDriver();
 
     }

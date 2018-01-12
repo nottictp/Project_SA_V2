@@ -1,62 +1,92 @@
 package views;
 
 import controllers.MainManufactoryController;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class ManufactoryController implements Initializable{
-    public Tab distributedTab;
-    public Tab saveManufactureTab;
-    public TabDistributed tabDistributed;
-    public TabSaveManufacture tabSaveManufacture;
+    @FXML public Button distributedBtn;
+    @FXML public Button saveBtn;
+    @FXML public Label localDate;
+
+    TabDistributed tabDistributed;
+    TabSaveManufacture tabSaveManufacture;
 
     private MainManufactoryController controller;
 
     public void initialize(URL location, ResourceBundle resources) {
+        LocalDate localdate = LocalDate.now();//For reference
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedString = localdate.format(formatter);
+
+        localDate.setText(formattedString);
 
     }
-    public void TabDistributed(){
+
+    public void showDistributed() {
         try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/TabDistributed.fxml"));
-            Pane tab = loader.load();
-            distributedTab.setContent(tab);
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/TabDistributed.fxml"));
+            Pane distributed = loader.load();
             tabDistributed = loader.getController();
-            if (controller != null)
-                tabDistributed.setController(controller);
-        } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("controller = " + controller);
+            tabDistributed.setController(controller);
+            Scene scene = new Scene(distributed);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.setTitle("การกระจายการผลิต");
+            stage.showAndWait();
+        } catch (IOException e1) {
+            e1.printStackTrace();
         }
-
     }
 
-    public void TabSaveManufacture(){
+    public void showSaveManufacture(){
         try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/TabSaveManufacture.fxml"));
-            Pane tab = loader.load();
-            saveManufactureTab.setContent(tab);
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/TabSaveManufacture.fxml"));
+            Pane saveManu = loader.load();
             tabSaveManufacture = loader.getController();
-            if (controller != null)
-                tabSaveManufacture.setController(controller);
-        } catch (IOException e) {
-            e.printStackTrace();
+            tabSaveManufacture.setController(controller);
+            Scene scene = new Scene(saveManu);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.setTitle("บันทึกผลการผลิต");
+            stage.showAndWait();
+        } catch (IOException e1) {
+            e1.printStackTrace();
         }
-
     }
 
     public void setController(MainManufactoryController controller) {
         this.controller = controller;
-        TabDistributed();
-        TabSaveManufacture();
-        tabDistributed.setTabSaveManufacture(tabSaveManufacture);
+        System.out.println("controller = " + controller);
 
+        distributedBtn.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+            @Override
+            public void handle(javafx.event.ActionEvent event) {
+                showDistributed();
+            }
+        });
+
+        saveBtn.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+            @Override
+            public void handle(javafx.event.ActionEvent event) {
+                showSaveManufacture();
+            }
+        });
     }
 }

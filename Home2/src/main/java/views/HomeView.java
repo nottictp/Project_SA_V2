@@ -1,5 +1,8 @@
-package main.java.views;
+package views;
 
+import entry.MainManufactory;
+import entry.MainMarketing;
+import entry.MainWarehouse;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,7 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import main.java.controllers.MainHomeController;
+import controllers.MainHomeController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -38,42 +41,57 @@ public class HomeView implements Initializable {
     @FXML
     public void onClickMarketBtn() throws IOException {
         System.out.println("Marketing Click");
+//        try {
+//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Marketing/src/marketing.fxml"));
+//            Parent root1 = (Parent) fxmlLoader.load();
+//            Stage stage = new Stage();
+//            stage.setScene(new Scene(root1));
+//            stage.show();
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//        }
+
+        Stage stage = new Stage();
+        MainMarketing marketing = new MainMarketing();
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Marketing/src/marketing.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
-        } catch(Exception e) {
+            marketing.start(stage);
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @FXML
     public void onClickWarehouseBtn(){
         System.out.println("Warehouse Click");
+//        try {
+//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("warehouse.fxml"));
+//            Parent root1 = (Parent) fxmlLoader.load();
+//            Stage stage = new Stage();
+//            stage.setScene(new Scene(root1));
+//            stage.show();
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//        }
+        Stage stage = new Stage();
+        MainWarehouse warehouse = new MainWarehouse();
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("warehouse.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
-        } catch(Exception e) {
+            warehouse.start(stage);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @FXML
+    @
+       FXML
     public void onClickManufactureBtn(){
-        System.out.println("Manufacture Click");
+
+   System.out.println("Manufacture Click");
+
+   Stage stage = new Stage();
+   MainManufactory manufactory = new MainManufactory();
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("manufact.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
-        } catch(Exception e) {
+            manufactory.start(stage);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

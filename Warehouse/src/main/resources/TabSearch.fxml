@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.TabSearchView">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.TabSearchView">
    <children>
       <Label layoutX="25.0" layoutY="27.0" text="ค้นหาจาก">
          <font>
@@ -36,6 +36,6 @@
             <TableColumn fx:id="senderColumn" prefWidth="205.0" text="รับจาก" />
          </columns>
       </TableView>
-      <Button fx:id="printBtn" layoutX="32.0" layoutY="492.0" mnemonicParsing="false" onAction="#handlerBtnPrint" text="พิมพ์เอกสาร" />
+      <Button fx:id="printBtn" layoutX="342.0" layoutY="478.0" mnemonicParsing="false" onAction="#handlerBtnPrint" prefWidth="90.0" text="พิมพ์เอกสาร" />
    </children>
 </AnchorPane>

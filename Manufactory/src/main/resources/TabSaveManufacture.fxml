@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="582.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.TabSaveManufacture">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="528.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.TabSaveManufacture">
    <children>
       <Label layoutX="75.0" layoutY="21.0" text="Lot No.">
          <font>
@@ -23,7 +23,7 @@
          </font>
       </Label>
       <ComboBox fx:id="recorderCombo" layoutX="494.0" layoutY="19.0" prefHeight="31.0" prefWidth="229.0" />
-      <TableView fx:id="dataTable" layoutX="75.0" layoutY="158.0" prefHeight="320.0" prefWidth="634.0">
+      <TableView fx:id="dataTable" layoutX="75.0" layoutY="158.0" prefHeight="320.0" prefWidth="609.0">
          <columns>
             <TableColumn fx:id="orderColumn" prefWidth="87.0" style="-fx-alignment: CENTER_RIGHT;" text="ลำดับ" />
             <TableColumn fx:id="idColumn" prefWidth="60.0" style="-fx-alignment: CENTER_RIGHT;" text="ID" />
