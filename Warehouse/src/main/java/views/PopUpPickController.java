@@ -50,6 +50,8 @@ public class PopUpPickController implements Initializable{
     String stockNo, id, name, unit;
     String[] idName, checkProduct;
     int quantity;
+    int quatitySeedInStore;
+    int quantityProductInStore;
     int order=1;
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -64,7 +66,10 @@ public class PopUpPickController implements Initializable{
         if(String.valueOf(stockCombo.getValue()).startsWith("1")){
 
             for (Warehouse warehouseSeed: controller.getWarehouseSeed()) {
-                String id = ((WarehouseSeed)warehouseSeed).getSeedId()+" : "+warehouseSeed.getName();
+                String id = ((WarehouseSeed)warehouseSeed).getSeedId()
+                        +" : "+warehouseSeed.getName()
+                        +" : "+warehouseSeed.getQuantity()
+                        +" กิโลกรัม";
                 setA.add(id);
             }
             seedId = FXCollections.observableArrayList(setA);
@@ -72,7 +77,10 @@ public class PopUpPickController implements Initializable{
 
         }else{
             for (Warehouse warehouseProduct: controller.getWarehouseProduct()) {
-                String id = ((WarehouseProduct)warehouseProduct).getProductId()+" : "+warehouseProduct.getName();
+                String id = ((WarehouseProduct)warehouseProduct).getProductId()
+                        +" : "+warehouseProduct.getName()
+                        +" : "+warehouseProduct.getQuantity()
+                        +" "+warehouseProduct.getUnit();
                 setB.add(id);
             }
             productId = FXCollections.observableArrayList(setB);
@@ -90,7 +98,6 @@ public class PopUpPickController implements Initializable{
                 idName = String.valueOf(idProductCombo.getValue()).split(" : ");
                 id = idName[0];
                 name = idName[1];
-                //unit = String.valueOf(unitCombo.getValue());
                 unit = "กิโลกรัม";
                 if (stockNo.equals("1")){
                     WarehouseSeed item = new WarehouseSeed(quantity,"",

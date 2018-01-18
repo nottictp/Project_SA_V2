@@ -116,7 +116,6 @@ public class TabSearchView extends AnchorPane implements Initializable {
         recorderColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("recorder"));
         shelfColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("shelf"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("name"));
-        capacityColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("capacity"));
         amountColumn.setCellValueFactory(new PropertyValueFactory<Warehouse,String>("quantity"));
     }
 
@@ -126,7 +125,6 @@ public class TabSearchView extends AnchorPane implements Initializable {
     }
     public void setController(MainWarehouseController controller) {
         this.controller = controller;
-
     }
 
 }

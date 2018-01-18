@@ -50,7 +50,7 @@
       </TableView>
       <Button fx:id="addBtn" layoutX="262.0" layoutY="482.0" mnemonicParsing="false" onAction="#handlerBtnAdd" text="เพิ่ม" />
       <Button fx:id="removeBtn" layoutX="318.0" layoutY="482.0" mnemonicParsing="false" onAction="#handlerBtnRemove" text="ลบ" />
-      <Button fx:id="saveBtn" layoutX="370.0" layoutY="482.0" mnemonicParsing="false" onAction="#handlerBtnEdit" text="บันทึก" />
+      <Button fx:id="saveBtn" layoutX="370.0" layoutY="482.0" mnemonicParsing="false" onAction="#handlerBtnSave" text="บันทึก" />
       <Button fx:id="cancelBtn" layoutX="435.0" layoutY="482.0" mnemonicParsing="false" onAction="#handlerBtnCancel" text="ยกเลิก" />
       <TextField fx:id="recorderField" layoutX="208.0" layoutY="95.0" prefHeight="31.0" prefWidth="190.0" />
       <TextField fx:id="recipientField" layoutX="208.0" layoutY="134.0" prefHeight="31.0" prefWidth="190.0" />

@@ -26,13 +26,12 @@
       </Label>
       <TableView layoutX="22.0" layoutY="61.0" prefHeight="200.0" prefWidth="606.0">
         <columns>
-          <TableColumn fx:id="orderCol" prefWidth="52.0" text="ลำดับ" />
-          <TableColumn fx:id="ordersCol" prefWidth="119.0" text="เลขที่ใบสั่งผลิต" />
-            <TableColumn fx:id="idCol" prefWidth="98.0" text="รหัสเมล็ดพันธุ์" />
-            <TableColumn fx:id="nameCol" prefWidth="147.0" text="ชื่อเมล็ดพันธุ์" />
-            <TableColumn fx:id="unitCol" prefWidth="58.0" text="หน่วย" />
-            <TableColumn fx:id="quantityCol" prefWidth="49.0" text="จำนวน" />
-            <TableColumn fx:id="statusCol" prefWidth="82.0" text="สถานะ" />
+          <TableColumn fx:id="orderCol" prefWidth="60.0" text="ลำดับ" />
+          <TableColumn fx:id="ordersCol" prefWidth="97.0" text="เลขที่ใบสั่งผลิต" />
+            <TableColumn fx:id="idCol" prefWidth="108.0" text="รหัสเมล็ดพันธุ์" />
+            <TableColumn fx:id="nameCol" prefWidth="218.0" text="ชื่อเมล็ดพันธุ์" />
+            <TableColumn fx:id="unitCol" prefWidth="56.0" text="หน่วย" />
+            <TableColumn fx:id="quantityCol" prefWidth="66.0" text="จำนวน" />
         </columns>
       </TableView>
       <Button fx:id="orderBtn" layoutX="552.0" layoutY="273.0" mnemonicParsing="false" onAction="#showOrderPopup" prefHeight="25.0" prefWidth="76.0" text="สั่งผลิต" />

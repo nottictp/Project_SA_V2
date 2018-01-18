@@ -69,7 +69,7 @@ public class WarehouseController implements Initializable{
         try {
             System.out.println("on initTsb");
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/Tabsearch.fxml"));
+            loader.setLocation(getClass().getResource("/TabSearch.fxml"));
             Pane tab = loader.load();
             searchTab.setContent(tab);
             tabSearchView = loader.getController();

@@ -53,6 +53,7 @@ public class TabExposeView extends AnchorPane implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initColumn();
+        docDate.setValue(LocalDate.now());
         wh = new ArrayList<Warehouse>();
     }
 
@@ -90,6 +91,7 @@ public class TabExposeView extends AnchorPane implements Initializable {
 
     @FXML
     public void handlerBtnAdd(ActionEvent event) throws IOException {
+        System.out.println("Add");
         Stage secondaryStage = new Stage();
         controller = new MainWarehouseController();
         FXMLLoader loader = new FXMLLoader();
@@ -106,12 +108,13 @@ public class TabExposeView extends AnchorPane implements Initializable {
 
     @FXML
     public void handlerBtnRemove(ActionEvent event) throws IOException {
+        System.out.println("Remove");
         Warehouse warehouse = (Warehouse) exposeTable.getSelectionModel().getSelectedItem();
         if (warehouse!=null){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("ยืนยันการลบข้อมูล");
             alert.setHeaderText("ยืนยันการลบข้อมูล");
-            String show = "ลำดับที่ "+(wh.indexOf(warehouse)+1)+" รายการ : "+warehouse.getName();
+            String show = "ลำดับที่ "+(wh.indexOf(warehouse)+1)+" : "+warehouse.getName();
             alert.setContentText(show);
             Optional<ButtonType> result = alert.showAndWait();
             if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
@@ -124,6 +127,7 @@ public class TabExposeView extends AnchorPane implements Initializable {
 
     @FXML
     public void handlerBtnCancel(ActionEvent event) throws IOException {
+        System.out.println("Cancel");
         wh.clear();
         docDate.setValue(LocalDate.now());
         recorderField.clear();
@@ -133,46 +137,8 @@ public class TabExposeView extends AnchorPane implements Initializable {
         initData();
     }
 
-//    @FXML
-//    public void handlerBtnEdit(ActionEvent event) throws IOException {
-//        System.out.println("wh = " + wh);
-//        for (Warehouse w : wh) {
-//            if(w.getType() == 1){
-//                //warehouse seed
-//                System.out.println("---seed---");
-//
-//                String date = docDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yy", Locale.ENGLISH));
-//                System.out.println(((WarehouseSeed) w).getSeedId());
-//                WarehouseSeed seed = new WarehouseSeed(w.getQuantity(),w.getShelf()
-//                        ,Integer.parseInt(docNo.getText()),w.getName(),w.getUnit()
-//                        ,date,recorderField.getText(),recipientField.getText()
-//                        ,"",1, ((WarehouseSeed) w).getSeedId());
-//                controller.updateWarehouseSeed(seed);
-//            }else if(w.getType() == 2){
-//                //warehouse product
-//                System.out.println("---product---");
-//                String date = docDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yy", Locale.ENGLISH));
-//                WarehouseProduct product = new WarehouseProduct(w.getQuantity(),w.getShelf()
-//                        ,Integer.parseInt(docNo.getText()),w.getName(),w.getUnit()
-//                        ,date,recorderField.getText(),recipientField.getText()
-//                        ,"",2, ((WarehouseProduct) w).getProductId(),0);
-//
-//                controller.updateWarehouseProduct(product);
-//
-//                wh.clear();
-//                docDate.setValue(LocalDate.now());
-//                recorderField.clear();
-//                recipientField.clear();
-//                departmentCombo.getItems().clear();
-//                note.clear();
-//                docNo.clear();
-//                initData();
-//            }
-//        }
-//    }
-
     @FXML
-    public void handlerBtnEdit(ActionEvent event) throws IOException {
+    public void handlerBtnSave(ActionEvent event) throws IOException {
         for (Warehouse w : wh) {
             if(w.getType() == 1){
                 //warehouse seed

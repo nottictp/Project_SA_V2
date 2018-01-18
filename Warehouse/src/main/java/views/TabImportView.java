@@ -58,6 +58,7 @@ public class TabImportView extends AnchorPane implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initColumn();
+        docDate.setValue(LocalDate.now());
         wh = new ArrayList<Warehouse>();
         whSeed = new ArrayList<WarehouseSeed>();
         whProduct = new ArrayList<WarehouseProduct>();
@@ -86,7 +87,7 @@ public class TabImportView extends AnchorPane implements Initializable {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("ยืนยันการลบข้อมูล");
             alert.setHeaderText("ยืนยันการลบข้อมูล");
-            String show = "ลำดับที่ "+(wh.indexOf(warehouse)+1)+" รายการ : "+warehouse.getName();
+            String show = "ลำดับที่ "+(wh.indexOf(warehouse)+1)+" : "+warehouse.getName();
             alert.setContentText(show);
             Optional<ButtonType> result = alert.showAndWait();
             if ((result.isPresent()) && (result.get() == ButtonType.OK)) {

@@ -27,13 +27,12 @@
             <TableColumn fx:id="docNoColumn" prefWidth="91.0" text="เลขที่เอกสาร" />
             <TableColumn fx:id="idColumn" prefWidth="59.0" text="รหัส" />
             <TableColumn fx:id="shelfColumn" prefWidth="75.0" text="ที่เก็บ" />
-            <TableColumn fx:id="nameColumn" prefWidth="205.0" text="ชื่อ" />
-            <TableColumn fx:id="capacityColumn" prefWidth="93.0" text="ขนาดบรรจุ" />
+            <TableColumn fx:id="nameColumn" prefWidth="180.0" text="ชื่อ" />
             <TableColumn fx:id="unitColumn" prefWidth="75.0" text="หน่วย" />
             <TableColumn fx:id="amountColumn" prefWidth="75.0" text="จำนวน" />
-            <TableColumn fx:id="recorderColumn" prefWidth="205.0" text="ผู้บักทึก" />
-            <TableColumn fx:id="recipientColumn" prefWidth="205.0" text="ผู้รับ" />
-            <TableColumn fx:id="senderColumn" prefWidth="205.0" text="รับจาก" />
+            <TableColumn fx:id="recorderColumn" prefWidth="100.0" text="ผู้บักทึก" />
+            <TableColumn fx:id="recipientColumn" prefWidth="100.0" text="ผู้รับ" />
+            <TableColumn fx:id="senderColumn" prefWidth="100.0" text="รับจาก" />
          </columns>
       </TableView>
       <Button fx:id="printBtn" layoutX="342.0" layoutY="478.0" mnemonicParsing="false" onAction="#handlerBtnPrint" prefWidth="90.0" text="พิมพ์เอกสาร" />
