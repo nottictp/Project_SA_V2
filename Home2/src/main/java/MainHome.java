@@ -22,7 +22,7 @@ public class MainHome extends Application {
         homeView.getNameCompany().setText("บริษัท ทีเอสเอ จำกัด");
         homeView.getAddressCompany().setText("1/1 พหลโยธิน 40 แขวงเสนานิคม เขตจตุจักร กรุงเทพมหานคร 10900");
 
-        primaryStage.setTitle("Home");
+        primaryStage.setTitle("หน้าหลัก");
         primaryStage.setScene(new Scene(mainLayout, 600, 307));
         primaryStage.show();
     }

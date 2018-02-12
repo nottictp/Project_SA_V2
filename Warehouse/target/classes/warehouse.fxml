@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.WarehouseController">
+    <children>
+        <TabPane prefHeight="540.0" prefWidth="774.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="100.0">
+            <tabs>
+                <Tab fx:id="searchTab" text="ค้นหา" />
+                <Tab fx:id="importTab" text="รับเข้า" />
+                <Tab fx:id="exposeTab" text="เบิกออก" />
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>

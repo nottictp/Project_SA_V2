@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import models.Producer;
 import models.SeedLot;
@@ -23,6 +24,7 @@ import java.io.Serializable;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class TabSaveManufacture  implements Initializable {
@@ -54,15 +56,19 @@ public class TabSaveManufacture  implements Initializable {
 
     private MainManufactoryController controller;
     private List<Producer> producers;
+    private LocalDate plantDay = LocalDate.now();
+    private LocalDate harvestDay = plantDay.plus(2, ChronoUnit.WEEKS);
+    private LocalDate expireDay = harvestDay.plus(6,ChronoUnit.MONTHS);
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initColumn();
-        expireDate.setValue(LocalDate.now());
-        plantDate.setValue(LocalDate.now());
-        harvestDate.setValue(LocalDate.now());
-        testDate.setValue(LocalDate.now());
+        expireDate.setValue(null);
+        plantDate.setValue(null);
+        harvestDate.setValue(null);
+        testDate.setValue(null);
+        setDatePicker();
     }
 
     public void onDoubleClickDriver() {
@@ -89,21 +95,26 @@ public class TabSaveManufacture  implements Initializable {
                 Optional<ButtonType> result = alert.showAndWait();
                 if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
                     boolean check = false;
-                    Double purchaseDouble = 0.0;
+                    int purchaseDouble = 0;
                     if (! purchase.getText().equals("")){
                         try {
-                            purchaseDouble = Double.parseDouble(purchase.getText());
+                            purchaseDouble = Integer.parseInt(purchase.getText());
                             check = true;
                         }catch (NumberFormatException e){
                             check = false;
                         }
                     }
 
-                    if (check){
+                    if (check && purchaseDouble>=0){
                     producer.setQualtity(purchaseDouble);
                     dataTable.refresh();
                     }else{
                         System.out.println("ผิด");
+                        Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                        alert2.setTitle("แสดงผล");
+                        alert2.setHeaderText(null);
+                        alert2.setContentText("ข้อมูลไม่ถูกต้อง");
+                        alert2.showAndWait();
                     }
                 }
             }
@@ -151,19 +162,144 @@ public class TabSaveManufacture  implements Initializable {
 
     @FXML
     public void onClickSaveBtn(ActionEvent event){
+        System.out.println("expireDate = " + expireDate.getValue());
+        System.out.println("testDate = " + testDate.getValue());
         String eDate = expireDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yy", Locale.ENGLISH));
         String pDate = plantDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yy", Locale.ENGLISH));
         String hDate = harvestDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yy", Locale.ENGLISH));
         String tDate = testDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yy", Locale.ENGLISH));
 
-        controller.insertSeedLot(producers, eDate, pDate, hDate, tDate);
+        try{
+            int count = 0;
+            for (Producer pro: producers) {
+                if (pro.getQualtity() < 0) {
+                    count++;
+                }
+            }if(count==0){
+                controller.insertSeedLot(producers, eDate, pDate, hDate, tDate);
+                //reset
+                dataTable.getItems().clear();
+                expireDate.setValue(null); //วันหมดอายุ1ปี++
+                plantDate.setValue(LocalDate.now()); //วันปลูก
+                harvestDate.setValue(null); //วันเก็บเกี่ยว>15วัน
+                testDate.setValue(null);///วันทดสอบ<วันเก็บเกี่ยว+15
+            }
+                else{
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("แสดงผล");
+                    alert.setHeaderText(null);
+                    alert.setContentText("ข้อมูลไม่ถูกต้อง");
+                    alert.showAndWait();
+                }
 
-        //reset
-        dataTable.getItems().clear();
-        expireDate.setValue(LocalDate.now());
-        plantDate.setValue(LocalDate.now());
-        harvestDate.setValue(LocalDate.now());
-        testDate.setValue(LocalDate.now());
+        }catch (NumberFormatException e){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("แสดงผล");
+            alert.setHeaderText(null);
+            alert.setContentText("ข้อมูลไม่ถูกต้อง");
+            alert.showAndWait();
+        }
+
+
+    }
+
+    public void setDatePicker(){
+        expireDate.setDayCellFactory(param -> new DateCell(){
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                setDisable(empty || item.isBefore(expireDay));
+            }
+        });
+        plantDate.setDayCellFactory(param -> new DateCell(){
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                setDisable(empty || item.isBefore(LocalDate.now()));
+            }
+        });
+        harvestDate.setDayCellFactory(param -> new DateCell(){
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                setDisable(empty || item.isBefore(harvestDay));
+            }
+        });
+        testDate.setDayCellFactory(param -> new DateCell(){
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                setDisable(empty || item.isBefore(harvestDay));
+            }
+        });
+    }
+
+    @FXML
+    public void onClickPlantDate(){
+        System.out.println("click");
+        System.out.println("getPlantDay() = " + getPlantDay());
+        LocalDate plantDay = plantDate.getValue();
+        harvestDate.setValue(plantDay.plus(2,ChronoUnit.WEEKS));
+        harvestDate.setDayCellFactory(param -> new DateCell(){
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                setDisable(empty || item.isBefore(plantDay.plus(2,ChronoUnit.WEEKS)));
+
+            }
+        }
+        );
+    }
+
+    @FXML
+    public void onClickHarvestDate(){
+        harvestDay = harvestDate.getValue();
+
+        System.out.println("expireDate = " + expireDate);
+        System.out.println("testDate = " + testDate);
+        testDate.setDayCellFactory(param -> new DateCell(){
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                setDisable(empty || item.isBefore(harvestDay) || item.isAfter(harvestDay.plus(1,ChronoUnit.WEEKS)));
+            }
+        });
+        expireDate.setDayCellFactory(param -> new DateCell(){
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                setDisable(empty || item.isBefore(harvestDay.plus(1,ChronoUnit.YEARS)));
+
+            }
+        });
+    }
+
+    @FXML
+    public void onClickTestDate(){
+        testDate.setDayCellFactory(param -> new DateCell(){
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                setDisable(empty || item.isBefore(harvestDay));
+            }
+        });
+    }
+
+    @FXML
+    public void onClickExpireDate(){
+        expireDate.setDayCellFactory(param -> new DateCell(){
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                setDisable(empty || item.isBefore(harvestDay));
+            }
+        });
+    }
+
+    @FXML
+    public void onClickCancelBtn(){
+        Stage stage = (Stage) cancelBtn.getScene().getWindow();
+        stage.close();
     }
 
     public void setLotNoCombo(ComboBox lotNoCombo) {
@@ -176,5 +312,29 @@ public class TabSaveManufacture  implements Initializable {
 
     public void initCombo(){
         lotNoCombo.getItems().addAll(controller.getLotIdNotQuantity());
+    }
+
+    public LocalDate getPlantDay() {
+        return plantDay;
+    }
+
+    public void setPlantDay(LocalDate plantDay) {
+        this.plantDay = plantDay;
+    }
+
+    public LocalDate getHarvestDay() {
+        return harvestDay;
+    }
+
+    public void setHarvestDay(LocalDate harvestDay) {
+        this.harvestDay = harvestDay;
+    }
+
+    public LocalDate getExpireDay() {
+        return expireDay;
+    }
+
+    public void setExpireDay(LocalDate expireDay) {
+        this.expireDay = expireDay;
     }
 }

@@ -30,7 +30,7 @@ public class TabDistributed extends AnchorPane implements Initializable {
     @FXML private DatePicker datePicker;
     @FXML private TextField amountField;
     @FXML private TextField tab1RecorderTextField;
-    @FXML private ComboBox unitCombo;
+    @FXML private Label unitLabel;
     @FXML private ComboBox typeCombo;
     @FXML private Button farmerSearchBtn;
     @FXML private Button submitBtn;
@@ -57,11 +57,10 @@ public class TabDistributed extends AnchorPane implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
         initColumn();
-        unitCombo.setItems(units);
-        unitCombo.setValue("เมล็ด");
         datePicker.setValue(LocalDate.now());
         lotIds = new ArrayList<>();
         printDistributedController = PrintDistributedController.getInstant();
+        setDatePickerNow();
     }
 
     public void initColumn(){
@@ -129,25 +128,10 @@ public class TabDistributed extends AnchorPane implements Initializable {
     public void searchFarmer(ActionEvent event){
         try {
             seed = (Seed) typeCombo.getValue();
-            unit = unitCombo.getValue().toString();
-
-                if (unit.equals("เมล็ด")) {
-                    amount = Integer.parseInt(amountField.getText());
-                    area = amount / seed.getUnitPerArea();
-                    quantity = (int) amount;
-                } else if (unit.equals("กรัม")) {
-                    amount = Double.parseDouble(amountField.getText());
-                    area = amount / seed.getWeightPerUnit() / seed.getUnitPerArea();
-                    quantity = (int) (amount / seed.getWeightPerUnit());
-                } else if (unit.equals("กิโลกรัม")) {
-                    amount = Double.parseDouble(amountField.getText());
-                    area = amount * 1000 / seed.getWeightPerUnit() / seed.getUnitPerArea();
-                    quantity = (int) (amount * 1000 / seed.getWeightPerUnit());
-                } else if (unit.equals("ตัน")) {
-                    amount = Double.parseDouble(amountField.getText());
-                    area = amount * 1000 * 1000 / seed.getWeightPerUnit() / seed.getUnitPerArea();
-                    quantity = (int) (amount * 1000 * 1000 / seed.getWeightPerUnit());
-                }
+            unit = "กิโลกรัม";
+            amount = Double.parseDouble(amountField.getText());
+            area = amount * 1000 / seed.getWeightPerUnit() / seed.getUnitPerArea();
+            quantity = (int) (amount * 1000 / seed.getWeightPerUnit());
             if(amount>=0) {
                 initData(search(area));
             }else{
@@ -160,7 +144,7 @@ public class TabDistributed extends AnchorPane implements Initializable {
 
     @FXML
     public void onClickSaveBtn(ActionEvent event){
-        unit = unitCombo.getValue().toString();
+        unit = "กิโลกรัม";
         amount = Double.parseDouble(amountField.getText());
         printDistributedController.setNumber(printDistributedController.getNumber() +1);
         printDistributedController.printPDF(farmers,seed.getName(),amount,unit);
@@ -172,6 +156,16 @@ public class TabDistributed extends AnchorPane implements Initializable {
         initData(farmers);
 
        // tabSave.initCombo();
+    }
+
+    public void setDatePickerNow(){
+        datePicker.setDayCellFactory(param -> new DateCell(){
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                setDisable(empty || item.isBefore(LocalDate.now()));
+            }
+        });
     }
 
     public double getArea() {

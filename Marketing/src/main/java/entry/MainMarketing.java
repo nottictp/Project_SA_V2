@@ -14,14 +14,14 @@ public class MainMarketing extends Application{
     public void start(Stage primaryStage) throws Exception{
         MainController controller = new MainController();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/marketing.fxml"));
+        loader.setLocation(getClass().getResource("/order.fxml"));
         AnchorPane mainLayout = loader.load();
-        MarketingCenter marketingCenter = loader.getController();
-        marketingCenter.setController(controller);
+        MarketingController marketingController = loader.getController();
+        marketingController.setController(controller);
 
 
-        primaryStage.setTitle("Marketing");
-        primaryStage.setScene(new Scene(mainLayout, 650, 312));
+        primaryStage.setTitle("ฝ่ายการตลาด");
+        primaryStage.setScene(new Scene(mainLayout, 400, 300));
         primaryStage.show();
     }
 

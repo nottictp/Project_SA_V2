@@ -6,10 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import models.Warehouse;
 import models.WarehouseProduct;
@@ -35,6 +32,8 @@ public class PopUpPickController implements Initializable{
     private Button cancelBtn;
     @FXML
     private Label errorMsg;
+    @FXML
+    private Label successMsg;
     private TabExposeView tabExposeView;
 
     MainWarehouseController controller;
@@ -48,9 +47,9 @@ public class PopUpPickController implements Initializable{
     Set setA = new HashSet();
     Set setB = new HashSet();
     String stockNo, id, name, unit;
-    String[] idName, checkProduct;
-    int quantity;
-    int quatitySeedInStore;
+    String[] idName, checkProduct, qualtityString;
+    private int quantity;
+    private int quatityInStore;
     int quantityProductInStore;
     int order=1;
 
@@ -70,6 +69,7 @@ public class PopUpPickController implements Initializable{
                         +" : "+warehouseSeed.getName()
                         +" : "+warehouseSeed.getQuantity()
                         +" กิโลกรัม";
+                quatityInStore = warehouseSeed.getQuantity();
                 setA.add(id);
             }
             seedId = FXCollections.observableArrayList(setA);
@@ -81,6 +81,7 @@ public class PopUpPickController implements Initializable{
                         +" : "+warehouseProduct.getName()
                         +" : "+warehouseProduct.getQuantity()
                         +" "+warehouseProduct.getUnit();
+                quatityInStore = warehouseProduct.getQuantity();
                 setB.add(id);
             }
             productId = FXCollections.observableArrayList(setB);
@@ -92,37 +93,61 @@ public class PopUpPickController implements Initializable{
     @FXML
     public void handlerBtnAdd(ActionEvent event){
         try{
-            if(Integer.parseInt(amountField.getText()) > 0){
-                stockNo = stockCombo.getValue().toString().substring(0,1);
-                quantity = Integer.parseInt(amountField.getText());
-                idName = String.valueOf(idProductCombo.getValue()).split(" : ");
-                id = idName[0];
-                name = idName[1];
-                unit = "กิโลกรัม";
-                if (stockNo.equals("1")){
-                    WarehouseSeed item = new WarehouseSeed(quantity,"",
-                            0,name,
-                            unit,"",
-                            "","",
-                            "",1,id);
-                    addTableView(item);
-                    System.out.println("Add item");
+
+            System.out.println("quatityInStore = " + quatityInStore);
+            System.out.println("quantity = " + quantity);
+                if(Integer.parseInt(amountField.getText()) > 0){
+                    stockNo = stockCombo.getValue().toString().substring(0,1);
+                    quantity = Integer.parseInt(amountField.getText());
+                    idName = String.valueOf(idProductCombo.getValue()).split(" : ");
+                    id = idName[0];
+                    name = idName[1];
+                    qualtityString = idName[2].split(" ");
+                    quatityInStore=Integer.parseInt(qualtityString[0]);
+                    System.out.println("q = " + quatityInStore);
+                    unit = "กิโลกรัม";
+                    if(quatityInStore>=quantity){
+                        if (stockNo.equals("1")){
+                            WarehouseSeed item = new WarehouseSeed(quantity,"",
+                                    0,name,
+                                    unit,"",
+                                    "","",
+                                    "",1,id);
+                            addTableView(item);
+                            System.out.println("Add item");
+                        }
+                        if (stockNo.equals("2")){
+                            WarehouseProduct item = new WarehouseProduct(quantity,"",
+                                    0,name,
+                                    unit,"",
+                                    "","",
+                                    "",2,id,0);
+                            addTableView(item);
+                            System.out.println("Add item");
+                        }
+                        successMsg.setText("เพิ่มข้อมูลเรียบร้อย");
+                        errorMsg.setText("");
+                    }else{
+//                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                        alert.setTitle("Information Error");
+//                        alert.setHeaderText(null);
+//                        alert.setContentText("จำนวนที่ต้องการเบิกไม่เพียงพอ");
+//
+//                        alert.showAndWait();
+                        successMsg.setText("");
+                        errorMsg.setText("จำนวนที่ต้องการเบิกไม่เพียงพอ");
+                    }
+
+                }else{
+                    successMsg.setText("");
+                    errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
                 }
-                if (stockNo.equals("2")){
-                    WarehouseProduct item = new WarehouseProduct(quantity,"",
-                            0,name,
-                            unit,"",
-                            "","",
-                            "",2,id,0);
-                    addTableView(item);
-                    System.out.println("Add item");
-                }
-            }else{
-                errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
-            }
+
         }catch (NullPointerException e){
+            successMsg.setText("");
             errorMsg.setText("กรุณากรอกข้อมูลให้ครบถ้วน");
         }catch (NumberFormatException e){
+            successMsg.setText("");
             errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
         }finally {
             System.out.println("idProductCombo = " + idProductCombo.getItems());
@@ -146,5 +171,21 @@ public class PopUpPickController implements Initializable{
 
     public void setTabExposeView(TabExposeView tabExposeView) {
         this.tabExposeView = tabExposeView;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getQuatityInStore() {
+        return quatityInStore;
+    }
+
+    public void setQuatityInStore(int quatityInStore) {
+        this.quatityInStore = quatityInStore;
     }
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+    <bean id="sqlDatabase" class="controllers.SQLiteDatabase">
+
+    </bean>
+
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <property name="service" ref="sqlDatabase"/>
+        <property name="serviceName" value="MarketingService"/>
+        <property name="serviceInterface" value="managers.MarketingManagerDB"/>
+        <property name="registryPort" value="5011"/>
+    </bean>
+
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <property name="service" ref="sqlDatabase"/>
+        <property name="serviceName" value="ManufactoryService"/>
+        <property name="serviceInterface" value="managers.ManufactorManagerDB"/>
+        <property name="registryPort" value="5012"/>
+    </bean>
+
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <property name="service" ref="sqlDatabase"/>
+        <property name="serviceName" value="WarehouseService"/>
+        <property name="serviceInterface" value="managers.WarehouseManagerDB"/>
+        <property name="registryPort" value="5013"/>
+    </bean>
+</beans>

@@ -62,6 +62,7 @@ public class TabImportView extends AnchorPane implements Initializable {
         wh = new ArrayList<Warehouse>();
         whSeed = new ArrayList<WarehouseSeed>();
         whProduct = new ArrayList<WarehouseProduct>();
+        setDate();
     }
 
     @FXML
@@ -84,13 +85,16 @@ public class TabImportView extends AnchorPane implements Initializable {
     public void handlerBtnRemove(ActionEvent event) throws IOException {
         Warehouse warehouse = (Warehouse) importTable.getSelectionModel().getSelectedItem();
         if (warehouse!=null){
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            ButtonType foo = new ButtonType("ยืนยัน", ButtonBar.ButtonData.OK_DONE);
+            ButtonType bar = new ButtonType("ยกเลิก", ButtonBar.ButtonData.CANCEL_CLOSE);
+            Alert alert = new Alert(Alert.AlertType.WARNING,
+                    "ลำดับที่ "+(wh.indexOf(warehouse)+1)+" : "+warehouse.getName(),
+                    foo,
+                    bar);
             alert.setTitle("ยืนยันการลบข้อมูล");
-            alert.setHeaderText("ยืนยันการลบข้อมูล");
-            String show = "ลำดับที่ "+(wh.indexOf(warehouse)+1)+" : "+warehouse.getName();
-            alert.setContentText(show);
+            alert.setHeaderText("คุณต้องการลบข้อมูล");
             Optional<ButtonType> result = alert.showAndWait();
-            if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
+            if ((result.isPresent()) && (result.get() == foo)) {
                 wh.remove(warehouse);
                 initData();
                 System.out.println("Remove item");
@@ -205,5 +209,15 @@ public class TabImportView extends AnchorPane implements Initializable {
         form.clear();
         docNo.clear();
         initData();
+    }
+
+    public void setDate(){
+        docDate.setDayCellFactory(param -> new DateCell(){
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                setDisable(empty || item.isBefore(LocalDate.now()));
+            }
+        });
     }
 }

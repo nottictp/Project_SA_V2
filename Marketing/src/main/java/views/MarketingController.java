@@ -26,11 +26,11 @@ import java.util.*;
 public class MarketingController implements Initializable {
 
     @FXML private ComboBox typeCombo;
-    @FXML private ComboBox unitCombo;
+    @FXML private Label unitLabel;
     @FXML private TextField amountField;
     @FXML private Button submitOrderBtn;
     @FXML private Label errorMsg;
-
+    @FXML private ComboBox shelfCombo;
 
 
     Set set = new HashSet();
@@ -55,7 +55,6 @@ public class MarketingController implements Initializable {
         System.out.println("initialize");
         if (controller != null){
             typeCombo.setItems(comboBoxData());
-            unitCombo.setItems(units);
             printController = PrintController.getInstant();
         }
         sortName = new ArrayList<>();
@@ -74,7 +73,6 @@ public class MarketingController implements Initializable {
         System.out.println("typeCombo = " + typeCombo);
         if (typeCombo != null){
             typeCombo.setItems(comboBoxData());
-            unitCombo.setItems(units);
             printController = PrintController.getInstant();
             printController.setMainController(controller);
         }
@@ -110,12 +108,13 @@ public class MarketingController implements Initializable {
         try {
             quantity = Integer.parseInt(amountField.getText());
             System.out.println("quantity = " + quantity);
-            unit = String.valueOf(unitCombo.getValue());
             String[] idName = String.valueOf(typeCombo.getValue()).split(" : ");
             id = idName[0];
             name = idName[1];
             if(quantity > 0){
+                errorMsg.setText("");
                 checkAmountOfSeed(id);
+                amountField.clear();
             }else{
                 System.out.println("ตรวจสอบข้อมูลอีกครั้ง");
                 errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
@@ -158,7 +157,7 @@ public class MarketingController implements Initializable {
             System.out.println("unit = " + unit);
             System.out.println("quantity = " + quantity);
             System.out.println(printController);
-            printController.setNumber(printController.getNumber() + 1);
+            printController.setNumberSuccess(printController.getNumberSuccess() + 1);
             printController.printManufactureScript(id,name,unit,quantity);
             System.out.println("OK!!");
         }else if(totalFather < checkFather && totalMother >= checkMother){
@@ -167,6 +166,8 @@ public class MarketingController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText(nameFather+" ไม่พอ ขาด: "+(totalFather-checkFather)*(-1));
             alert.showAndWait();
+            printController.setNumberFail(printController.getNumberFail() + 1);
+            printController.printManufactureFailScript(id,name,quantity,checkMother,checkFather);
             System.out.println("Father not enough.");
             System.out.println("It need "+(totalFather-checkFather)*(-1));
         }else if(totalFather >= checkFather && totalMother < checkMother){
@@ -175,6 +176,8 @@ public class MarketingController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText(nameMother+" ไม่พอ ขาด: "+(totalMother-checkMother)*(-1));
             alert.showAndWait();
+            printController.setNumberFail(printController.getNumberFail() + 1);
+            printController.printManufactureFailScript(id,name,quantity,checkMother,checkFather);
             System.out.println("Mother not enough.");
             System.out.println("It need "+(totalMother-checkMother)*(-1));
         }else{
@@ -185,6 +188,8 @@ public class MarketingController implements Initializable {
                     nameFather+" ไม่พอ ขาด: "+(totalFather-checkFather)*(-1)+"\n"+
                     nameMother+" ไม่พอ ขาด: "+(totalMother-checkMother)*(-1));
             alert.showAndWait();
+            printController.setNumberFail(printController.getNumberFail() + 1);
+            printController.printManufactureFailScript(id,name,quantity,checkMother,checkFather);
             System.out.println("Father and Mother not enough");
             System.out.println("Father need "+(totalFather-checkFather)*(-1));
             System.out.println("It need "+(totalMother-checkMother)*(-1));

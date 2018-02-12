@@ -38,27 +38,17 @@ public class HomeView implements Initializable {
         addressCompany.setText(".....................");
     }
 
-//    @FXML
-//    public void onClickMarketBtn() throws IOException {
-//        System.out.println("Marketing Click");
-////        try {
-////            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Marketing/src/marketing.fxml"));
-////            Parent root1 = (Parent) fxmlLoader.load();
-////            Stage stage = new Stage();
-////            stage.setScene(new Scene(root1));
-////            stage.show();
-////        } catch(Exception e) {
-////            e.printStackTrace();
-////        }
-//
-//        Stage stage = new Stage();
-//        MainMarketing marketing = new MainMarketing();
-//        try {
-//            marketing.start(stage);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+    @FXML
+    public void onClickMarketBtn() throws IOException {
+        System.out.println("Marketing Click");
+        Stage stage = new Stage();
+        MainMarketing marketing = new MainMarketing();
+        try {
+            marketing.start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     public void onClickWarehouseBtn(){

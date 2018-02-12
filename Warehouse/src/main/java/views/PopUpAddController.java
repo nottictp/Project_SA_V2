@@ -37,11 +37,16 @@ public class PopUpAddController implements Initializable {
     private Button cancelBtn;
     @FXML
     private Label errorMsg;
+    @FXML
+    private Label successMsg;
+
+    @FXML ComboBox shelfCombo;
     private TabImportView tabImportView;
 
     ObservableList<String> shelfs = FXCollections.observableArrayList("1: เมล็ดพันธุ์","2: สินค้า");
     ObservableList<String> unitProduct = FXCollections.observableArrayList("ซอง", "กระป๋อง");
     ObservableList<String> unitSeed = FXCollections.observableArrayList("เมล็ด");
+    ObservableList<String> shelfs2 = FXCollections.observableArrayList("L1","L2","L3","R1","R2","R3");
     ObservableList<String> seedId, productId;
 
     Set setA = new HashSet();
@@ -60,6 +65,7 @@ public class PopUpAddController implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
         stockCombo.setItems(shelfs);
+        shelfCombo.setItems(shelfs2);
     }
 
     public void setController(MainWarehouseController controller){
@@ -79,7 +85,7 @@ public class PopUpAddController implements Initializable {
                 name = idName[1];
                 //unit = String.valueOf(unitCombo.getValue());
                 unit = "กิโลกรัม";
-                shelf = shelfField.getText();
+                shelf = shelfCombo.getValue().toString();
 
                 if (stockNo.equals("1")){
                     WarehouseSeed item = new WarehouseSeed(quantity,shelf,
@@ -99,17 +105,21 @@ public class PopUpAddController implements Initializable {
                     addTableView(item);
                     System.out.println("Add item");
                 }
+                successMsg.setText("เพิ่มข้อมูลเรียบร้อย");
+                errorMsg.setText("");
+
             }else{
+                successMsg.setText("");
                 errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
             }
         }catch (NullPointerException e){
+            successMsg.setText("");
             errorMsg.setText("กรุณากรอกข้อมูลให้ครบถ้วน");
         }catch (NumberFormatException e){
+            successMsg.setText("");
             errorMsg.setText("ตรวจสอบข้อมูลอีกครั้ง");
         }finally {
-            idProductCombo.getItems().clear();
             amountField.clear();
-            shelfField.clear();
         }
 
     }

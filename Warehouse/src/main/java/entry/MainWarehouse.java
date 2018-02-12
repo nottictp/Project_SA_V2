@@ -19,7 +19,7 @@ public class MainWarehouse extends Application{
         WarehouseController warehouseController = loader.getController();
         warehouseController.setController(controller);
 
-        primaryStage.setTitle("Warehouse");
+        primaryStage.setTitle("ฝ่ายคลังสินค้า");
         primaryStage.setScene(new Scene(mainLayout, 774, 540));
         primaryStage.show();
     }

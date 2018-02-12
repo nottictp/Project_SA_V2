@@ -19,8 +19,8 @@ public class MainManufactory extends Application{
         manufactoryController = loader.getController();
         manufactoryController.setController(controller);
 
-        primaryStage.setTitle("Manufactory");
-        primaryStage.setScene(new Scene(mainLayout, 774, 359));
+        primaryStage.setTitle("ฝ่ายการผลิต");
+        primaryStage.setScene(new Scene(mainLayout, 635, 359));
         primaryStage.show();
     }
 
